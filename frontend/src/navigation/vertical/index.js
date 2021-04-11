@@ -11,7 +11,7 @@ export default [
   },
   {
     title: 'Payee',
-    route: 'shop.supplier',
+    route: 'shop.payee',
     icon: 'FileIcon',
   },
   {

@@ -3,11 +3,11 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">Client List</span>
+          <span class="card-title">Payee List</span>
           <b-button
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
-            :to="{ name:'shop.client.create' }"
+            :to="{ name:'shop.payee.create' }"
           >
             Add New
           </b-button>
@@ -239,7 +239,7 @@ export default {
         })
         .then(value => {
           if (value) {
-            axiosIns.delete(`api/v1/shop/client/${id}`).then(response => {
+            axiosIns.delete(`api/v1/shop/payee/${id}`).then(response => {
               // console.log(response.data)
 
               this.$bvToast.toast(response.data.message, {
@@ -253,7 +253,7 @@ export default {
         })
     },
     getData() {
-      axiosIns.get('api/v1/shop/client').then(response => {
+      axiosIns.get('api/v1/shop/payee').then(response => {
         // console.log(response.data)
         this.rows = response.data
       })

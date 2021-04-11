@@ -87,30 +87,30 @@ export default [
     },
   },
   {
-    path: '/supplier',
-    name: 'shop.supplier',
-    component: () => import('@/views/shop/supplier/Index.vue'),
+    path: '/payee',
+    name: 'shop.payee',
+    component: () => import('@/views/shop/payee/Index.vue'),
     meta: {
       authUserOnly: true,
-      pageTitle: 'Suppliers',
+      pageTitle: 'Payee',
       breadcrumb: [
         {
-          text: 'Supplier list',
+          text: 'Payee list',
           active: true,
         },
       ],
     },
   },
   {
-    path: '/supplier/create',
-    name: 'shop.supplier.create',
-    component: () => import('@/views/shop/supplier/Create.vue'),
+    path: '/payee/create',
+    name: 'shop.payee.create',
+    component: () => import('@/views/shop/payee/Create.vue'),
     meta: {
       authUserOnly: true,
-      pageTitle: 'Create supplier',
+      pageTitle: 'Create payee',
       breadcrumb: [
         {
-          text: 'Supplier',
+          text: 'Payee',
         },
         {
           text: 'Create',
@@ -120,15 +120,15 @@ export default [
     },
   },
   {
-    path: '/supplier/edit/:id',
-    name: 'shop.supplier.edit',
-    component: () => import('@/views/shop/supplier/Edit.vue'),
+    path: '/payee/edit/:id',
+    name: 'shop.payee.edit',
+    component: () => import('@/views/shop/payee/Edit.vue'),
     meta: {
       authUserOnly: true,
-      pageTitle: 'Edit supplier',
+      pageTitle: 'Edit payee',
       breadcrumb: [
         {
-          text: 'Supplier',
+          text: 'Payee',
         },
         {
           text: 'Edit',

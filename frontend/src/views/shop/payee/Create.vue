@@ -3,7 +3,7 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">Client Information</span>
+          <span class="card-title">Payee Information</span>
         </div>
         <div class="card-body">
           <validation-observer ref="createCustomer">
@@ -300,7 +300,7 @@ export default {
     validationForm() {
       this.$refs.createCustomer.validate().then(success => {
         if (success) {
-          axiosIns.post('api/v1/shop/client', this.form).then(response => {
+          axiosIns.post('api/v1/shop/payee', this.form).then(response => {
             console.log(response)
             // first reset your form values
             // eslint-disable-next-line guard-for-in,no-restricted-syntax

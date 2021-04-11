@@ -3,9 +3,11 @@
 use App\Http\Controllers\Api\Admin\AdminReportController;
 use App\Http\Controllers\Api\Admin\AdminShopController;
 use App\Http\Controllers\Api\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmiController;
 use App\Http\Controllers\Api\ExpenseController;
+use App\Http\Controllers\Api\PayeeController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PurchaseController;
 use App\Http\Controllers\Api\ReportController;
@@ -15,6 +17,11 @@ use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\User\AuthController as UserAuthController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('v1/get-countries', [ClientController::class, 'getAllCountries'])->name('get-countries');
+Route::get('v1/get-divisions', [ClientController::class, 'getAllDivisions'])->name('get-divisions');
+Route::get('v1/get-districts/{division_id}', [ClientController::class, 'getAllDistricts'])->name('get-districts');
+Route::get('v1/get-upazilas/{district_id}', [ClientController::class, 'getAllUpazilas'])->name('get-upazilas');
 //admin routes
 Route::group(['prefix' => 'v1/admin','as'=>'admin.'],function (){
     Route::post('login',[AdminAuthController::class,'login'])->name('login');
@@ -39,10 +46,10 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
     
     Route::group(['middleware' => ['auth:user-api','scope:user']],function (){
         Route::post('logout',[UserAuthController::class,'logout'])->name('logout');
-//        Route::get('users',[UserAuthController::class,'getAllUsers'])->name('get.users');
-//        Route::get('my-info',[UserAuthController::class,'getLoggedUserDetails'])->name('get.myInfo');
-        Route::apiResource('customer',CustomerController::class);
-        Route::apiResource('supplier',SupplierController::class);
+
+        Route::apiResource('client',ClientController::class);
+        Route::apiResource('payee',PayeeController::class);
+
         Route::apiResource('purchase',PurchaseController::class);
         Route::apiResource('sale',SaleController::class);
         Route::apiResource('expense',ExpenseController::class);

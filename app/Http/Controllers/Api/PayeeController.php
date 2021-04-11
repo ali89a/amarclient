@@ -4,22 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
-use App\Models\Country;
-use App\Models\Customer;
-use App\Models\District;
-use App\Models\Division;
-use App\Models\Upazila;
+use App\Models\Payee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
 
-class ClientController extends Controller
+class PayeeController extends Controller
 {
     public function index()
     {
-        return Client::where('shop_id', auth('user-api')->user()->shop_id)->get();
+        return Payee::where('shop_id', auth('user-api')->user()->shop_id)->get();
     }
 
     public function store(Request $request)
@@ -30,7 +26,7 @@ class ClientController extends Controller
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('clients')->where(function($query){
+                Rule::unique('payees')->where(function($query){
                     $query->where('shop_id',auth('user-api')->user()->shop_id);
                 })
             ],
@@ -45,7 +41,7 @@ class ClientController extends Controller
         DB::beginTransaction();
 
         try {
-            $client = Client::create([
+            $payee = Payee::create([
                 'shop_id' => $request->user()->shop->id,
                 'name' => $request->name,
                 'company' => $request->company,
@@ -68,7 +64,7 @@ class ClientController extends Controller
             // something went wrong
         }
 
-        return response()->json(['success' => true, 'message' => 'Client created successfully.',],Response::HTTP_CREATED);
+        return response()->json(['success' => true, 'message' => 'Payee created successfully.',],Response::HTTP_CREATED);
     }
 
     /**
@@ -79,11 +75,11 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client = Client::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
-        if (!$client){
-            return response()->json(['success' => false, 'message' => 'No client found.']);
+        $payee = Payee::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        if (!$payee){
+            return response()->json(['success' => false, 'message' => 'No payee found.']);
         }
-        return response()->json(['success' => true, 'customer_info' => $client]);
+        return response()->json(['success' => true, 'payee_info' => $payee]);
     }
 
     /**
@@ -100,7 +96,7 @@ class ClientController extends Controller
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('clients')->ignore($id,'id')->where(function($query){
+                Rule::unique('payees')->ignore($id,'id')->where(function($query){
                     $query->where('shop_id',auth('user-api')->user()->shop_id);
                 })
             ],
@@ -108,9 +104,9 @@ class ClientController extends Controller
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors(),], 422);
         }
-        $customer = Customer::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
-        if ($customer){
-            $customer->update([
+        $payee = Payee::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        if ($payee){
+            $payee->update([
                 'name' => $request->name,
                 'company' => $request->company,
                 'phone_number_1' => $request->phone_number_1,
@@ -124,9 +120,9 @@ class ClientController extends Controller
                 'district_id' => $request->district_id,
                 'upazila_id' => $request->upazila_id,
             ]);
-            return response()->json(['success' => true, 'message' => "Client Updated successfully.",]);
+            return response()->json(['success' => true, 'message' => "Payee Updated successfully.",]);
         }
-        return response()->json(['success' => false, 'message' => 'No client found.',]);
+        return response()->json(['success' => false, 'message' => 'No payee found.',]);
     }
 
     /**
@@ -137,31 +133,11 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $client = Client::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
-        if ($client){
-            $client->delete();
-            return response()->json(['success' => true, 'message' => 'Client deleted successfully.',]);
+        $payee = Payee::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        if ($payee){
+            $payee->delete();
+            return response()->json(['success' => true, 'message' => 'Payee deleted successfully.',]);
         }
-        return response()->json(['success' => false, 'message' => 'No client found.',]);
-    }
-
-    public function getAllCountries()
-    {
-        return Country::all();
-    }
-
-    public function getAllDivisions()
-    {
-        return Division::all();
-    }
-
-    public function getAllDistricts($division_id)
-    {
-        return District::where('division_id', $division_id)->get();
-    }
-
-    public function getAllUpazilas($district_id)
-    {
-        return Upazila::where('district_id', $district_id)->get();
+        return response()->json(['success' => false, 'message' => 'No payee found.',]);
     }
 }
