@@ -19,17 +19,18 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return Sale::with('customer')->where('shop_id', auth('user-api')->user()->shop_id)->get();
+        return Sale::where('shop_id', auth('user-api')->user()->shop_id)->get();
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'customer_id' => 'required',
-            'item_name' => 'required',
+            'name' => 'required',
             'amount' => 'required|numeric',
-            'date' => '',
-            'description' => 'max:500',
+            'advance_payment' => 'required|numeric',
+            'next_payment' => 'required|numeric',
+            'sku' => '',
+            'notes' => 'max:500',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -40,21 +41,28 @@ class SaleController extends Controller
         DB::beginTransaction();
 
         try {
-            $purchase = Sale::create([
+            $sale = Sale::create([
                 'shop_id' => $request->user()->shop->id,
-                'item_name' => $request->item_name,
-                'customer_id' => $request->customer_id,
+                'name' => $request->name,
+                'sku' => $request->sku,
                 'amount' => $request->amount,
-                'date' => $request->date,
-                'description' => $request->description,
+                'advance_payment' => $request->advance_payment,
+                'notes' => $request->notes,
+                'due_payment' => $request->due_payment,
+                'websites' => $request->websites,
+                'next_payment_date' => $request->next_payment_date,
+                'next_payment' => $request->next_payment,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
             ]);
 
             DB::commit();
             // all good
         } catch (\Exception $e) {
             DB::rollback();
+            return $e;
             // something went wrong
-            return response()->json(['success' => true, 'message' => 'Something went wrong.',]);
+            return response()->json(['success' => false, 'message' => 'Something went wrong.',]);
         }
 
         return response()->json(['success' => true, 'message' => 'New Sale created successfully.',],Response::HTTP_CREATED);
@@ -72,11 +80,10 @@ class SaleController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'item_name' => 'required',
-            'customer_id' => 'required',
+            'name' => 'required',
             'amount' => 'required|numeric',
-            'date' => '',
-            'description' => 'max:500',
+            'sku' => '',
+            'notes' => 'max:500',
         ]);
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors(),], 422);
@@ -84,11 +91,18 @@ class SaleController extends Controller
         $sale = Sale::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
         if ($sale){
             $sale->update([
-                'item_name' => $request->item_name,
-                'customer_id' => $request->customer_id,
+                'shop_id' => $request->user()->shop->id,
+                'name' => $request->name,
+                'sku' => $request->sku,
                 'amount' => $request->amount,
-                'date' => $request->date,
-                'description' => $request->description,
+                'advance_payment' => $request->advance_payment,
+                'notes' => $request->notes,
+                'due_payment' => $request->due_payment,
+                'websites' => $request->websites,
+                'next_payment_date' => $request->next_payment_date,
+                'next_payment' => $request->next_payment,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
             ]);
             return response()->json(['success' => true, 'message' => "Sale Updated successfully.",]);
         }

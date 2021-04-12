@@ -3,92 +3,171 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">sale Information</span>
+          <span class="card-title">Sale Information</span>
         </div>
         <div class="card-body">
           <validation-observer ref="createsale">
             <b-form>
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Customer name">
-                    <select
-                      v-model="form.customer_id"
-                      class="form-control"
-                      required
-                    >
-                      <option
-                        value=""
-                        selected
-                      >
-                        Choose one
-                      </option>
-                      <option
-                        v-for="customer in customers"
-                        :key="customer.id"
-                        :value="customer.id"
-                      >
-                        {{ customer.name }}
-                      </option>
-                    </select>
-                  </b-form-group>
-                </b-col>
-                <b-col md="6">
-                  <b-form-group label="Product name">
+                  <b-form-group label="Name">
                     <validation-provider
                         #default="{ errors }"
                         name="item_name"
                         rules="required"
                     >
                       <b-form-input
-                          v-model="form.item_name"
+                          v-model="form.name"
                           :state="errors.length > 0 ? false:null"
                           type="text"
-                          placeholder="Product name"
+                          placeholder="Name"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Amount">
+                  <b-form-group label="SKU">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="sku"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.sku"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="sku"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Total Amount">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="amount"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.amount"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="amount"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Advance Payment">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="advance_payment"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.advance_payment"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Advance payment"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Notes">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="notes"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.notes"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Notes"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Due Payment">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="due_payment"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.due_payment"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Due payment"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Websites">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="websites"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.websites"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Websites"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Next Payment">
                     <validation-provider
                       #default="{ errors }"
-                      name="Amount"
+                      name="next_payment"
                       rules="required"
                     >
                       <b-form-input
-                        v-model="form.amount"
+                        v-model="form.next_payment"
                         :state="errors.length > 0 ? false:null"
                         type="text"
-                        placeholder="amount"
+                        placeholder="Next Payment"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <label for="example-datepicker">Choose a date</label>
+                  <label for="example-datepicker">Next Payment date</label>
                   <b-form-datepicker
                     id="example-datepicker"
-                    v-model="form.date"
+                    v-model="form.next_payment_date"
                     class="mb-1"
                   />
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Description">
-                    <validation-provider
-                      #default="{ errors }"
-                      name="Description"
-                    >
-                      <b-form-textarea
-                        v-model="form.description"
-                        :state="errors.length > 0 ? false:null"
-                        placeholder="Description"
-                        rows="3"
-                      />
-                      <small class="text-danger">{{ errors[0] }}</small>
-                    </validation-provider>
-                  </b-form-group>
+                  <label for="example-datepicker">Start date</label>
+                  <b-form-datepicker
+                    id="example-datepicker2"
+                    v-model="form.start_date"
+                    class="mb-1"
+                  />
+                </b-col>
+                <b-col md="6">
+                  <label for="example-datepicker">End date</label>
+                  <b-form-datepicker
+                    id="example-datepicker3"
+                    v-model="form.end_date"
+                    class="mb-1"
+                  />
                 </b-col>
                 <b-col cols="12">
                   <b-button
@@ -132,11 +211,17 @@ export default {
   data() {
     return {
       form: {
-        item_name: '',
-        customer_id: '',
+        name: '',
+        sku: '',
         amount: '',
-        date: '',
-        description: '',
+        advance_payment: '',
+        notes: '',
+        due_payment: '',
+        websites: '',
+        next_payment_date: '',
+        next_payment: '',
+        start_date: '',
+        end_date: '',
       },
       customers: [],
       // products: [],
@@ -144,22 +229,9 @@ export default {
     }
   },
   mounted() {
-    this.getCustomerData()
     // this.getProducts()
   },
   methods: {
-    getCustomerData() {
-      axiosIns.get('api/v1/shop/customer').then(response => {
-        // console.log(response.data)
-        this.customers = response.data
-      })
-    },
-    getProducts() {
-      axiosIns.get('api/v1/shop/product').then(response => {
-        // console.log(response.data)
-        this.products = response.data
-      })
-    },
     validationForm() {
       this.$refs.createsale.validate().then(success => {
         if (success) {
@@ -171,13 +243,22 @@ export default {
             }
             // then do this to reset your ValidationObserver
             this.$nextTick(() => this.$refs.createsale.reset())
-            this.$bvToast.toast('sale created successfully.', {
-              title: 'Success',
-              variant: 'success',
+            if (response.data.success) {
+              this.$bvToast.toast(response.data.message, {
+                title: 'Success',
+                variant: 'success',
+                solid: true,
+              })
+            }
+            this.$bvToast.toast(response.data.message, {
+              title: 'Failed!',
+              variant: 'danger',
               solid: true,
             })
           })
         }
+      }).catch(error => {
+        this.$refs.createsale.setErrors(error.response.data.errors)
       })
     },
   },

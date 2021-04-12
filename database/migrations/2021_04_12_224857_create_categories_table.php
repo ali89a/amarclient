@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmiInstallmentsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateEmiInstallmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emi_installments', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('emi_id')->constrained('emis')->onDelete('cascade');
-            $table->dateTime('date');
-            $table->integer('installment_no')->nullable();
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateEmiInstallmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emi_installments');
+        Schema::dropIfExists('categories');
     }
 }

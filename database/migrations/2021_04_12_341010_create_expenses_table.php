@@ -16,10 +16,10 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
-            $table->string('item_name');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('sub_category_id')->constrained('sub_categories')->onDelete('cascade');
             $table->float('amount');
-            $table->dateTime('date')->nullable();
-            $table->text('description')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

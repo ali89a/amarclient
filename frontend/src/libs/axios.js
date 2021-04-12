@@ -8,7 +8,7 @@ const axiosIns = axios.create({
   // ================================
   baseURL: 'http://127.0.0.1:8000',
   // baseURL: 'http://cashbaksho.com/',
-  timeout: 5000,
+  timeout: 7000,
   headers: { Accept: 'application/json' },
 })
 

@@ -3,7 +3,7 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">sale Information</span>
+          <span class="card-title">Sale List</span>
           <b-button
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
@@ -72,13 +72,13 @@
                         class="text-body align-middle mr-25"
                       />
                     </template>
-                    <b-dropdown-item>
-                      <feather-icon
-                        icon="Edit2Icon"
-                        class="mr-50"
-                      />
-                      <span><router-link :to="{name:'shop.sale.edit',params:{id:props.row.id}}">Edit</router-link></span>
-                    </b-dropdown-item>
+<!--                    <b-dropdown-item>-->
+<!--                      <feather-icon-->
+<!--                        icon="Edit2Icon"-->
+<!--                        class="mr-50"-->
+<!--                      />-->
+<!--                      <span><router-link :to="{name:'shop.sale.edit',params:{id:props.row.id}}">Edit</router-link></span>-->
+<!--                    </b-dropdown-item>-->
                     <b-dropdown-item>
                       <feather-icon
                         icon="TrashIcon"
@@ -174,20 +174,24 @@ export default {
       dir: false,
       columns: [
         {
-          label: 'Product',
-          field: 'item_name',
+          label: 'Name',
+          field: 'name',
         },
         {
-          label: 'Customer',
-          field: 'customer.name',
+          label: 'SKU',
+          field: 'sku',
         },
         {
           label: 'Amount',
           field: 'amount',
         },
         {
-          label: 'Date',
-          field: 'date',
+          label: 'Start Date',
+          field: 'start_date',
+        },
+        {
+          label: 'End Date',
+          field: 'end_date',
         },
         {
           label: 'Action',

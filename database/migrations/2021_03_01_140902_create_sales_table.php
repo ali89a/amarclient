@@ -16,12 +16,17 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
-            $table->foreignId('customer_id')->nullable()->constrained('customers')->onDelete('set null');
-//            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');
-            $table->string('item_name');
+            $table->string('name');
+            $table->string('sku');
             $table->float('amount');
-            $table->dateTime('date')->nullable();
-            $table->text('description')->nullable();
+            $table->float('advance_payment')->nullable();
+            $table->text('notes')->nullable();
+            $table->float('due_payment')->nullable();
+            $table->text('websites')->nullable();
+            $table->dateTime('next_payment_date')->nullable();
+            $table->float('next_payment')->nullable();
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->timestamps();
         });
     }

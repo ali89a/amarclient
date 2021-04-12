@@ -40,9 +40,15 @@ class TwoFactorCode extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line('Your email verification code is '. $notifiable->two_factor_code)
-            ->line('If you have not tried to login, ignore this message.');
+        $email=$notifiable->email;
+        return (new MailMessage)->view('vendor.mail.reset_password',[
+            'verification_code' => $notifiable->two_factor_code,
+            'email'=> $email,
+            'name' =>$notifiable->name
+        ]);
+//        return (new MailMessage)
+//            ->line('Your email verification code is '. $notifiable->two_factor_code)
+//            ->line('If you have not tried to login, ignore this message.');
     }
 
     /**

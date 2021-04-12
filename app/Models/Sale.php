@@ -9,15 +9,9 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['shop_id', 'customer_id', 'item_name', 'amount', 'date', 'description'];
+    protected $fillable = ['shop_id', 'name', 'sku', 'amount', 'advance_payment', 'notes','due_payment','websites','next_payment_date','next_payment','start_date','end_date'];
 
     public function shop(){
         return $this->belongsTo(Shop::class);
-    }
-//    public function product(){
-//        return $this->belongsTo(Product::class);
-//    }
-    public function customer(){
-        return $this->belongsTo(Customer::class);
     }
 }
