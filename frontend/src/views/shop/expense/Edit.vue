@@ -3,50 +3,59 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">transaction Information</span>
+          <span class="card-title">product Information</span>
         </div>
         <div class="card-body">
-          <validation-observer ref="createtransaction">
+          <validation-observer ref="createproduct">
             <b-form>
               <b-row>
                 <b-col md="6">
-                  <b-form-group label="Given">
+                  <b-form-group label="name">
                     <validation-provider
                         #default="{ errors }"
-                        name="Given"
+                        name="Name"
+                        rules="required"
                     >
                       <b-form-input
-                          v-model="form.given"
+                          v-model="form.name"
                           :state="errors.length > 0 ? false:null"
-                          placeholder="Given amount"
+                          placeholder="Full Name"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <b-form-group label="Taken">
+                  <b-form-group label="SKU">
                     <validation-provider
                         #default="{ errors }"
-                        name="Taken"
+                        name="SKU"
                     >
                       <b-form-input
-                          v-model="form.taken"
+                          v-model="form.sku"
                           :state="errors.length > 0 ? false:null"
                           type="text"
-                          placeholder="Taken amount"
+                          placeholder="sku"
                       />
                       <small class="text-danger">{{ errors[0] }}</small>
                     </validation-provider>
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
-                  <label for="example-datepicker">Choose a date</label>
-                  <b-form-datepicker
-                      id="example-datepicker"
-                      v-model="form.date"
-                      class="mb-1"
-                  />
+                  <b-form-group label="Price">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="Price"
+                    >
+                      <b-form-input
+                          v-model="form.price"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Price"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
                 </b-col>
                 <b-col cols="12">
                   <b-button
@@ -89,23 +98,23 @@ export default {
   data() {
     return {
       form: {
-        given: '',
-        taken: '',
-        date: '',
+        name: '',
+        sku: '',
+        price: '',
       },
       required,
     }
   },
   created() {
-    this.gettransactionInfo()
+    this.getproductInfo()
   },
   methods: {
     validationForm() {
-      this.$refs.createtransaction.validate().then(success => {
+      this.$refs.createproduct.validate().then(success => {
         if (success) {
-          axiosIns.put(`api/v1/shop/transaction/${this.$route.params.id}`, this.form).then(response => {
+          axiosIns.put(`api/v1/shop/product/${this.$route.params.id}`, this.form).then(response => {
             // console.log(response)
-            this.$nextTick(() => this.$refs.createtransaction.reset())
+            this.$nextTick(() => this.$refs.createproduct.reset())
             this.$bvToast.toast(response.data.message, {
               title: 'Success',
               variant: 'success',
@@ -115,11 +124,11 @@ export default {
         }
       })
     },
-    gettransactionInfo() {
-      axiosIns.get(`api/v1/shop/transaction/${this.$route.params.id}`).then(response => {
-        this.form.given = response.data.transaction_info.given
-        this.form.taken = response.data.transaction_info.taken
-        this.form.date = response.data.transaction_info.date
+    getproductInfo() {
+      axiosIns.get(`api/v1/shop/product/${this.$route.params.id}`).then(response => {
+        this.form.name = response.data.product_info.name
+        this.form.sku = response.data.product_info.sku
+        this.form.price = response.data.product_info.price
       })
     },
   },

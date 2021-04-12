@@ -180,8 +180,8 @@ export default {
     }
   },
   mounted() {
-    this.getStatistic()
-    this.getTransactionReport()
+    // this.getStatistic()
+    // this.getTransactionReport()
   },
   methods: {
     getStatistic() {

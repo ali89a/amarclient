@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\Admin\AdminReportController;
 use App\Http\Controllers\Api\Admin\AdminShopController;
 use App\Http\Controllers\Api\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Api\Admin\CategoryController;
+use App\Http\Controllers\Api\Admin\SubCategoryController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmiController;
@@ -33,6 +35,8 @@ Route::group(['prefix' => 'v1/admin','as'=>'admin.'],function (){
 
         Route::get('report',[AdminReportController::class,'getReport'])->name('get.report');
         Route::apiResource('shop',AdminShopController::class);
+        Route::apiResource('category',CategoryController::class);
+        Route::apiResource('sub-category',SubCategoryController::class);
     });
 });
 
@@ -49,13 +53,12 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
 
         Route::apiResource('client',ClientController::class);
         Route::apiResource('payee',PayeeController::class);
-
-        Route::apiResource('purchase',PurchaseController::class);
         Route::apiResource('sale',SaleController::class);
         Route::apiResource('expense',ExpenseController::class);
-        Route::apiResource('transaction',TransactionController::class);
         Route::apiResource('product',ProductController::class);
-        Route::apiResource('emi',EmiController::class);
+
+        Route::get('get-categories',[ExpenseController::class,'getCategories']);
+        Route::get('get-sub-categories/{categoryId}',[ExpenseController::class,'getSubCategories']);
 
         Route::get('report',[ReportController::class, 'report']);
         Route::get('report/transaction',[ReportController::class, 'transaction']);

@@ -3,11 +3,11 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">Purchase List</span>
+          <span class="card-title">Expenses List</span>
           <b-button
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
-            :to="{ name:'shop.purchase.create' }"
+            :to="{ name:'shop.expense.create' }"
           >
             Add New
           </b-button>
@@ -29,7 +29,7 @@
           </div>
           <!-- table -->
           <vue-good-table
-            ref="purchaseTable"
+            ref="productTable"
             :columns="columns"
             :rows="rows"
             :search-options="{
@@ -72,13 +72,13 @@
                         class="text-body align-middle mr-25"
                       />
                     </template>
-                    <b-dropdown-item>
-                      <feather-icon
-                        icon="Edit2Icon"
-                        class="mr-50"
-                      />
-                      <span><router-link :to="{name:'shop.purchase.edit',params:{id:props.row.id}}">Edit</router-link></span>
-                    </b-dropdown-item>
+<!--                    <b-dropdown-item>-->
+<!--                      <feather-icon-->
+<!--                        icon="Edit2Icon"-->
+<!--                        class="mr-50"-->
+<!--                      />-->
+<!--                      <span><router-link :to="{name:'shop.product.edit',params:{id:props.row.id}}">Edit</router-link></span>-->
+<!--                    </b-dropdown-item>-->
                     <b-dropdown-item>
                       <feather-icon
                         icon="TrashIcon"
@@ -174,20 +174,20 @@ export default {
       dir: false,
       columns: [
         {
-          label: 'Product',
-          field: 'item_name',
+          label: 'Category',
+          field: 'category.name',
         },
         {
-          label: 'Supplier',
-          field: 'supplier.name',
+          label: 'Sub Category',
+          field: 'sub_category.name',
         },
         {
           label: 'Amount',
           field: 'amount',
         },
         {
-          label: 'Date',
-          field: 'date',
+          label: 'Notes',
+          field: 'notes',
         },
         {
           label: 'Action',
@@ -200,7 +200,7 @@ export default {
   },
   computed: {},
   created() {
-    this.getpurchaseData()
+    this.getData()
   },
   methods: {
     DeleteData(id) {
@@ -217,7 +217,7 @@ export default {
         })
         .then(value => {
           if (value) {
-            axiosIns.delete(`api/v1/shop/purchase/${id}`).then(response => {
+            axiosIns.delete(`api/v1/shop/expense/${id}`).then(response => {
               // console.log(response.data)
 
               this.$bvToast.toast(response.data.message, {
@@ -225,13 +225,14 @@ export default {
                 variant: 'success',
                 solid: true,
               })
-              this.getpurchaseData()
+              this.getData()
             })
           }
         })
     },
-    getpurchaseData() {
-      axiosIns.get('api/v1/shop/purchase').then(response => {
+    getData() {
+      axiosIns.get('api/v1/shop/expense').then(response => {
+        // console.log(response.data)
         this.rows = response.data
       })
     },

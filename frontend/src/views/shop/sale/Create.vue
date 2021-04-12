@@ -249,12 +249,13 @@ export default {
                 variant: 'success',
                 solid: true,
               })
+            }else {
+              this.$bvToast.toast(response.data.message, {
+                title: 'Failed!',
+                variant: 'danger',
+                solid: true,
+              })
             }
-            this.$bvToast.toast(response.data.message, {
-              title: 'Failed!',
-              variant: 'danger',
-              solid: true,
-            })
           })
         }
       }).catch(error => {

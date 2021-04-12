@@ -21,7 +21,7 @@ export default [
   },
   {
     title: 'Expenses',
-    route: 'shop.purchase',
+    route: 'shop.expense',
     icon: 'FileIcon',
   },
   {

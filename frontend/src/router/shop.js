@@ -35,6 +35,7 @@ export default [
       pageTitle: 'Home',
     },
   },
+
   {
     path: '/client',
     name: 'shop.client',
@@ -86,6 +87,7 @@ export default [
       ],
     },
   },
+
   {
     path: '/payee',
     name: 'shop.payee',
@@ -137,57 +139,7 @@ export default [
       ],
     },
   },
-  {
-    path: '/purchase',
-    name: 'shop.purchase',
-    component: () => import('@/views/shop/purchase/Index.vue'),
-    meta: {
-      authUserOnly: true,
-      pageTitle: 'Purchases',
-      breadcrumb: [
-        {
-          text: 'purchase list',
-          active: true,
-        },
-      ],
-    },
-  },
-  {
-    path: '/purchase/create',
-    name: 'shop.purchase.create',
-    component: () => import('@/views/shop/purchase/Create.vue'),
-    meta: {
-      authUserOnly: true,
-      pageTitle: 'Create purchase',
-      breadcrumb: [
-        {
-          text: 'purchase',
-        },
-        {
-          text: 'Create',
-          active: true,
-        },
-      ],
-    },
-  },
-  {
-    path: '/purchase/edit/:id',
-    name: 'shop.purchase.edit',
-    component: () => import('@/views/shop/purchase/Edit.vue'),
-    meta: {
-      authOnly: true,
-      pageTitle: 'Edit purchase',
-      breadcrumb: [
-        {
-          text: 'purchase',
-        },
-        {
-          text: 'Edit',
-          active: true,
-        },
-      ],
-    },
-  },
+
   {
     path: '/sale',
     name: 'shop.sale',
@@ -240,30 +192,30 @@ export default [
     },
   },
   {
-    path: '/transaction',
-    name: 'shop.transaction',
-    component: () => import('@/views/shop/transaction/Index.vue'),
+    path: '/expense',
+    name: 'shop.expense',
+    component: () => import('@/views/shop/expense/Index.vue'),
     meta: {
       authUserOnly: true,
-      pageTitle: 'Transaction',
+      pageTitle: 'Expenses',
       breadcrumb: [
         {
-          text: 'Transaction list',
+          text: 'Expense list',
           active: true,
         },
       ],
     },
   },
   {
-    path: '/transaction/create',
-    name: 'shop.transaction.create',
-    component: () => import('@/views/shop/transaction/Create.vue'),
+    path: '/expense/create',
+    name: 'shop.expense.create',
+    component: () => import('@/views/shop/expense/Create.vue'),
     meta: {
       authUserOnly: true,
-      pageTitle: 'Create transaction',
+      pageTitle: 'Create expense',
       breadcrumb: [
         {
-          text: 'transaction',
+          text: 'expense',
         },
         {
           text: 'Create',
@@ -273,15 +225,15 @@ export default [
     },
   },
   {
-    path: '/transaction/edit/:id',
-    name: 'shop.transaction.edit',
-    component: () => import('@/views/shop/transaction/Edit.vue'),
+    path: '/expense/edit/:id',
+    name: 'shop.expense.edit',
+    component: () => import('@/views/shop/expense/Edit.vue'),
     meta: {
       authUserOnly: true,
-      pageTitle: 'Edit transaction',
+      pageTitle: 'Edit expense',
       breadcrumb: [
         {
-          text: 'transaction',
+          text: 'expense',
         },
         {
           text: 'Edit',
@@ -290,6 +242,7 @@ export default [
       ],
     },
   },
+
   {
     path: '/product',
     name: 'shop.product',
@@ -336,39 +289,6 @@ export default [
         },
         {
           text: 'Edit',
-          active: true,
-        },
-      ],
-    },
-  },
-  {
-    path: '/emi',
-    name: 'shop.emi',
-    component: () => import('@/views/shop/emi/Index.vue'),
-    meta: {
-      authUserOnly: true,
-      pageTitle: 'EMI',
-      breadcrumb: [
-        {
-          text: 'EMI list',
-          active: true,
-        },
-      ],
-    },
-  },
-  {
-    path: '/emi/create',
-    name: 'shop.emi.create',
-    component: () => import('@/views/shop/emi/Create.vue'),
-    meta: {
-      authUserOnly: true,
-      pageTitle: 'Create EMI',
-      breadcrumb: [
-        {
-          text: 'Emi',
-        },
-        {
-          text: 'Create',
           active: true,
         },
       ],
