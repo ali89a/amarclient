@@ -19,7 +19,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        return SubCategory::all();
+        return SubCategory::with('category')->get();
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class SubCategoryController extends Controller
         DB::beginTransaction();
 
         try {
-            $expense = Category::create([
+            $expense = SubCategory::create([
                 'category_id' => $request->category_id,
                 'name' => $request->name,
             ]);

@@ -132,7 +132,7 @@
           <b-card-text class="text-center mt-2">
             <span>New on our platform? </span>
             <b-link :to="{name:'user.register'}">
-              <span>&nbsp;Create an account</span>
+              <span>Create an account</span>
             </b-link>
           </b-card-text>
         </b-col>
@@ -154,7 +154,6 @@ import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/ui/forms'
 import store from '@/store/index'
 import axiosIns from '@/libs/axios'
-import useJwt from '@/auth/jwt/useJwt'
 
 export default {
   components: {
@@ -171,7 +170,6 @@ export default {
     BImg,
     BForm,
     BButton,
-    VuexyLogo,
     ValidationProvider,
     ValidationObserver,
   },
