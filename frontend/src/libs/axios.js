@@ -7,8 +7,8 @@ const axiosIns = axios.create({
   // You can add your headers here
   // ================================
   // baseURL: 'http://127.0.0.1:8000',
-  baseURL: 'https://test.cashbaksho.com/',
-  timeout: 70000,
+  baseURL: 'http://medbill.click/',
+  timeout: 90000,
   headers: { Accept: 'application/json' },
 })
 
