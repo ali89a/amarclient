@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\User\AuthController as UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +48,7 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
     Route::post('verify/resend',[UserAuthController::class,'codeResend'])->name('api.code.resend');
     Route::post('login',[UserAuthController::class,'login'])->name('login');
     Route::get('my-info',[UserAuthController::class,'getLoggedUserDetails'])->name('get.myInfo');
-    
+
     Route::group(['middleware' => ['auth:user-api','scope:user']],function (){
         Route::post('logout',[UserAuthController::class,'logout'])->name('logout');
 
@@ -56,6 +57,7 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
         Route::apiResource('sale',SaleController::class);
         Route::apiResource('expense',ExpenseController::class);
         Route::apiResource('product',ProductController::class);
+        Route::apiResource('employee',EmployeeController::class);
 
         Route::get('get-categories',[ExpenseController::class,'getCategories']);
         Route::get('get-sub-categories/{categoryId}',[ExpenseController::class,'getSubCategories']);
