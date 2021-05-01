@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\SubCategoryController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\LeaveController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\EmiController;
 use App\Http\Controllers\Api\ExpenseController;
@@ -58,6 +59,7 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
         Route::apiResource('expense',ExpenseController::class);
         Route::apiResource('product',ProductController::class);
         Route::apiResource('employee',EmployeeController::class);
+        Route::apiResource('leave',LeaveController::class);
 
         Route::get('get-categories',[ExpenseController::class,'getCategories']);
         Route::get('get-sub-categories/{categoryId}',[ExpenseController::class,'getSubCategories']);
