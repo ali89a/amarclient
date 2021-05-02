@@ -32,6 +32,7 @@ class SaleController extends Controller
             'sku' => '',
             'notes' => 'max:500',
         ]);
+        
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,

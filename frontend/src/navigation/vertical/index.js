@@ -83,5 +83,10 @@ export default [
     title: 'Settings',
     route: '',
     icon: 'FileIcon',
+  },{
+    title: 'Invoice',
+    icon: 'FileTextIcon',
+    route: 'shop.invoice.list',
+   
   },
 ]
