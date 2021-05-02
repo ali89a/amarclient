@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Leave;
+use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class LeaveController extends Controller
+class MeetingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        return Leave::where('shop_id', auth('user-api')->user()->shop_id)->get();
+        return Meeting::where('shop_id', auth('user-api')->user()->shop_id)->get();
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +40,7 @@ class LeaveController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'leave_type' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
         ]);
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()],422);
@@ -49,14 +48,10 @@ class LeaveController extends Controller
         DB::beginTransaction();
 
         try {
-            $employee = Leave::create([
+            $employee = Meeting::create([
                 'shop_id' => $request->user()->shop->id,
-                'employee_id' => $request->user()->id,
-                'leave_type' => $request->leave_type,
-                'start_date' => $request->start_date,
-                'start_time' => $request->start_time,
-                'end_date' => $request->end_date,
-                'end_time' => $request->end_time,
+                'title' => $request->title,
+                'description' => $request->description,
             ]);
 
             DB::commit();
@@ -66,7 +61,7 @@ class LeaveController extends Controller
             // something went wrong
         }
 
-        return response()->json(['success' => true, 'message' => 'Employee created successfully.',],Response::HTTP_CREATED);
+        return response()->json(['success' => true, 'message' => 'Meeting created successfully.',],Response::HTTP_CREATED);
 
     }
 
