@@ -28,11 +28,11 @@
                 </h4>
                 <div class="invoice-date-wrapper">
                   <p class="invoice-date-title">Date Issued:</p>
-                  <p class="invoice-date">{{ invoiceData.start_date }}</p>
+                  <p class="invoice-date">{{moment(invoiceData.start_date).format('Do MMMM, YYYY')}}</p>
                 </div>
                 <div class="invoice-date-wrapper">
                   <p class="invoice-date-title">Due Date:</p>
-                  <p class="invoice-date">{{ invoiceData.next_payment_date }}</p>
+                  <p class="invoice-date">{{moment(invoiceData.next_payment_date ).format('Do MMMM, YYYY')}}</p>
                 </div>
               </div>
             </div>
