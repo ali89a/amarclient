@@ -8,7 +8,7 @@ use App\Models\Shop;
 class AdminShopController extends Controller
 {
     public function index(){
-        return Shop::all();
+        return Shop::with('users')->get();
     }
     public function destroy($id){
         $shop = Shop::find($id);
