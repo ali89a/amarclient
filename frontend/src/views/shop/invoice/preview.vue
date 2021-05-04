@@ -12,7 +12,6 @@
               <!-- Header: Left Content -->
               <div>
                 <div class="logo-wrapper">
-                  <logo />
                   <h3 class="text-primary invoice-logo">Amar Client</h3>
                 </div>
                 <p class="card-text mb-25">Office 149, 450 South Brand Brooklyn</p>
@@ -63,10 +62,16 @@
                         <td class="pr-1">Total Due:</td>
                         <td>
                           <span class="font-weight-bold">
-                            {{
+                            &#2547; {{
                             invoiceData.due_payment
                             }}
                           </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="pr-1">Next Payment:</td>
+                        <td>
+                          <span class="font-weight-bold">&#2547; {{ invoiceData.next_payment}}</span>
                         </td>
                       </tr>
                     </tbody>
@@ -96,42 +101,64 @@
             </template>
           </b-table-lite>
 
+          <!-- Col: Total -->
+          <b-container class="bv-example-row" v-if="invoiceLogs.length>0">
+            <b-row>
+              <b-col cols="12" md="12" class="p-5">
+                <b-table
+                  striped
+                  hover
+                  :items="invoiceLogs"
+                  :fields="fields"
+
+                >
+                  <template
+                    v-slot:cell(payment_date)="row"  class="my-cell-overflow-y"
+                  >{{ moment(row.item.payment_date ).format('Do MMMM, YYYY') }}</template>
+                  <template
+                    v-slot:cell(payment_amount)="row"
+                  >&#2547; {{row.item.payment_amount.toFixed(2) }}</template>
+                </b-table>
+
+                <h2
+                  class="m-3 text-center"
+                >Total Installment Value: &#2547; {{installment.toFixed(2)}}</h2>
+              </b-col>
+            </b-row>
+          </b-container>
+
+          <!-- Col: Total -->
+
           <!-- Invoice Description: Total -->
           <b-card-body class="invoice-padding pb-0">
             <b-row>
               <!-- Col: Sales Persion -->
-              <b-col cols="12" md="6" class="mt-md-0 mt-3" order="2" order-md="1">
+              <b-col cols="12" md="6" class="mt-md-0 mt-3">
                 <b-card-text class="my-3">
                   <span class="font-weight-bold">Thanks for purchasing with us</span>
                 </b-card-text>
               </b-col>
 
               <!-- Col: Total -->
-              <b-col
-                cols="12"
-                md="6"
-                class="mt-md-6 d-flex justify-content-end"
-                order="1"
-                order-md="2"
-              >
+              <b-col cols="12" md="6" class="mt-md-6 d-flex justify-content-center">
                 <div class="invoice-total-wrapper">
                   <div class="invoice-total-item">
                     <p class="invoice-total-title">Total Amount:</p>
-                    <p class="invoice-total-amount">&#2547; {{ amount }}</p>
+                    <p class="invoice-total-amount">&#2547; {{ amount.toFixed(2) }}</p>
                   </div>
                   <div class="invoice-total-item">
                     <p class="invoice-total-title">Advance Payment:</p>
-                    <p class="invoice-total-amount">&#2547; {{ advance_payment }}</p>
+                    <p class="invoice-total-amount">&#2547; {{ advance_payment.toFixed(2) }}</p>
                   </div>
                   <div class="invoice-total-item">
-                    <p class="invoice-total-title">Next Payment:</p>
-                    <p class="invoice-total-amount">&#2547; {{ next_payment }}</p>
+                    <p class="invoice-total-title">Total Installment:</p>
+                    <p class="invoice-total-amount">&#2547; {{installment.toFixed(2)}}</p>
                   </div>
 
                   <hr class="my-50" />
                   <div class="invoice-total-item">
                     <p class="invoice-total-title">Due Amount:</p>
-                    <p class="invoice-total-amount">&#2547; {{ due_payment }}</p>
+                    <p class="invoice-total-amount">&#2547; {{ dueAmount.toFixed(2) }}</p>
                   </div>
                 </div>
               </b-col>
@@ -176,7 +203,6 @@
             variant="success"
             class="mb-75"
             block
-            sale_id="invoiceData.id"
           >Add Payment</b-button>
         </b-card>
       </b-col>
@@ -198,7 +224,6 @@ import {
   BLink,
   VBToggle,
 } from "bootstrap-vue";
-import Logo from "@core/layouts/components/Logo.vue";
 import Ripple from "vue-ripple-directive";
 import InvoiceSidebarAddPayment from "./InvoiceSidebarAddPayment.vue";
 import axiosIns from "@/libs/axios";
@@ -217,17 +242,18 @@ export default {
     BButton,
     BAlert,
     BLink,
-
-    Logo,
     InvoiceSidebarAddPayment,
   },
   data() {
     return {
+      fields: ["payment_date", "payment_method", "note", "payment_amount"],
       advance_payment: "",
       amount: "",
       next_payment: "",
       due_payment: "",
       invoiceData: [],
+      invoiceLogs: [],
+      totalInstallment: "",
       invoiceDescription: [
         {
           taskTitle: "Native App Development",
@@ -248,20 +274,41 @@ export default {
       ],
     };
   },
-  created() {
+  computed: {
+    installment() {
+      let value = this.invoiceLogs;
+      var sum = 0;
+      value.forEach((number, index) => {
+        sum += number.payment_amount;
+      });
+      this.totalInstallment = sum;
+      return sum;
+    },
+    dueAmount() {
+      var due = this.amount - this.advance_payment;
+      if (this.totalInstallment > 0) {
+        var finalDue = due - this.totalInstallment;
+      } else {
+        finalDue = due;
+      }
+      return finalDue;
+    },
+  },
+  mounted() {
     this.getSaleData();
   },
+
   methods: {
     getSaleData() {
       axiosIns
         .get(`api/v1/shop/sale/${this.$route.params.id}`)
         .then((response) => {
-          console.log(response.data.sale_info);
           this.invoiceData = response.data.sale_info;
-          this.due_payment= response.data.sale_info.due_payment
-          this.advance_payment= response.data.sale_info.advance_payment
-          this.next_payment= response.data.sale_info.next_payment
-          this.amount= response.data.sale_info.amount
+          this.due_payment = response.data.sale_info.due_payment;
+          this.advance_payment = response.data.sale_info.advance_payment;
+          this.next_payment = response.data.sale_info.next_payment;
+          this.amount = response.data.sale_info.amount;
+          this.invoiceLogs = response.data.sale_info.invoice_log;
         });
     },
   },
@@ -287,6 +334,7 @@ export default {
   body {
     background-color: transparent !important;
   }
+
   nav.header-navbar {
     display: none;
   }
@@ -342,5 +390,15 @@ export default {
       display: none;
     }
   }
+}
+
+.invoice-preview .invoice-total-wrapper,
+.invoice-edit .invoice-total-wrapper,
+.invoice-add .invoice-total-wrapper {
+  max-width: 16rem !important;
+}
+.my-cell-overflow-y{
+  max-height: 2rem;
+  overflow-y: auto !important;
 }
 </style>
