@@ -176,6 +176,7 @@
             variant="success"
             class="mb-75"
             block
+            sale_id="invoiceData.id"
           >Add Payment</b-button>
         </b-card>
       </b-col>
