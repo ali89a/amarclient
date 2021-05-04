@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\InvoiceLogController;
 use App\Http\Controllers\Api\User\AuthController as UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,7 +65,7 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
         Route::apiResource('leave',LeaveController::class);
         Route::apiResource('meeting',MeetingController::class);
         Route::apiResource('notice-board',NoticeBoardController::class);
-
+        Route::apiResource('invoice-log',InvoiceLogController::class);
         Route::get('get-categories',[ExpenseController::class,'getCategories']);
         Route::get('get-sub-categories/{categoryId}',[ExpenseController::class,'getSubCategories']);
 

@@ -178,6 +178,10 @@ export default {
           field: 'name',
         },
         {
+          label: 'Address',
+          field: 'address',
+        },
+        {
           label: 'SKU',
           field: 'sku',
         },
