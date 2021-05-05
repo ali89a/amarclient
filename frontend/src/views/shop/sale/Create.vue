@@ -26,6 +26,40 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
+                 <b-col md="6">
+                  <b-form-group label="Address">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="address"
+                        rules="required"
+                    >
+                      <b-form-textarea
+                          v-model="form.address"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Address"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
+                  <b-form-group label="Product">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="sku"
+                        rules="required"
+                    >
+                      <b-form-input
+                          v-model="form.sku"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="sku"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
                 <b-col md="6">
                   <b-form-group label="SKU">
                     <validation-provider
@@ -43,23 +77,7 @@
                     </validation-provider>
                   </b-form-group>
                 </b-col>
-                <b-col md="6">
-                  <b-form-group label="Address">
-                    <validation-provider
-                        #default="{ errors }"
-                        name="address"
-                        rules="required"
-                    >
-                      <b-form-textarea
-                          v-model="form.address"
-                          :state="errors.length > 0 ? false:null"
-                          type="text"
-                          placeholder="Address"
-                      />
-                      <small class="text-danger">{{ errors[0] }}</small>
-                    </validation-provider>
-                  </b-form-group>
-                </b-col>
+               
                 <b-col md="6">
                   <b-form-group label="Total Amount">
                     <validation-provider

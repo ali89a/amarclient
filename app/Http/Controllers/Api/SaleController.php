@@ -19,7 +19,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return Sale::where('shop_id', auth('user-api')->user()->shop_id)->get();
+        return Sale::with('product', 'client')->where('shop_id', auth('user-api')->user()->shop_id)->get();
     }
 
     public function store(Request $request)
@@ -77,7 +77,7 @@ class SaleController extends Controller
 
     public function show($id)
     {
-        $sale = Sale::with('invoiceLog')->where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        $sale = Sale::with('invoiceLog', 'product', 'client')->where('shop_id', auth('user-api')->user()->shop_id)->find($id);
         if (!$sale){
             return response()->json(['success' => false, 'message' => 'No sale found.']);
         }

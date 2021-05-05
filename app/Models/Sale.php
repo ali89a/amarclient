@@ -20,5 +20,16 @@ class Sale extends Model
     }
 
 
+    public function product(){
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
+    
+
+    public function client(){
+        return $this->hasMany(Client::class, 'id', 'client_id');
+    }
+    
+
+
 
 }

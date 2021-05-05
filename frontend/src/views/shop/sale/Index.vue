@@ -240,7 +240,7 @@ export default {
     },
     getSaleData() {
       axiosIns.get('api/v1/shop/sale').then(response => {
-        // console.log(response.data)
+         console.log(response.data)
         this.rows = response.data
       })
     },
