@@ -24,14 +24,19 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
+
+
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'address' => 'required',
             'amount' => 'required|numeric',
             'advance_payment' => 'required|numeric',
             'next_payment' => 'required|numeric',
             'sku' => '',
             'notes' => 'max:500',
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
@@ -41,9 +46,11 @@ class SaleController extends Controller
         DB::beginTransaction();
 
         try {
+
             $sale = Sale::create([
                 'shop_id' => $request->user()->shop->id,
                 'name' => $request->name,
+                'address' => $request->address,
                 'sku' => $request->sku,
                 'amount' => $request->amount,
                 'advance_payment' => $request->advance_payment,
@@ -70,7 +77,7 @@ class SaleController extends Controller
 
     public function show($id)
     {
-        $sale = Sale::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        $sale = Sale::with('invoiceLog')->where('shop_id', auth('user-api')->user()->shop_id)->find($id);
         if (!$sale){
             return response()->json(['success' => false, 'message' => 'No sale found.']);
         }
@@ -81,6 +88,7 @@ class SaleController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'address' => 'required',
             'amount' => 'required|numeric',
             'sku' => '',
             'notes' => 'max:500',
@@ -93,6 +101,7 @@ class SaleController extends Controller
             $sale->update([
                 'shop_id' => $request->user()->shop->id,
                 'name' => $request->name,
+                'address' => $request->address,
                 'sku' => $request->sku,
                 'amount' => $request->amount,
                 'advance_payment' => $request->advance_payment,

@@ -58,7 +58,7 @@ mix
   .options({
     postCss: [require('autoprefixer'), require('postcss-rtl')]
   })
-
-if (mix.inProduction()) {
-  mix.version()
-}
+mix.version()
+// if (mix.inProduction()) {
+//   mix.version()
+// }

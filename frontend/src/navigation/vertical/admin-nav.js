@@ -9,4 +9,18 @@ export default [
     route: 'admin.shop',
     icon: 'FileIcon',
   },
+  {
+    title: 'Expense Category',
+    icon: 'FileIcon',
+    children: [
+      {
+        title: 'Category',
+        route: 'admin.category',
+      },
+      {
+        title: 'Sub Category',
+        route: 'admin.sub-category',
+      },
+    ],
+  },
 ]

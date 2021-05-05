@@ -291,7 +291,7 @@ export default {
             // useJwt.setToken(response.data.access_token)
             this.$router.push({ name: 'user.email.verify', query: { email: this.email } })
           }).catch(error => {
-            // console.log(error.response.data.errors)
+            console.log(error)
             this.$refs.loginValidation.setErrors(error.response.data.errors)
             // if (error.response.status === 422) {
             //   // this.errors = error.response.data.error

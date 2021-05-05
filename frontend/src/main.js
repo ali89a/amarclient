@@ -5,7 +5,7 @@ import VueCompositionAPI from '@vue/composition-api'
 import router from './router'
 import store from './store'
 import App from './App.vue'
-
+import moment from 'moment';
 // Global Components
 import './global-components'
 
@@ -17,6 +17,7 @@ import '@/libs/toastification'
 Vue.use(ToastPlugin)
 Vue.use(ModalPlugin)
 Vue.use(BootstrapVue)
+Vue.prototype.moment = moment
 
 // Composition API
 Vue.use(VueCompositionAPI)

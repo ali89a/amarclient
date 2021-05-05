@@ -3,11 +3,11 @@
     <b-col cols="12">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">Sale List</span>
+          <span class="card-title">Sub Category List</span>
           <b-button
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
-            :to="{ name:'shop.sale.create' }"
+            :to="{ name:'admin.sub-category.create' }"
           >
             Add New
           </b-button>
@@ -29,7 +29,7 @@
           </div>
           <!-- table -->
           <vue-good-table
-            ref="saleTable"
+            ref="customerTable"
             :columns="columns"
             :rows="rows"
             :search-options="{
@@ -72,22 +72,19 @@
                         class="text-body align-middle mr-25"
                       />
                     </template>
-                    <!--                    <b-dropdown-item>-->
-                    <!--                      <feather-icon-->
-                    <!--                        icon="Edit2Icon"-->
-                    <!--                        class="mr-50"-->
-                    <!--                      />-->
-                    <!--                      <span><router-link :to="{name:'shop.sale.edit',params:{id:props.row.id}}">Edit</router-link></span>-->
-                    <!--                    </b-dropdown-item>-->
-                    <b-dropdown-item>
+                    <b-dropdown-item :to="{name:'admin.sub-category.edit',params:{id:props.row.id}}">
+                      <feather-icon
+                        icon="Edit2Icon"
+                        class="mr-50"
+                      />
+                      Edit
+                    </b-dropdown-item>
+                    <b-dropdown-item @click.prevent="deleteData(props.row.id)">
                       <feather-icon
                         icon="TrashIcon"
                         class="mr-50"
                       />
-                      <span><a
-                        href=""
-                        @click.prevent="deleteData(props.row.id)"
-                      >Delete</a></span>
+                      <span>Delete</span>
                     </b-dropdown-item>
                   </b-dropdown>
                 </span>
@@ -111,7 +108,7 @@
                   </span>
                   <b-form-select
                     v-model="pageLength"
-                    :options="['10','20','50']"
+                    :options="['3','5','10']"
                     class="mx-1"
                     @input="(value)=>props.perPageChanged({currentPerPage:value})"
                   />
@@ -178,24 +175,8 @@ export default {
           field: 'name',
         },
         {
-          label: 'Address',
-          field: 'address',
-        },
-        {
-          label: 'SKU',
-          field: 'sku',
-        },
-        {
-          label: 'Amount',
-          field: 'amount',
-        },
-        {
-          label: 'Start Date',
-          field: 'start_date',
-        },
-        {
-          label: 'End Date',
-          field: 'end_date',
+          label: 'Category Name',
+          field: 'category.name',
         },
         {
           label: 'Action',
@@ -208,7 +189,7 @@ export default {
   },
   computed: {},
   created() {
-    this.getSaleData()
+    this.getData()
   },
   methods: {
     deleteData(id) {
@@ -225,21 +206,20 @@ export default {
         })
         .then(value => {
           if (value) {
-            axiosIns.delete(`api/v1/shop/sale/${id}`).then(response => {
+            axiosIns.delete(`api/v1/admin/sub-category/${id}`).then(response => {
               // console.log(response.data)
-
               this.$bvToast.toast(response.data.message, {
                 title: 'Success',
                 variant: 'success',
                 solid: true,
               })
-              this.getSaleData()
+              this.getData()
             })
           }
         })
     },
-    getSaleData() {
-      axiosIns.get('api/v1/shop/sale').then(response => {
+    getData() {
+      axiosIns.get('api/v1/admin/sub-category').then(response => {
         // console.log(response.data)
         this.rows = response.data
       })

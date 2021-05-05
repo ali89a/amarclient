@@ -108,7 +108,7 @@ class ClientController extends Controller
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors(),], 422);
         }
-        $customer = Customer::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        $customer = Client::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
         if ($customer){
             $customer->update([
                 'name' => $request->name,
