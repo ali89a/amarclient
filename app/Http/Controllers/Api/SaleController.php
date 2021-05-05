@@ -46,7 +46,7 @@ class SaleController extends Controller
         DB::beginTransaction();
 
         try {
-        
+
             $sale = Sale::create([
                 'shop_id' => $request->user()->shop->id,
                 'name' => $request->name,
@@ -77,7 +77,7 @@ class SaleController extends Controller
 
     public function show($id)
     {
-        $sale = Sale::where('shop_id', auth('user-api')->user()->shop_id)->find($id);
+        $sale = Sale::with('invoiceLog')->where('shop_id', auth('user-api')->user()->shop_id)->find($id);
         if (!$sale){
             return response()->json(['success' => false, 'message' => 'No sale found.']);
         }

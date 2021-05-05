@@ -14,4 +14,11 @@ class Sale extends Model
     public function shop(){
         return $this->belongsTo(Shop::class);
     }
+
+    public function invoiceLog(){
+        return $this->hasMany(InvoiceLog::class);
+    }
+
+
+
 }
