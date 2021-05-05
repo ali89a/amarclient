@@ -87,59 +87,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./frontend/src/@core/layouts/components/Logo.vue":
-/*!********************************************************!*\
-  !*** ./frontend/src/@core/layouts/components/Logo.vue ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Logo.vue?vue&type=template&id=556c28d4& */ "./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "frontend/src/@core/layouts/components/Logo.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&":
-/*!***************************************************************************************!*\
-  !*** ./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4& ***!
-  \***************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Logo.vue?vue&type=template&id=556c28d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./frontend/src/libs/axios.js":
 /*!************************************!*\
   !*** ./frontend/src/libs/axios.js ***!
@@ -551,17 +498,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
 
 
 
-var paymentMethods = ["Cash", "Bank Transfer", "Debit", "Credit", "Paypal"];
+var paymentMethods = ["Cash", "Mobile Banking", "Bank Transfer", "Debit", "Credit", "Paypal"];
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: "sale_id",
   components: {
     BSidebar: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BSidebar"],
     BForm: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BForm"],
@@ -579,7 +523,7 @@ var paymentMethods = ["Cash", "Bank Transfer", "Debit", "Credit", "Paypal"];
     return {
       paymentMethods: paymentMethods,
       form: {
-        sale_id: this.id,
+        sale_id: this.$route.params.id,
         invoiceBalance: 1000,
         paymentDate: "",
         paymentMethod: "",
@@ -591,12 +535,18 @@ var paymentMethods = ["Cash", "Bank Transfer", "Debit", "Credit", "Paypal"];
   created: function created() {
     this.addInvoiceLog();
   },
+  watch: {
+    $route: function $route() {
+      this.addInvoiceLog();
+    }
+  },
   methods: {
     addInvoiceLog: function addInvoiceLog() {
       var _this = this;
 
-      console.log(this.id);
       _libs_axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("api/v1/shop/invoice-log", this.form).then(function (response) {
+        _this.$router.go(_this.$router.currentRoute);
+
         _this.$toast({
           component: _core_components_toastification_ToastificationContent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
           props: {
@@ -622,10 +572,9 @@ var paymentMethods = ["Cash", "Bank Transfer", "Debit", "Credit", "Paypal"];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
-/* harmony import */ var _core_layouts_components_Logo_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @core/layouts/components/Logo.vue */ "./frontend/src/@core/layouts/components/Logo.vue");
-/* harmony import */ var vue_ripple_directive__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-ripple-directive */ "./frontend/node_modules/vue-ripple-directive/src/ripple.js");
-/* harmony import */ var _InvoiceSidebarAddPayment_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InvoiceSidebarAddPayment.vue */ "./frontend/src/views/shop/invoice/InvoiceSidebarAddPayment.vue");
-/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
+/* harmony import */ var vue_ripple_directive__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-ripple-directive */ "./frontend/node_modules/vue-ripple-directive/src/ripple.js");
+/* harmony import */ var _InvoiceSidebarAddPayment_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InvoiceSidebarAddPayment.vue */ "./frontend/src/views/shop/invoice/InvoiceSidebarAddPayment.vue");
+/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
 //
 //
 //
@@ -813,14 +762,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   directives: {
-    Ripple: vue_ripple_directive__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Ripple: vue_ripple_directive__WEBPACK_IMPORTED_MODULE_1__["default"],
     "b-toggle": bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["VBToggle"]
   },
   components: {
@@ -833,16 +807,18 @@ __webpack_require__.r(__webpack_exports__);
     BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BButton"],
     BAlert: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BAlert"],
     BLink: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BLink"],
-    Logo: _core_layouts_components_Logo_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    InvoiceSidebarAddPayment: _InvoiceSidebarAddPayment_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    InvoiceSidebarAddPayment: _InvoiceSidebarAddPayment_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
+      fields: ["payment_date", "payment_method", "note", "payment_amount"],
       advance_payment: "",
       amount: "",
       next_payment: "",
       due_payment: "",
       invoiceData: [],
+      invoiceLogs: [],
+      totalInstallment: "",
       invoiceDescription: [{
         taskTitle: "Native App Development",
         taskDescription: "Developed a full stack native app using React Native, Bootstrap & Python",
@@ -858,20 +834,42 @@ __webpack_require__.r(__webpack_exports__);
       }]
     };
   },
-  created: function created() {
+  computed: {
+    installment: function installment() {
+      var value = this.invoiceLogs;
+      var sum = 0;
+      value.forEach(function (number, index) {
+        sum += number.payment_amount;
+      });
+      this.totalInstallment = sum;
+      return sum;
+    },
+    dueAmount: function dueAmount() {
+      var due = this.amount - this.advance_payment;
+
+      if (this.totalInstallment > 0) {
+        var finalDue = due - this.totalInstallment;
+      } else {
+        finalDue = due;
+      }
+
+      return finalDue;
+    }
+  },
+  mounted: function mounted() {
     this.getSaleData();
   },
   methods: {
     getSaleData: function getSaleData() {
       var _this = this;
 
-      _libs_axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("api/v1/shop/sale/".concat(this.$route.params.id)).then(function (response) {
-        console.log(response.data.sale_info);
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/sale/".concat(this.$route.params.id)).then(function (response) {
         _this.invoiceData = response.data.sale_info;
         _this.due_payment = response.data.sale_info.due_payment;
         _this.advance_payment = response.data.sale_info.advance_payment;
         _this.next_payment = response.data.sale_info.next_payment;
         _this.amount = response.data.sale_info.amount;
+        _this.invoiceLogs = response.data.sale_info.invoice_log;
       });
     }
   },
@@ -957,7 +955,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "@media print {\n[dir] body {\n    background-color: transparent !important;\n}\nnav.header-navbar {\n    display: none;\n}\n.main-menu {\n    display: none;\n}\n.header-navbar-shadow {\n    display: none !important;\n}\n[dir] .content.app-content {\n    padding-top: 2rem !important;\n}\n[dir=ltr] .content.app-content {\n    margin-left: 0;\n}\n[dir=rtl] .content.app-content {\n    margin-right: 0;\n}\nfooter.footer {\n    display: none;\n}\n.card {\n    -webkit-box-shadow: none;\n}\n[dir] .card {\n    background-color: transparent;\n            -webkit-box-shadow: none;\n                    box-shadow: none;\n}\n.customizer-toggle {\n    display: none !important;\n}\n.invoice-preview-wrapper .row.invoice-preview .col-md-8 {\n    max-width: 100%;\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n}\n.invoice-preview-wrapper .row.invoice-preview .invoice-preview-card .card-body:nth-of-type(2) .row > .col-12 {\n    max-width: 50% !important;\n}\n.invoice-preview-wrapper .row.invoice-preview .invoice-preview-card .card-body:nth-of-type(2) .row .col-12:nth-child(2) {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: start;\n        -ms-flex-align: start;\n            align-items: flex-start;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n[dir] .invoice-preview-wrapper .row.invoice-preview .invoice-preview-card .card-body:nth-of-type(2) .row .col-12:nth-child(2) {\n    margin-top: 0 !important;\n}\n.invoice-preview-wrapper .invoice-actions {\n    display: none;\n}\n}", ""]);
+exports.push([module.i, "@media print {\n[dir] body {\n    background-color: transparent !important;\n}\nnav.header-navbar {\n    display: none;\n}\n.main-menu {\n    display: none;\n}\n.header-navbar-shadow {\n    display: none !important;\n}\n[dir] .content.app-content {\n    padding-top: 2rem !important;\n}\n[dir=ltr] .content.app-content {\n    margin-left: 0;\n}\n[dir=rtl] .content.app-content {\n    margin-right: 0;\n}\nfooter.footer {\n    display: none;\n}\n.card {\n    -webkit-box-shadow: none;\n}\n[dir] .card {\n    background-color: transparent;\n            -webkit-box-shadow: none;\n                    box-shadow: none;\n}\n.customizer-toggle {\n    display: none !important;\n}\n.invoice-preview-wrapper .row.invoice-preview .col-md-8 {\n    max-width: 100%;\n    -webkit-box-flex: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n}\n.invoice-preview-wrapper .row.invoice-preview .invoice-preview-card .card-body:nth-of-type(2) .row > .col-12 {\n    max-width: 50% !important;\n}\n.invoice-preview-wrapper .row.invoice-preview .invoice-preview-card .card-body:nth-of-type(2) .row .col-12:nth-child(2) {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: start;\n        -ms-flex-align: start;\n            align-items: flex-start;\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n}\n[dir] .invoice-preview-wrapper .row.invoice-preview .invoice-preview-card .card-body:nth-of-type(2) .row .col-12:nth-child(2) {\n    margin-top: 0 !important;\n}\n.invoice-preview-wrapper .invoice-actions {\n    display: none;\n}\n}\n.invoice-preview .invoice-total-wrapper,\n.invoice-edit .invoice-total-wrapper,\n.invoice-add .invoice-total-wrapper {\n  max-width: 16rem !important;\n}\n.my-cell-overflow-y {\n  max-height: 2rem;\n  overflow-y: auto !important;\n}", ""]);
 
 // exports
 
@@ -1165,178 +1163,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4& ***!
-  \*********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "svg",
-    {
-      attrs: {
-        viewBox: "0 0 139 95",
-        version: "1.1",
-        xmlns: "http://www.w3.org/2000/svg",
-        "xmlns:xlink": "http://www.w3.org/1999/xlink",
-        height: "24"
-      }
-    },
-    [
-      _c(
-        "defs",
-        [
-          _c(
-            "linearGradient",
-            {
-              attrs: {
-                id: "linearGradient-1",
-                x1: "100%",
-                y1: "10.5120544%",
-                x2: "50%",
-                y2: "89.4879456%"
-              }
-            },
-            [
-              _c("stop", { attrs: { "stop-color": "#000000", offset: "0%" } }),
-              _vm._v(" "),
-              _c("stop", { attrs: { "stop-color": "#FFFFFF", offset: "100%" } })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "linearGradient",
-            {
-              attrs: {
-                id: "linearGradient-2",
-                x1: "64.0437835%",
-                y1: "46.3276743%",
-                x2: "37.373316%",
-                y2: "100%"
-              }
-            },
-            [
-              _c("stop", {
-                attrs: {
-                  "stop-color": "#EEEEEE",
-                  "stop-opacity": "0",
-                  offset: "0%"
-                }
-              }),
-              _vm._v(" "),
-              _c("stop", { attrs: { "stop-color": "#FFFFFF", offset: "100%" } })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "g",
-        {
-          attrs: {
-            id: "Page-1",
-            stroke: "none",
-            "stroke-width": "1",
-            fill: "none",
-            "fill-rule": "evenodd"
-          }
-        },
-        [
-          _c(
-            "g",
-            {
-              attrs: {
-                id: "Artboard",
-                transform: "translate(-400.000000, -178.000000)"
-              }
-            },
-            [
-              _c(
-                "g",
-                {
-                  attrs: {
-                    id: "Group",
-                    transform: "translate(400.000000, 178.000000)"
-                  }
-                },
-                [
-                  _c("path", {
-                    staticClass: "text-primary",
-                    staticStyle: { fill: "currentColor" },
-                    attrs: {
-                      id: "Path",
-                      d:
-                        "M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("path", {
-                    attrs: {
-                      id: "Path1",
-                      d:
-                        "M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z",
-                      fill: "url(#linearGradient-1)",
-                      opacity: "0.2"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("polygon", {
-                    attrs: {
-                      id: "Path-2",
-                      fill: "#000000",
-                      opacity: "0.049999997",
-                      points:
-                        "69.3922914 32.4202615 32.8435758 70.5039241 54.0490008 16.1851325"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("polygon", {
-                    attrs: {
-                      id: "Path-21",
-                      fill: "#000000",
-                      opacity: "0.099999994",
-                      points:
-                        "69.3922914 32.4202615 32.8435758 70.5039241 58.3683556 20.7402338"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("polygon", {
-                    attrs: {
-                      id: "Path-3",
-                      fill: "url(#linearGradient-2)",
-                      opacity: "0.099999994",
-                      points:
-                        "101.428699 0 83.0667527 94.1480575 130.378721 47.0740288"
-                    }
-                  })
-                ]
-              )
-            ]
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/invoice/InvoiceSidebarAddPayment.vue?vue&type=template&id=772be5b4&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/invoice/InvoiceSidebarAddPayment.vue?vue&type=template&id=772be5b4& ***!
@@ -1375,9 +1201,7 @@ var render = function() {
                   "d-flex justify-content-between align-items-center content-sidebar-header px-2 py-1"
               },
               [
-                _c("h5", { staticClass: "mb-0" }, [
-                  _vm._v("Add Payment     " + _vm._s(_vm.sale_id))
-                ]),
+                _c("h5", { staticClass: "mb-0" }, [_vm._v("Add Payment")]),
                 _vm._v(" "),
                 _c("feather-icon", {
                   staticClass: "ml-1 cursor-pointer",
@@ -1645,22 +1469,15 @@ var render = function() {
                             },
                             [
                               _c("div", [
-                                _c(
-                                  "div",
-                                  { staticClass: "logo-wrapper" },
-                                  [
-                                    _c("logo"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "h3",
-                                      {
-                                        staticClass: "text-primary invoice-logo"
-                                      },
-                                      [_vm._v("Amar Client")]
-                                    )
-                                  ],
-                                  1
-                                ),
+                                _c("div", { staticClass: "logo-wrapper" }, [
+                                  _c(
+                                    "h3",
+                                    {
+                                      staticClass: "text-primary invoice-logo"
+                                    },
+                                    [_vm._v("Amar Client")]
+                                  )
+                                ]),
                                 _vm._v(" "),
                                 _c("p", { staticClass: "card-text mb-25" }, [
                                   _vm._v("Office 149, 450 South Brand Brooklyn")
@@ -1799,12 +1616,36 @@ var render = function() {
                                               },
                                               [
                                                 _vm._v(
-                                                  "\n                          " +
+                                                  "\n                          ৳ " +
                                                     _vm._s(
                                                       _vm.invoiceData
                                                         .due_payment
                                                     ) +
                                                     "\n                        "
+                                                )
+                                              ]
+                                            )
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", { staticClass: "pr-1" }, [
+                                            _vm._v("Next Payment:")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "font-weight-bold"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "৳ " +
+                                                    _vm._s(
+                                                      _vm.invoiceData
+                                                        .next_payment
+                                                    )
                                                 )
                                               ]
                                             )
@@ -1867,6 +1708,89 @@ var render = function() {
                         )
                       }),
                       _vm._v(" "),
+                      _vm.invoiceLogs.length > 0
+                        ? _c(
+                            "b-container",
+                            { staticClass: "bv-example-row" },
+                            [
+                              _c(
+                                "b-row",
+                                [
+                                  _c(
+                                    "b-col",
+                                    {
+                                      staticClass: "p-5",
+                                      attrs: { cols: "12", md: "12" }
+                                    },
+                                    [
+                                      _c("b-table", {
+                                        attrs: {
+                                          striped: "",
+                                          hover: "",
+                                          items: _vm.invoiceLogs,
+                                          fields: _vm.fields
+                                        },
+                                        scopedSlots: _vm._u(
+                                          [
+                                            {
+                                              key: "cell(payment_date)",
+                                              fn: function(row) {
+                                                return [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm
+                                                        .moment(
+                                                          row.item.payment_date
+                                                        )
+                                                        .format("Do MMMM, YYYY")
+                                                    )
+                                                  )
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              key: "cell(payment_amount)",
+                                              fn: function(row) {
+                                                return [
+                                                  _vm._v(
+                                                    "৳ " +
+                                                      _vm._s(
+                                                        row.item.payment_amount.toFixed(
+                                                          2
+                                                        )
+                                                      )
+                                                  )
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          null,
+                                          false,
+                                          1693855963
+                                        )
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h2",
+                                        { staticClass: "m-3 text-center" },
+                                        [
+                                          _vm._v(
+                                            "Total Installment Value: ৳ " +
+                                              _vm._s(_vm.installment.toFixed(2))
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
                         "b-card-body",
                         { staticClass: "invoice-padding pb-0" },
@@ -1878,12 +1802,7 @@ var render = function() {
                                 "b-col",
                                 {
                                   staticClass: "mt-md-0 mt-3",
-                                  attrs: {
-                                    cols: "12",
-                                    md: "6",
-                                    order: "2",
-                                    "order-md": "1"
-                                  }
+                                  attrs: { cols: "12", md: "6" }
                                 },
                                 [
                                   _c("b-card-text", { staticClass: "my-3" }, [
@@ -1901,13 +1820,8 @@ var render = function() {
                                 "b-col",
                                 {
                                   staticClass:
-                                    "mt-md-6 d-flex justify-content-end",
-                                  attrs: {
-                                    cols: "12",
-                                    md: "6",
-                                    order: "1",
-                                    "order-md": "2"
-                                  }
+                                    "mt-md-6 d-flex justify-content-center",
+                                  attrs: { cols: "12", md: "6" }
                                 },
                                 [
                                   _c(
@@ -1932,7 +1846,12 @@ var render = function() {
                                               staticClass:
                                                 "invoice-total-amount"
                                             },
-                                            [_vm._v("৳ " + _vm._s(_vm.amount))]
+                                            [
+                                              _vm._v(
+                                                "৳ " +
+                                                  _vm._s(_vm.amount.toFixed(2))
+                                              )
+                                            ]
                                           )
                                         ]
                                       ),
@@ -1958,7 +1877,11 @@ var render = function() {
                                             [
                                               _vm._v(
                                                 "৳ " +
-                                                  _vm._s(_vm.advance_payment)
+                                                  _vm._s(
+                                                    _vm.advance_payment.toFixed(
+                                                      2
+                                                    )
+                                                  )
                                               )
                                             ]
                                           )
@@ -1974,7 +1897,7 @@ var render = function() {
                                             {
                                               staticClass: "invoice-total-title"
                                             },
-                                            [_vm._v("Next Payment:")]
+                                            [_vm._v("Total Installment:")]
                                           ),
                                           _vm._v(" "),
                                           _c(
@@ -1985,7 +1908,10 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "৳ " + _vm._s(_vm.next_payment)
+                                                "৳ " +
+                                                  _vm._s(
+                                                    _vm.installment.toFixed(2)
+                                                  )
                                               )
                                             ]
                                           )
@@ -2014,7 +1940,10 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "৳ " + _vm._s(_vm.due_payment)
+                                                "৳ " +
+                                                  _vm._s(
+                                                    _vm.dueAmount.toFixed(2)
+                                                  )
                                               )
                                             ]
                                           )
@@ -2116,11 +2045,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "mb-75",
-                          attrs: {
-                            variant: "success",
-                            block: "",
-                            sale_id: "invoiceData.id"
-                          }
+                          attrs: { variant: "success", block: "" }
                         },
                         [_vm._v("Add Payment")]
                       )
