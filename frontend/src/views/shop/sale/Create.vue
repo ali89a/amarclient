@@ -44,6 +44,23 @@
                   </b-form-group>
                 </b-col>
                 <b-col md="6">
+                  <b-form-group label="Address">
+                    <validation-provider
+                        #default="{ errors }"
+                        name="address"
+                        rules="required"
+                    >
+                      <b-form-textarea
+                          v-model="form.address"
+                          :state="errors.length > 0 ? false:null"
+                          type="text"
+                          placeholder="Address"
+                      />
+                      <small class="text-danger">{{ errors[0] }}</small>
+                    </validation-provider>
+                  </b-form-group>
+                </b-col>
+                <b-col md="6">
                   <b-form-group label="Total Amount">
                     <validation-provider
                         #default="{ errors }"
@@ -213,6 +230,7 @@ export default {
       form: {
         name: '',
         sku: '',
+        address: '',
         amount: '',
         advance_payment: '',
         notes: '',
@@ -233,10 +251,13 @@ export default {
   },
   methods: {
     validationForm() {
+
       this.$refs.createsale.validate().then(success => {
         if (success) {
+
           axiosIns.post('api/v1/shop/sale', this.form).then(response => {
-            // console.log(response)
+
+            console.log(response.data)
             // first reset your form values
             for (const key in this.form) {
               this.form[key] = ''
@@ -265,3 +286,5 @@ export default {
   },
 }
 </script>
+
+

@@ -258,6 +258,9 @@ __webpack_require__.r(__webpack_exports__);
         label: 'Name',
         field: 'name'
       }, {
+        label: 'Address',
+        field: 'address'
+      }, {
         label: 'SKU',
         field: 'sku'
       }, {

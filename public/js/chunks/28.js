@@ -509,6 +509,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -530,6 +547,7 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         name: '',
         sku: '',
+        address: '',
         amount: '',
         advance_payment: '',
         notes: '',
@@ -554,8 +572,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.createsale.validate().then(function (success) {
         if (success) {
           _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('api/v1/shop/sale', _this.form).then(function (response) {
-            // console.log(response)
-            // first reset your form values
+            console.log(response.data); // first reset your form values
+
             for (var key in _this.form) {
               _this.form[key] = '';
             } // then do this to reset your ValidationObserver
@@ -718,6 +736,64 @@ var render = function() {
                                                   _vm.$set(_vm.form, "sku", $$v)
                                                 },
                                                 expression: "form.sku"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Address" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: {
+                                      name: "address",
+                                      rules: "required"
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-textarea", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "Address"
+                                              },
+                                              model: {
+                                                value: _vm.form.address,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "address",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.address"
                                               }
                                             }),
                                             _vm._v(" "),
