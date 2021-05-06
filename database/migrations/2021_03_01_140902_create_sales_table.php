@@ -17,7 +17,7 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('client_id')->constrained('clients');
+            $table->integer('client_id');
             $table->string('address')->nullable();
             $table->string('sku');
             $table->float('amount');
