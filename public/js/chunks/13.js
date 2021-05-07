@@ -60,7 +60,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/error-dark.svg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/error-dark.svg";
 
 /***/ }),
 
@@ -71,7 +71,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/e
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/error.svg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/error.svg";
 
 /***/ }),
 

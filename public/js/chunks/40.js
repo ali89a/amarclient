@@ -316,7 +316,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/v1/shop/sale').then(function (response) {
-        // console.log(response.data)
+        console.log(response.data);
         _this2.rows = response.data;
       });
     }

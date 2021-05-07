@@ -510,7 +510,7 @@ var validatorUrlValidator = function validatorUrlValidator(val) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/login-v2-dark.svg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/login-v2-dark.svg";
 
 /***/ }),
 
@@ -521,7 +521,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/l
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/login-v2.svg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/login-v2.svg";
 
 /***/ }),
 
