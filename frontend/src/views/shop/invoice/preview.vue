@@ -85,19 +85,15 @@
           <b-table-lite
             responsive
             :items="invoiceDescription"
-            :fields="['taskDescription', 'rate', 'hours', 'total']"
+            :fields="['name', 'sku']"
           >
-            <template #cell(taskDescription)="data">
+            <template #cell(name)="data">
               <b-card-text class="font-weight-bold mb-25">
                 {{
-                data.item.taskTitle
+                data.item.name
                 }}
               </b-card-text>
-              <b-card-text class="text-nowrap">
-                {{
-                data.item.taskDescription
-                }}
-              </b-card-text>
+              
             </template>
           </b-table-lite>
 
@@ -254,24 +250,7 @@ export default {
       invoiceData: [],
       invoiceLogs: [],
       totalInstallment: "",
-      invoiceDescription: [
-        {
-          taskTitle: "Native App Development",
-          taskDescription:
-            "Developed a full stack native app using React Native, Bootstrap & Python",
-          rate: "$60.00",
-          hours: "30",
-          total: "$1,800.00",
-        },
-        {
-          taskTitle: "UI Kit Design",
-          taskDescription:
-            "Designed a UI kit for native app using Sketch, Figma & Adobe XD",
-          rate: "$60.00",
-          hours: "20",
-          total: "$1200.00",
-        },
-      ],
+      invoiceDescription: [],
     };
   },
   computed: {
@@ -309,6 +288,8 @@ export default {
           this.next_payment = response.data.sale_info.next_payment;
           this.amount = response.data.sale_info.amount;
           this.invoiceLogs = response.data.sale_info.invoice_log;
+          this.invoiceDescription = response.data.sale_info.product;
+          console.log(response.data.sale_info.product);
         });
     },
   },

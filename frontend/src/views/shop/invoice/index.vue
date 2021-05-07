@@ -196,7 +196,7 @@ export default {
   methods: {
     getSaleData() {
       axiosIns.get("api/v1/shop/sale").then((response) => {
-        this.rows = response.data;
+        this.rows = response.data.sale;
       });
     },
   },

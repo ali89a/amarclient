@@ -290,7 +290,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/sale").then(function (response) {
-        _this.rows = response.data;
+        _this.rows = response.data.sale;
       });
     }
   }

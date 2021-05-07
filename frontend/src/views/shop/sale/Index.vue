@@ -8,9 +8,7 @@
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
             :to="{ name:'shop.sale.create' }"
-          >
-            Add New
-          </b-button>
+          >Add New</b-button>
         </div>
         <div class="card-body">
           <!-- search input -->
@@ -41,30 +39,17 @@
             }"
             :line-numbers="true"
           >
-            <template
-              slot="table-row"
-              slot-scope="props"
-            >
+            <template slot="table-row" slot-scope="props">
               <!-- Column: Name -->
-              <span
-                v-if="props.column.field === 'Name'"
-                class="text-nowrap"
-              >
-                <b-avatar
-                  :src="props.row.avatar"
-                  class="mx-1"
-                />
-                <span class="text-nowrap">{{ props.row.name }}</span>
+              <span v-if="props.column.field === 'Name'" class="text-nowrap">
+                <b-avatar :src="props.row.avatar" class="mx-1" />
+                <span class="text-nowrap">{{ props.row.client_name }}</span>
               </span>
 
               <!-- Column: Action -->
               <span v-else-if="props.column.field === 'action'">
                 <span>
-                  <b-dropdown
-                    variant="link"
-                    toggle-class="text-decoration-none"
-                    no-caret
-                  >
+                  <b-dropdown variant="link" toggle-class="text-decoration-none" no-caret>
                     <template v-slot:button-content>
                       <feather-icon
                         icon="MoreVerticalIcon"
@@ -80,42 +65,31 @@
                     <!--                      <span><router-link :to="{name:'shop.sale.edit',params:{id:props.row.id}}">Edit</router-link></span>-->
                     <!--                    </b-dropdown-item>-->
                     <b-dropdown-item>
-                      <feather-icon
-                        icon="TrashIcon"
-                        class="mr-50"
-                      />
-                      <span><a
-                        href=""
-                        @click.prevent="deleteData(props.row.id)"
-                      >Delete</a></span>
+                      <feather-icon icon="TrashIcon" class="mr-50" />
+                      <span>
+                        <a href @click.prevent="deleteData(props.row.id)">Delete</a>
+                      </span>
                     </b-dropdown-item>
                   </b-dropdown>
                 </span>
               </span>
 
               <!-- Column: Common -->
-              <span v-else>
-                {{ props.formattedRow[props.column.field] }}
-              </span>
+              <span v-else>{{ props.formattedRow[props.column.field] }}</span>
             </template>
 
             <!-- pagination -->
-            <template
-              slot="pagination-bottom"
-              slot-scope="props"
-            >
+            <template slot="pagination-bottom" slot-scope="props">
               <div class="d-flex justify-content-between flex-wrap">
                 <div class="d-flex align-items-center mb-0 mt-1">
-                  <span class="text-nowrap ">
-                    Showing 1 to
-                  </span>
+                  <span class="text-nowrap">Showing 1 to</span>
                   <b-form-select
                     v-model="pageLength"
                     :options="['10','20','50']"
                     class="mx-1"
                     @input="(value)=>props.perPageChanged({currentPerPage:value})"
                   />
-                  <span class="text-nowrap"> of {{ props.total }} entries </span>
+                  <span class="text-nowrap">of {{ props.total }} entries</span>
                 </div>
                 <div>
                   <b-pagination
@@ -131,16 +105,10 @@
                     @input="(value)=>props.pageChanged({currentPage:value})"
                   >
                     <template #prev-text>
-                      <feather-icon
-                        icon="ChevronLeftIcon"
-                        size="18"
-                      />
+                      <feather-icon icon="ChevronLeftIcon" size="18" />
                     </template>
                     <template #next-text>
-                      <feather-icon
-                        icon="ChevronRightIcon"
-                        size="18"
-                      />
+                      <feather-icon icon="ChevronRightIcon" size="18" />
                     </template>
                   </b-pagination>
                 </div>
@@ -154,19 +122,19 @@
 </template>
 
 <script>
-import Ripple from 'vue-ripple-directive'
-import { VueGoodTable } from 'vue-good-table'
-import '@core/scss/vue/libs/vue-good-table.scss'
-import axiosIns from '@/libs/axios'
+import Ripple from "vue-ripple-directive";
+import { VueGoodTable } from "vue-good-table";
+import "@core/scss/vue/libs/vue-good-table.scss";
+import axiosIns from "@/libs/axios";
 
 export default {
-  name: 'Index',
+  name: "Index",
   components: {
-    VueGoodTable,
+    VueGoodTable
   },
 
   directives: {
-    Ripple,
+    Ripple
   },
   data() {
     return {
@@ -174,54 +142,54 @@ export default {
       dir: false,
       columns: [
         {
-          label: 'Name',
-          field: 'name',
+          label: "Name",
+          field: "client_name"
         },
         {
-          label: 'Address',
-          field: 'address',
+          label: "Address",
+          field: "address"
         },
         {
-          label: 'SKU',
-          field: 'sku',
+          label: "SKU",
+          field: "sku"
         },
         {
-          label: 'Amount',
-          field: 'amount',
+          label: "Amount",
+          field: "amount"
         },
         {
-          label: 'Start Date',
-          field: 'start_date',
+          label: "Start Date",
+          field: "start_date"
         },
         {
-          label: 'End Date',
-          field: 'end_date',
+          label: "End Date",
+          field: "end_date"
         },
         {
-          label: 'Action',
-          field: 'action',
-        },
+          label: "Action",
+          field: "action"
+        }
       ],
       rows: [],
-      searchTerm: '',
-    }
+      searchTerm: ""
+    };
   },
   computed: {},
   created() {
-    this.getSaleData()
+    this.getSaleData();
   },
   methods: {
     deleteData(id) {
       this.$bvModal
-        .msgBoxConfirm('Please confirm that you want to delete everything.', {
-          title: 'Please Confirm',
-          size: 'sm',
-          okVariant: 'primary',
-          okTitle: 'Yes',
-          cancelTitle: 'No',
-          cancelVariant: 'outline-secondary',
+        .msgBoxConfirm("Please confirm that you want to delete everything.", {
+          title: "Please Confirm",
+          size: "sm",
+          okVariant: "primary",
+          okTitle: "Yes",
+          cancelTitle: "No",
+          cancelVariant: "outline-secondary",
           hideHeaderClose: false,
-          centered: true,
+          centered: true
         })
         .then(value => {
           if (value) {
@@ -229,21 +197,32 @@ export default {
               // console.log(response.data)
 
               this.$bvToast.toast(response.data.message, {
-                title: 'Success',
-                variant: 'success',
-                solid: true,
-              })
-              this.getSaleData()
-            })
+                title: "Success",
+                variant: "success",
+                solid: true
+              });
+              this.getSaleData();
+            });
           }
-        })
+        });
     },
     getSaleData() {
-      axiosIns.get('api/v1/shop/sale').then(response => {
-         console.log(response.data)
-        this.rows = response.data
-      })
-    },
-  },
-}
+      axiosIns.get("api/v1/shop/sale").then(res => {
+        const rows = [];
+        res.data.sale.forEach((element, i) => {
+          console.log(element.client[0].name);
+          rows.push({
+            address: element.address,
+            sku: element.sku,
+            amount: element.amount,
+            start_date: element.start_date,
+            end_date: element.end_date,
+            client_name: (element.client_id == element.client.id) ? element.client.name : "",
+          });
+        });
+        this.rows = rows;
+      });
+    }
+  }
+};
 </script>

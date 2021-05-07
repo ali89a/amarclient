@@ -206,44 +206,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Index',
+  name: "Index",
   components: {
     VueGoodTable: vue_good_table__WEBPACK_IMPORTED_MODULE_1__["VueGoodTable"]
   },
@@ -255,29 +223,29 @@ __webpack_require__.r(__webpack_exports__);
       pageLength: 10,
       dir: false,
       columns: [{
-        label: 'Name',
-        field: 'name'
+        label: "Name",
+        field: "client_name"
       }, {
-        label: 'Address',
-        field: 'address'
+        label: "Address",
+        field: "address"
       }, {
-        label: 'SKU',
-        field: 'sku'
+        label: "SKU",
+        field: "sku"
       }, {
-        label: 'Amount',
-        field: 'amount'
+        label: "Amount",
+        field: "amount"
       }, {
-        label: 'Start Date',
-        field: 'start_date'
+        label: "Start Date",
+        field: "start_date"
       }, {
-        label: 'End Date',
-        field: 'end_date'
+        label: "End Date",
+        field: "end_date"
       }, {
-        label: 'Action',
-        field: 'action'
+        label: "Action",
+        field: "action"
       }],
       rows: [],
-      searchTerm: ''
+      searchTerm: ""
     };
   },
   computed: {},
@@ -288,13 +256,13 @@ __webpack_require__.r(__webpack_exports__);
     deleteData: function deleteData(id) {
       var _this = this;
 
-      this.$bvModal.msgBoxConfirm('Please confirm that you want to delete everything.', {
-        title: 'Please Confirm',
-        size: 'sm',
-        okVariant: 'primary',
-        okTitle: 'Yes',
-        cancelTitle: 'No',
-        cancelVariant: 'outline-secondary',
+      this.$bvModal.msgBoxConfirm("Please confirm that you want to delete everything.", {
+        title: "Please Confirm",
+        size: "sm",
+        okVariant: "primary",
+        okTitle: "Yes",
+        cancelTitle: "No",
+        cancelVariant: "outline-secondary",
         hideHeaderClose: false,
         centered: true
       }).then(function (value) {
@@ -302,8 +270,8 @@ __webpack_require__.r(__webpack_exports__);
           _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"]("api/v1/shop/sale/".concat(id)).then(function (response) {
             // console.log(response.data)
             _this.$bvToast.toast(response.data.message, {
-              title: 'Success',
-              variant: 'success',
+              title: "Success",
+              variant: "success",
               solid: true
             });
 
@@ -315,9 +283,20 @@ __webpack_require__.r(__webpack_exports__);
     getSaleData: function getSaleData() {
       var _this2 = this;
 
-      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/v1/shop/sale').then(function (response) {
-        console.log(response.data);
-        _this2.rows = response.data;
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/sale").then(function (res) {
+        var rows = [];
+        res.data.sale.forEach(function (element, i) {
+          console.log(element.client[0].name);
+          rows.push({
+            address: element.address,
+            sku: element.sku,
+            amount: element.amount,
+            start_date: element.start_date,
+            end_date: element.end_date,
+            client_name: element.client_id == element.client.id ? element.client.name : ""
+          });
+        });
+        _this2.rows = rows;
       });
     }
   }
@@ -368,7 +347,7 @@ var render = function() {
                     to: { name: "shop.sale.create" }
                   }
                 },
-                [_vm._v("\n          Add New\n        ")]
+                [_vm._v("Add New")]
               )
             ],
             1
@@ -441,7 +420,7 @@ var render = function() {
                                 }),
                                 _vm._v(" "),
                                 _c("span", { staticClass: "text-nowrap" }, [
-                                  _vm._v(_vm._s(props.row.name))
+                                  _vm._v(_vm._s(props.row.client_name))
                                 ])
                               ],
                               1
@@ -521,11 +500,7 @@ var render = function() {
                             ])
                           : _c("span", [
                               _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    props.formattedRow[props.column.field]
-                                  ) +
-                                  "\n            "
+                                _vm._s(props.formattedRow[props.column.field])
                               )
                             ])
                       ]
@@ -549,10 +524,8 @@ var render = function() {
                                   "d-flex align-items-center mb-0 mt-1"
                               },
                               [
-                                _c("span", { staticClass: "text-nowrap " }, [
-                                  _vm._v(
-                                    "\n                  Showing 1 to\n                "
-                                  )
+                                _c("span", { staticClass: "text-nowrap" }, [
+                                  _vm._v("Showing 1 to")
                                 ]),
                                 _vm._v(" "),
                                 _c("b-form-select", {
@@ -576,7 +549,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("span", { staticClass: "text-nowrap" }, [
                                   _vm._v(
-                                    " of " + _vm._s(props.total) + " entries "
+                                    "of " + _vm._s(props.total) + " entries"
                                   )
                                 ])
                               ],
