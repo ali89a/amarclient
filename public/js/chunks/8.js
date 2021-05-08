@@ -897,6 +897,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* eslint-disable global-require */
 
@@ -935,6 +946,7 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       password_confirmation: '',
       email: '',
+      loading: false,
       sideImg: __webpack_require__(/*! @/assets/images/pages/login-v2.svg */ "./frontend/src/assets/images/pages/login-v2.svg"),
       // validation rulesimport store from '@/store/index'
       required: _validations__WEBPACK_IMPORTED_MODULE_3__["required"],
@@ -960,6 +972,7 @@ __webpack_require__.r(__webpack_exports__);
     validationForm: function validationForm() {
       var _this = this;
 
+      this.loading = true;
       this.$refs.loginValidation.validate().then(function (success) {
         if (success) {
           _libs_axios__WEBPACK_IMPORTED_MODULE_6__["default"].post('api/v1/shop/register', {
@@ -969,9 +982,9 @@ __webpack_require__.r(__webpack_exports__);
             password: _this.password,
             password_confirmation: _this.password_confirmation
           }).then(function (response) {
-            console.log('response.data');
-            console.log(response); // useJwt.setToken(response.data.access_token)
-
+            // console.log('response.data')
+            // console.log(response)
+            // useJwt.setToken(response.data.access_token)
             _this.$router.push({
               name: 'user.email.verify',
               query: {
@@ -979,18 +992,18 @@ __webpack_require__.r(__webpack_exports__);
               }
             });
           })["catch"](function (error) {
-            console.log(error);
+            // console.log(error)
+            _this.$refs.loginValidation.setErrors(error.response.data.errors);
 
-            _this.$refs.loginValidation.setErrors(error.response.data.errors); // if (error.response.status === 422) {
-            //   // this.errors = error.response.data.error
-            //   this.$bvToast.toast('Something went wrong.', {
-            //     title: 'Failed',
-            //     variant: 'danger',
-            //     solid: true,
-            //   })
-            // }
-            // this.errors = error.response.data.errors
+            if (error.response.status === 500) {
+              _this.$bvToast.toast('Something went wrong!', {
+                title: 'Failed',
+                variant: 'danger',
+                solid: true
+              });
+            }
 
+            _this.loading = false;
           });
         }
       });
@@ -1332,7 +1345,7 @@ var render = function() {
                             "b-form-group",
                             {
                               attrs: {
-                                label: "Shop Name",
+                                label: "Company Name",
                                 "label-for": "shop_name"
                               }
                             },
@@ -1655,18 +1668,31 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "b-button",
-                            {
-                              attrs: {
-                                type: "submit",
-                                variant: "primary",
-                                block: ""
-                              },
-                              on: { click: _vm.validationForm }
-                            },
-                            [_vm._v("\n              Sign up\n            ")]
-                          )
+                          _vm.loading
+                            ? _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "submit",
+                                    variant: "primary",
+                                    block: ""
+                                  }
+                                },
+                                [_c("b-spinner", { attrs: { small: "" } })],
+                                1
+                              )
+                            : _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "submit",
+                                    variant: "primary",
+                                    block: ""
+                                  },
+                                  on: { click: _vm.validationForm }
+                                },
+                                [_c("span", [_vm._v("Sign up")])]
+                              )
                         ],
                         1
                       )
@@ -1681,7 +1707,7 @@ var render = function() {
                       _c("span", [_vm._v("Already have an account? ")]),
                       _vm._v(" "),
                       _c("b-link", { attrs: { to: { name: "user.login" } } }, [
-                        _c("span", [_vm._v(" Login here")])
+                        _c("span", [_vm._v("Sign in here")])
                       ])
                     ],
                     1

@@ -55,7 +55,7 @@
             >
               <!-- shop name -->
               <b-form-group
-                label="Shop Name"
+                label="Company Name"
                 label-for="shop_name"
               >
                 <validation-provider
@@ -191,12 +191,23 @@
 
               <!-- submit buttons -->
               <b-button
+                v-if="loading"
+                type="submit"
+                variant="primary"
+                block
+              >
+                <b-spinner
+                  small
+                />
+              </b-button>
+              <b-button
+                v-else
                 type="submit"
                 variant="primary"
                 block
                 @click="validationForm"
               >
-                Sign up
+                <span>Sign up</span>
               </b-button>
             </b-form>
           </validation-observer>
@@ -204,7 +215,7 @@
           <b-card-text class="text-center mt-2">
             <span>Already have an account? </span>
             <b-link :to="{name:'user.login'}">
-              <span>&nbsp;Login here</span>
+              <span>Sign in here</span>
             </b-link>
           </b-card-text>
         </b-col>
@@ -255,6 +266,7 @@ export default {
       password: '',
       password_confirmation: '',
       email: '',
+      loading: false,
       sideImg: require('@/assets/images/pages/login-v2.svg'),
       // validation rulesimport store from '@/store/index'
       required,
@@ -277,6 +289,7 @@ export default {
   },
   methods: {
     validationForm() {
+      this.loading = true
       this.$refs.loginValidation.validate().then(success => {
         if (success) {
           axiosIns.post('api/v1/shop/register', {
@@ -286,22 +299,21 @@ export default {
             password: this.password,
             password_confirmation: this.password_confirmation,
           }).then(response => {
-            console.log('response.data')
-            console.log(response)
+            // console.log('response.data')
+            // console.log(response)
             // useJwt.setToken(response.data.access_token)
             this.$router.push({ name: 'user.email.verify', query: { email: this.email } })
           }).catch(error => {
-            console.log(error)
+            // console.log(error)
             this.$refs.loginValidation.setErrors(error.response.data.errors)
-            // if (error.response.status === 422) {
-            //   // this.errors = error.response.data.error
-            //   this.$bvToast.toast('Something went wrong.', {
-            //     title: 'Failed',
-            //     variant: 'danger',
-            //     solid: true,
-            //   })
-            // }
-            // this.errors = error.response.data.errors
+            if (error.response.status === 500) {
+              this.$bvToast.toast('Something went wrong!', {
+                title: 'Failed',
+                variant: 'danger',
+                solid: true,
+              })
+            }
+            this.loading = false
           })
         }
       })

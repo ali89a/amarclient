@@ -588,6 +588,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* eslint-disable global-require */
 
@@ -613,6 +627,7 @@ __webpack_require__.r(__webpack_exports__);
     BImg: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BImg"],
     BForm: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BForm"],
     BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BButton"],
+    BSpinner: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BSpinner"],
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_1__["ValidationProvider"],
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_1__["ValidationObserver"]
   },
@@ -622,6 +637,7 @@ __webpack_require__.r(__webpack_exports__);
       status: '',
       password: '',
       email: '',
+      loading: false,
       sideImg: __webpack_require__(/*! @/assets/images/pages/login-v2.svg */ "./frontend/src/assets/images/pages/login-v2.svg"),
       // validation rulesimport store from '@/store/index'
       required: _validations__WEBPACK_IMPORTED_MODULE_4__["required"]
@@ -655,14 +671,14 @@ __webpack_require__.r(__webpack_exports__);
     validationForm: function validationForm() {
       var _this = this;
 
+      this.loading = true;
       this.$refs.loginValidation.validate().then(function (success) {
         if (success) {
           _libs_axios__WEBPACK_IMPORTED_MODULE_7__["default"].post('api/v1/shop/login', {
             email: _this.email,
             password: _this.password
           }).then(function (response) {
-            console.log(response);
-
+            // console.log(response)
             if (response.data.success) {
               localStorage.removeItem('adminData');
               localStorage.setItem('userAccessToken', response.data.access_token);
@@ -681,8 +697,7 @@ __webpack_require__.r(__webpack_exports__);
               }
             });
           })["catch"](function (error) {
-            console.log(error);
-
+            // console.log(error)
             if (error.response.status === 422) {
               // this.errors = error.response.data.error
               _this.$bvToast.toast(error.response.data.errors, {
@@ -693,9 +708,10 @@ __webpack_require__.r(__webpack_exports__);
             }
 
             _this.$refs.loginValidation.setErrors(error.response.data.errors); // this.errors = error.response.data.errors
+            // console.log(error.response.data)
 
 
-            console.log(error.response.data);
+            _this.loading = false;
           });
         }
       });
@@ -998,16 +1014,12 @@ var render = function() {
                       staticClass: "font-weight-bold mb-1",
                       attrs: { "title-tag": "h2" }
                     },
-                    [
-                      _vm._v(
-                        "\n            Welcome to Amar Client!\n          "
-                      )
-                    ]
+                    [_vm._v("\n          Welcome to Amar Client!\n        ")]
                   ),
                   _vm._v(" "),
                   _c("b-card-text", { staticClass: "mb-2" }, [
                     _vm._v(
-                      "\n            Please sign-in to your account\n          "
+                      "\n          Please sign-in to your account\n        "
                     )
                   ]),
                   _vm._v(" "),
@@ -1171,7 +1183,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                  Remember Me\n                "
+                                    "\n                Remember Me\n              "
                                   )
                                 ]
                               )
@@ -1179,22 +1191,31 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "b-button",
-                            {
-                              attrs: {
-                                type: "submit",
-                                variant: "primary",
-                                block: ""
-                              },
-                              on: { click: _vm.validationForm }
-                            },
-                            [
-                              _vm._v(
-                                "\n                Sign in\n              "
+                          _vm.loading
+                            ? _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "submit",
+                                    variant: "primary",
+                                    block: ""
+                                  }
+                                },
+                                [_c("b-spinner", { attrs: { small: "" } })],
+                                1
                               )
-                            ]
-                          )
+                            : _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "submit",
+                                    variant: "primary",
+                                    block: ""
+                                  },
+                                  on: { click: _vm.validationForm }
+                                },
+                                [_c("span", [_vm._v("Sign in")])]
+                              )
                         ],
                         1
                       )

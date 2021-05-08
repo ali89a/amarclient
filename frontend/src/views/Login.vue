@@ -4,10 +4,15 @@
 
       <!-- Brand logo-->
       <b-link class="brand-logo">
-        <img :src="appLogoImage" alt="" class="" width="100px">
-<!--        <h2 class="brand-text text-primary ml-1">-->
-<!--          Cash Baksho-->
-<!--        </h2>-->
+        <img
+          :src="appLogoImage"
+          alt=""
+          class=""
+          width="100px"
+        >
+        <!--        <h2 class="brand-text text-primary ml-1">-->
+        <!--          Cash Baksho-->
+        <!--        </h2>-->
       </b-link>
       <!-- /Brand logo-->
 
@@ -119,12 +124,21 @@
 
               <!-- submit buttons -->
               <b-button
+                v-if="loading"
+                type="submit"
+                variant="primary"
+                block
+              >
+                <b-spinner small />
+              </b-button>
+              <b-button
+                v-else
                 type="submit"
                 variant="primary"
                 block
                 @click="validationForm"
               >
-                Sign in
+                <span>Sign in</span>
               </b-button>
             </b-form>
           </validation-observer>
@@ -148,7 +162,7 @@ import { $themeConfig } from '@themeConfig'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import VuexyLogo from '@core/layouts/components/Logo.vue'
 import {
-  BRow, BCol, BLink, BFormGroup, BFormInput, BInputGroupAppend, BInputGroup, BFormCheckbox, BCardText, BCardTitle, BImg, BForm, BButton,
+  BRow, BCol, BLink, BFormGroup, BFormInput, BInputGroupAppend, BInputGroup, BFormCheckbox, BCardText, BCardTitle, BImg, BForm, BButton, BSpinner,
 } from 'bootstrap-vue'
 import { required } from '@validations'
 import { togglePasswordVisibility } from '@core/mixins/ui/forms'
@@ -170,6 +184,7 @@ export default {
     BImg,
     BForm,
     BButton,
+    BSpinner,
     ValidationProvider,
     ValidationObserver,
   },
@@ -179,6 +194,7 @@ export default {
       status: '',
       password: '',
       email: '',
+      loading: false,
       sideImg: require('@/assets/images/pages/login-v2.svg'),
       // validation rulesimport store from '@/store/index'
       required,
@@ -208,13 +224,14 @@ export default {
   },
   methods: {
     validationForm() {
+      this.loading = true
       this.$refs.loginValidation.validate().then(success => {
         if (success) {
           axiosIns.post('api/v1/shop/login', {
             email: this.email,
             password: this.password,
           }).then(response => {
-            console.log(response)
+            // console.log(response)
             if (response.data.success) {
               localStorage.removeItem('adminData')
               localStorage.setItem('userAccessToken', response.data.access_token)
@@ -225,7 +242,7 @@ export default {
             }
             this.$router.push({ name: 'user.email.verify', query: { email: this.email } })
           }).catch(error => {
-            console.log(error)
+            // console.log(error)
             if (error.response.status === 422) {
               // this.errors = error.response.data.error
               this.$bvToast.toast(error.response.data.errors, {
@@ -236,7 +253,8 @@ export default {
             }
             this.$refs.loginValidation.setErrors(error.response.data.errors)
             // this.errors = error.response.data.errors
-            console.log(error.response.data)
+            // console.log(error.response.data)
+            this.loading = false
           })
         }
       })

@@ -1,5 +1,74 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[31],{
 
+/***/ "./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue":
+/*!************************************************************************************!*\
+  !*** ./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _StatisticCardHorizontal_vue_vue_type_template_id_0182a35d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StatisticCardHorizontal.vue?vue&type=template&id=0182a35d& */ "./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=template&id=0182a35d&");
+/* harmony import */ var _StatisticCardHorizontal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StatisticCardHorizontal.vue?vue&type=script&lang=js& */ "./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _StatisticCardHorizontal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _StatisticCardHorizontal_vue_vue_type_template_id_0182a35d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _StatisticCardHorizontal_vue_vue_type_template_id_0182a35d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StatisticCardHorizontal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./StatisticCardHorizontal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StatisticCardHorizontal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=template&id=0182a35d&":
+/*!*******************************************************************************************************************!*\
+  !*** ./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=template&id=0182a35d& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StatisticCardHorizontal_vue_vue_type_template_id_0182a35d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./StatisticCardHorizontal.vue?vue&type=template&id=0182a35d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=template&id=0182a35d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StatisticCardHorizontal_vue_vue_type_template_id_0182a35d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StatisticCardHorizontal_vue_vue_type_template_id_0182a35d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./frontend/src/libs/axios.js":
 /*!************************************!*\
   !*** ./frontend/src/libs/axios.js ***!
@@ -100,6 +169,67 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    BCard: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BCard"],
+    BCardBody: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BCardBody"],
+    BAvatar: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BAvatar"]
+  },
+  props: {
+    icon: {
+      type: String,
+      required: true
+    },
+    statistic: {
+      type: [Number, String],
+      required: true
+    },
+    statisticTitle: {
+      type: String,
+      "default": ''
+    },
+    color: {
+      type: String,
+      "default": 'primary'
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/Home.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/Home.vue?vue&type=script&lang=js& ***!
@@ -109,123 +239,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
+/* harmony import */ var _core_components_statistics_cards_StatisticCardHorizontal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @core/components/statistics-cards/StatisticCardHorizontal.vue */ "./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue");
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -281,8 +296,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    BCard: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BCard"],
-    BCardText: bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["BCardText"]
+    StatisticCardHorizontal: _core_components_statistics_cards_StatisticCardHorizontal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -290,8 +304,8 @@ __webpack_require__.r(__webpack_exports__);
       transactions: []
     };
   },
-  mounted: function mounted() {// this.getStatistic()
-    // this.getTransactionReport()
+  mounted: function mounted() {
+    this.getStatistic(); // this.getTransactionReport()
   },
   methods: {
     getStatistic: function getStatistic() {
@@ -301,17 +315,66 @@ __webpack_require__.r(__webpack_exports__);
         // console.log(response.data)
         _this.statistic = response.data.data;
       });
-    },
-    getTransactionReport: function getTransactionReport() {
-      var _this2 = this;
+    } // getTransactionReport() {
+    //   axiosIns.get('api/v1/shop/report/transaction').then(response => {
+    //     // console.log(response.data.transactions)
+    //     this.transactions = response.data.transactions
+    //   })
+    // },
 
-      _libs_axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('api/v1/shop/report/transaction').then(function (response) {
-        // console.log(response.data.transactions)
-        _this2.transactions = response.data.transactions;
-      });
-    }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=template&id=0182a35d&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/@core/components/statistics-cards/StatisticCardHorizontal.vue?vue&type=template&id=0182a35d& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-card",
+    { attrs: { "no-body": "" } },
+    [
+      _c(
+        "b-card-body",
+        { staticClass: "d-flex justify-content-between align-items-center" },
+        [
+          _c("div", { staticClass: "truncate" }, [
+            _c("h2", { staticClass: "mb-25 font-weight-bolder" }, [
+              _vm._v("\n        " + _vm._s(_vm.statistic) + "\n      ")
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.statisticTitle))])
+          ]),
+          _vm._v(" "),
+          _c(
+            "b-avatar",
+            { attrs: { variant: "light-" + _vm.color, size: "45" } },
+            [_c("feather-icon", { attrs: { size: "21", icon: _vm.icon } })],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -331,401 +394,70 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "section",
-    { attrs: { id: "dashboard-ecommerce" } },
+    "div",
     [
       _c(
         "b-row",
-        { staticClass: "match-height" },
         [
           _c(
             "b-col",
-            { attrs: { xl: "12", md: "12" } },
+            { attrs: { lg: "3", sm: "6" } },
             [
-              _c(
-                "b-card",
-                { staticClass: "card-statistics", attrs: { "no-body": "" } },
-                [
-                  _c(
-                    "b-card-header",
-                    [_c("b-card-title", [_vm._v("Statistics")])],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-card-body",
-                    { staticClass: "statistics-body" },
-                    [
-                      _c(
-                        "b-row",
-                        [
-                          _c(
-                            "b-col",
-                            { attrs: { xl: "2", sm: "6" } },
-                            [
-                              _c(
-                                "b-media",
-                                { attrs: { "no-body": "" } },
-                                [
-                                  _c(
-                                    "b-media-body",
-                                    { staticClass: "my-auto" },
-                                    [
-                                      _c(
-                                        "h4",
-                                        {
-                                          staticClass: "font-weight-bolder mb-0"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.statistic.total_sales
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "b-card-text",
-                                        { staticClass: "font-small-3 mb-0" },
-                                        [
-                                          _vm._v(
-                                            "\n                    Sales\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { xl: "3", sm: "6" } },
-                            [
-                              _c(
-                                "b-media",
-                                { attrs: { "no-body": "" } },
-                                [
-                                  _c(
-                                    "b-media-body",
-                                    { staticClass: "my-auto" },
-                                    [
-                                      _c(
-                                        "h4",
-                                        {
-                                          staticClass: "font-weight-bolder mb-0"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.statistic.total_purchases
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "b-card-text",
-                                        { staticClass: "font-small-3 mb-0" },
-                                        [
-                                          _vm._v(
-                                            "\n                    Purchases\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { xl: "2", sm: "6" } },
-                            [
-                              _c(
-                                "b-media",
-                                { attrs: { "no-body": "" } },
-                                [
-                                  _c(
-                                    "b-media-body",
-                                    { staticClass: "my-auto" },
-                                    [
-                                      _c(
-                                        "h4",
-                                        {
-                                          staticClass: "font-weight-bolder mb-0"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.statistic.total_customers
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "b-card-text",
-                                        { staticClass: "font-small-3 mb-0" },
-                                        [
-                                          _vm._v(
-                                            "\n                    Customers\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { xl: "2", sm: "6" } },
-                            [
-                              _c(
-                                "b-media",
-                                { attrs: { "no-body": "" } },
-                                [
-                                  _c(
-                                    "b-media-body",
-                                    { staticClass: "my-auto" },
-                                    [
-                                      _c(
-                                        "h4",
-                                        {
-                                          staticClass: "font-weight-bolder mb-0"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.statistic.total_suppliers
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "b-card-text",
-                                        { staticClass: "font-small-3 mb-0" },
-                                        [
-                                          _vm._v(
-                                            "\n                    Suppliers\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { xl: "2", sm: "6" } },
-                            [
-                              _c(
-                                "b-media",
-                                { attrs: { "no-body": "" } },
-                                [
-                                  _c(
-                                    "b-media-body",
-                                    { staticClass: "my-auto" },
-                                    [
-                                      _c(
-                                        "h4",
-                                        {
-                                          staticClass: "font-weight-bolder mb-0"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.statistic.total_products
-                                              ) +
-                                              "\n                  "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "b-card-text",
-                                        { staticClass: "font-small-3 mb-0" },
-                                        [
-                                          _vm._v(
-                                            "\n                    Products\n                  "
-                                          )
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+              _c("statistic-card-horizontal", {
+                attrs: {
+                  icon: "CpuIcon",
+                  statistic: _vm.statistic.total_client,
+                  "statistic-title": "Total Client"
+                }
+              })
             ],
             1
           ),
           _vm._v(" "),
           _c(
             "b-col",
-            { attrs: { lg: "4", md: "6" } },
+            { attrs: { lg: "3", sm: "6" } },
             [
-              _vm.transactions.length > 0
-                ? _c(
-                    "b-card",
-                    {
-                      staticClass: "card-transaction",
-                      attrs: { "no-body": "" }
-                    },
-                    [
-                      _c(
-                        "b-card-header",
-                        [
-                          _c("b-card-title", [_vm._v("Transactions")]),
-                          _vm._v(" "),
-                          _c("b-dropdown", {
-                            staticClass: "chart-dropdown",
-                            attrs: {
-                              variant: "link",
-                              "no-caret": "",
-                              "toggle-class": "p-0",
-                              right: ""
-                            },
-                            scopedSlots: _vm._u(
-                              [
-                                {
-                                  key: "button-content",
-                                  fn: function() {
-                                    return [
-                                      _c("feather-icon", {
-                                        staticClass: "text-body cursor-pointer",
-                                        attrs: {
-                                          icon: "MoreVerticalIcon",
-                                          size: "18"
-                                        }
-                                      })
-                                    ]
-                                  },
-                                  proxy: true
-                                }
-                              ],
-                              null,
-                              false,
-                              592634808
-                            )
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-card-body",
-                        _vm._l(_vm.transactions, function(transaction) {
-                          return _c(
-                            "div",
-                            {
-                              key: transaction.id,
-                              staticClass: "transaction-item"
-                            },
-                            [
-                              _c(
-                                "b-media",
-                                { attrs: { "no-body": "" } },
-                                [
-                                  _c("b-media-body", [
-                                    _c(
-                                      "h6",
-                                      { staticClass: "transaction-title" },
-                                      [
-                                        _vm._v(
-                                          "\n                  " +
-                                            _vm._s(
-                                              transaction.transactionable.name
-                                            ) +
-                                            "\n                "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("small", [
-                                      _vm._v(_vm._s(transaction.user_type))
-                                    ])
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "font-weight-bolder",
-                                  class: transaction.given
-                                    ? "text-danger"
-                                    : "text-success"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n              " +
-                                      _vm._s(transaction.given ? "-" : "+") +
-                                      _vm._s(
-                                        transaction.given
-                                          ? transaction.given
-                                          : transaction.taken
-                                      ) +
-                                      "\n            "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        }),
-                        0
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e()
+              _c("statistic-card-horizontal", {
+                attrs: {
+                  icon: "ServerIcon",
+                  color: "success",
+                  statistic: _vm.statistic.total_payee,
+                  "statistic-title": "Total Payee"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { lg: "3", sm: "6" } },
+            [
+              _c("statistic-card-horizontal", {
+                attrs: {
+                  icon: "ActivityIcon",
+                  color: "danger",
+                  statistic: _vm.statistic.total_sale,
+                  "statistic-title": "Total Sale"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { lg: "3", sm: "6" } },
+            [
+              _c("statistic-card-horizontal", {
+                attrs: {
+                  icon: "AlertOctagonIcon",
+                  color: "warning",
+                  statistic: _vm.statistic.total_expenses,
+                  "statistic-title": "Total Expense"
+                }
+              })
             ],
             1
           )

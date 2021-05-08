@@ -730,6 +730,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* eslint-disable global-require */
 
@@ -759,6 +779,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       verification_code: '',
+      loading: false,
       sideImg: __webpack_require__(/*! @/assets/images/pages/login-v2.svg */ "./frontend/src/assets/images/pages/login-v2.svg"),
       // validation rulesimport store from '@/store/index'
       required: _validations__WEBPACK_IMPORTED_MODULE_3__["required"]
@@ -789,6 +810,7 @@ __webpack_require__.r(__webpack_exports__);
     validationForm: function validationForm() {
       var _this = this;
 
+      this.loading = true;
       this.$refs.loginValidation.validate().then(function (success) {
         if (success) {
           var _this$$route$query$em;
@@ -810,17 +832,11 @@ __webpack_require__.r(__webpack_exports__);
               });
             }
           })["catch"](function (error) {
-            console.log(error); // if (!error.response.data.success) {
-            //   // this.errors = error.response.data.error
-            //   this.$bvToast.toast(error.response.data.errors, {
-            //     title: 'Failed',
-            //     variant: 'danger',
-            //     solid: true,
-            //   })
-            // }
+            console.log(error);
 
-            _this.$refs.loginValidation.setErrors(error.response.data.errors); // this.errors = error.response.data.errors
+            _this.$refs.loginValidation.setErrors(error.response.data.errors);
 
+            _this.loading = false; // this.errors = error.response.data.errors
           });
         }
       });
@@ -964,7 +980,7 @@ var render = function() {
                       staticClass: "font-weight-bold mb-1",
                       attrs: { "title-tag": "h2" }
                     },
-                    [_vm._v("\n          Welcome to Cash Baksho!\n        ")]
+                    [_vm._v("\n          Welcome to Amar Client!\n        ")]
                   ),
                   _vm._v(" "),
                   _c("b-card-text", { staticClass: "mb-2" }, [
@@ -1039,18 +1055,31 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "b-button",
-                            {
-                              attrs: {
-                                type: "submit",
-                                variant: "primary",
-                                block: ""
-                              },
-                              on: { click: _vm.validationForm }
-                            },
-                            [_vm._v("\n              Submit\n            ")]
-                          )
+                          _vm.loading
+                            ? _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "submit",
+                                    variant: "primary",
+                                    block: ""
+                                  }
+                                },
+                                [_c("b-spinner", { attrs: { small: "" } })],
+                                1
+                              )
+                            : _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "submit",
+                                    variant: "primary",
+                                    block: ""
+                                  },
+                                  on: { click: _vm.validationForm }
+                                },
+                                [_c("span", [_vm._v("Submit")])]
+                              )
                         ],
                         1
                       )
@@ -1077,6 +1106,19 @@ var render = function() {
                         },
                         [_c("span", [_vm._v("Resend")])]
                       )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-card-text",
+                    { staticClass: "text-center mt-2" },
+                    [
+                      _c("span", [_vm._v("Already have an account? ")]),
+                      _vm._v(" "),
+                      _c("b-link", { attrs: { to: { name: "user.login" } } }, [
+                        _c("span", [_vm._v("Sign in here")])
+                      ])
                     ],
                     1
                   )

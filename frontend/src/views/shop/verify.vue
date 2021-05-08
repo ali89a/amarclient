@@ -42,7 +42,7 @@
             title-tag="h2"
             class="font-weight-bold mb-1"
           >
-            Welcome to Cash Baksho!
+            Welcome to Amar Client!
           </b-card-title>
           <b-card-text class="mb-2">
             Please verify your email address
@@ -77,20 +77,40 @@
 
               <!-- submit buttons -->
               <b-button
+                v-if="loading"
+                type="submit"
+                variant="primary"
+                block
+              >
+                <b-spinner
+                  small
+                />
+              </b-button>
+              <b-button
+                v-else
                 type="submit"
                 variant="primary"
                 block
                 @click="validationForm"
               >
-                Submit
+                <span>Submit</span>
               </b-button>
             </b-form>
           </validation-observer>
 
           <b-card-text class="text-center mt-2">
             <span>Yet not get code? </span>
-            <b-link to="" @click.prevent="resendCode">
+            <b-link
+              to=""
+              @click.prevent="resendCode"
+            >
               <span>Resend</span>
+            </b-link>
+          </b-card-text>
+          <b-card-text class="text-center mt-2">
+            <span>Already have an account? </span>
+            <b-link :to="{name:'user.login'}">
+              <span>Sign in here</span>
             </b-link>
           </b-card-text>
         </b-col>
@@ -132,6 +152,7 @@ export default {
   data() {
     return {
       verification_code: '',
+      loading: false,
       sideImg: require('@/assets/images/pages/login-v2.svg'),
       // validation rulesimport store from '@/store/index'
       required,
@@ -158,6 +179,7 @@ export default {
   },
   methods: {
     validationForm() {
+      this.loading = true
       this.$refs.loginValidation.validate().then(success => {
         if (success) {
           axiosIns.post('api/v1/shop/verify', {
@@ -174,15 +196,8 @@ export default {
             }
           }).catch(error => {
             console.log(error)
-            // if (!error.response.data.success) {
-            //   // this.errors = error.response.data.error
-            //   this.$bvToast.toast(error.response.data.errors, {
-            //     title: 'Failed',
-            //     variant: 'danger',
-            //     solid: true,
-            //   })
-            // }
             this.$refs.loginValidation.setErrors(error.response.data.errors)
+            this.loading = false
             // this.errors = error.response.data.errors
           })
         }
