@@ -22,4 +22,9 @@ class Client extends Model
     public function upazila(){
         return $this->belongsTo(Upazila::class);
     }
+    
+    public function sale(){
+        return $this->belongsTo(Sale::class, 'client_id', 'id');
+    }
+    
 }

@@ -523,9 +523,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -545,61 +542,72 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        name: '',
-        sku: '',
-        address: '',
-        amount: '',
-        advance_payment: '',
-        notes: '',
-        due_payment: '',
-        websites: '',
-        next_payment_date: '',
-        next_payment: '',
-        start_date: '',
-        end_date: ''
+        product_id: "",
+        client_id: "",
+        sku: "",
+        address: "",
+        amount: "",
+        advance_payment: "",
+        notes: "",
+        due_payment: "",
+        websites: "",
+        next_payment_date: "",
+        next_payment: "",
+        start_date: "",
+        end_date: ""
       },
       customers: [],
-      // products: [],
+      products: [],
+      clientsNames: [],
       required: _validations__WEBPACK_IMPORTED_MODULE_2__["required"]
     };
   },
-  mounted: function mounted() {// this.getProducts()
+  mounted: function mounted() {
+    this.getProducts();
   },
   methods: {
-    validationForm: function validationForm() {
+    getProducts: function getProducts() {
       var _this = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/sale").then(function (response) {
+        _this.products = response.data.product;
+        _this.clientsNames = response.data.client;
+      });
+    },
+    validationForm: function validationForm() {
+      var _this2 = this;
 
       this.$refs.createsale.validate().then(function (success) {
         if (success) {
-          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('api/v1/shop/sale', _this.form).then(function (response) {
+          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("api/v1/shop/sale", _this2.form).then(function (response) {
             console.log(response.data); // first reset your form values
 
-            for (var key in _this.form) {
-              _this.form[key] = '';
+            for (var key in _this2.form) {
+              _this2.form[key] = "";
             } // then do this to reset your ValidationObserver
 
 
-            _this.$nextTick(function () {
-              return _this.$refs.createsale.reset();
+            _this2.$nextTick(function () {
+              return _this2.$refs.createsale.reset();
             });
 
             if (response.data.success) {
-              _this.$bvToast.toast(response.data.message, {
-                title: 'Success',
-                variant: 'success',
+              _this2.$bvToast.toast(response.data.message, {
+                title: "Success",
+                variant: "success",
                 solid: true
               });
             } else {
-              _this.$bvToast.toast(response.data.message, {
-                title: 'Failed!',
-                variant: 'danger',
+              _this2.$bvToast.toast(response.data.message, {
+                title: "Failed!",
+                variant: "danger",
                 solid: true
               });
             }
           });
         }
       })["catch"](function (error) {
-        _this.$refs.createsale.setErrors(error.response.data.errors);
+        _this2.$refs.createsale.setErrors(error.response.data.errors);
       });
     }
   }
@@ -666,78 +674,85 @@ var render = function() {
                                         fn: function(ref) {
                                           var errors = ref.errors
                                           return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Name"
-                                              },
-                                              model: {
-                                                value: _vm.form.name,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "name",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.name"
-                                              }
-                                            }),
-                                            _vm._v(" "),
                                             _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "SKU" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: { name: "sku", rules: "required" },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "sku"
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.form.client_id,
+                                                    expression: "form.client_id"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: { required: "" },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "client_id",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
                                               },
-                                              model: {
-                                                value: _vm.form.sku,
-                                                callback: function($$v) {
-                                                  _vm.$set(_vm.form, "sku", $$v)
-                                                },
-                                                expression: "form.sku"
-                                              }
-                                            }),
+                                              [
+                                                _c(
+                                                  "option",
+                                                  {
+                                                    attrs: {
+                                                      value: "",
+                                                      selected: ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                      Choose one\n                    "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _vm._l(
+                                                  _vm.clientsNames,
+                                                  function(cName) {
+                                                    return _c(
+                                                      "option",
+                                                      {
+                                                        key: cName.id,
+                                                        domProps: {
+                                                          value: cName.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                      " +
+                                                            _vm._s(cName.name) +
+                                                            "\n                    "
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                )
+                                              ],
+                                              2
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "small",
@@ -794,6 +809,167 @@ var render = function() {
                                                   )
                                                 },
                                                 expression: "form.address"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Product" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: {
+                                      name: "product",
+                                      rules: "required"
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c(
+                                              "select",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value: _vm.form.product_id,
+                                                    expression:
+                                                      "form.product_id"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: { required: "" },
+                                                on: {
+                                                  change: function($event) {
+                                                    var $$selectedVal = Array.prototype.filter
+                                                      .call(
+                                                        $event.target.options,
+                                                        function(o) {
+                                                          return o.selected
+                                                        }
+                                                      )
+                                                      .map(function(o) {
+                                                        var val =
+                                                          "_value" in o
+                                                            ? o._value
+                                                            : o.value
+                                                        return val
+                                                      })
+                                                    _vm.$set(
+                                                      _vm.form,
+                                                      "product_id",
+                                                      $event.target.multiple
+                                                        ? $$selectedVal
+                                                        : $$selectedVal[0]
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "option",
+                                                  {
+                                                    attrs: {
+                                                      value: "",
+                                                      selected: ""
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                      Choose one\n                    "
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _vm._l(_vm.products, function(
+                                                  product
+                                                ) {
+                                                  return _c(
+                                                    "option",
+                                                    {
+                                                      key: product.id,
+                                                      domProps: {
+                                                        value: product.id
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n                      " +
+                                                          _vm._s(product.name) +
+                                                          "\n                    "
+                                                      )
+                                                    ]
+                                                  )
+                                                })
+                                              ],
+                                              2
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "SKU" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: { name: "sku", rules: "required" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "sku"
+                                              },
+                                              model: {
+                                                value: _vm.form.sku,
+                                                callback: function($$v) {
+                                                  _vm.$set(_vm.form, "sku", $$v)
+                                                },
+                                                expression: "form.sku"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -1250,11 +1426,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                  Submit\n                "
-                                  )
-                                ]
+                                [_vm._v("Submit")]
                               )
                             ],
                             1

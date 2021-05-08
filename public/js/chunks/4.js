@@ -3369,7 +3369,7 @@ var useRouter = function useRouter() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/avatars/13-small.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/avatars/13-small.png";
 
 /***/ }),
 
@@ -3380,7 +3380,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/avatars
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/avatars/6-small.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/avatars/6-small.png";
 
 /***/ }),
 
@@ -3391,7 +3391,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/avatars
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/avatars/9-small.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/avatars/9-small.png";
 
 /***/ }),
 
@@ -3402,7 +3402,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/avatars
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/de.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/flags/de.png";
 
 /***/ }),
 
@@ -3413,7 +3413,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/en.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/flags/en.png";
 
 /***/ }),
 
@@ -3424,7 +3424,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/e
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/fr.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/flags/fr.png";
 
 /***/ }),
 
@@ -3435,7 +3435,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/pt.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/flags/pt.png";
 
 /***/ }),
 
@@ -3446,7 +3446,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/flags/p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/doc.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/icons/doc.png";
 
 /***/ }),
 
@@ -3457,7 +3457,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/jpg.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/icons/jpg.png";
 
 /***/ }),
 
@@ -3468,7 +3468,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/j
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/pdf.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/icons/pdf.png";
 
 /***/ }),
 
@@ -3479,7 +3479,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/p
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/xls.png";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/icons/xls.png";
 
 /***/ }),
 
@@ -3490,7 +3490,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/icons/x
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-10.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-10.jpg";
 
 /***/ }),
 
@@ -3501,7 +3501,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-15.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-15.jpg";
 
 /***/ }),
 
@@ -3512,7 +3512,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-2.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-2.jpg";
 
 /***/ }),
 
@@ -3523,7 +3523,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-20.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-20.jpg";
 
 /***/ }),
 
@@ -3534,7 +3534,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-23.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-23.jpg";
 
 /***/ }),
 
@@ -3545,7 +3545,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-24.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-24.jpg";
 
 /***/ }),
 
@@ -3556,7 +3556,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-25.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-25.jpg";
 
 /***/ }),
 
@@ -3567,7 +3567,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-4.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-4.jpg";
 
 /***/ }),
 
@@ -3578,7 +3578,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-5.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-5.jpg";
 
 /***/ }),
 
@@ -3589,7 +3589,7 @@ module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrai
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/portrait/small/avatar-s-7.jpg";
+module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/portrait/small/avatar-s-7.jpg";
 
 /***/ }),
 

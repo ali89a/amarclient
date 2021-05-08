@@ -101,11 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_scss_vue_libs_vue_good_table_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @core/scss/vue/libs/vue-good-table.scss */ "./frontend/src/@core/scss/vue/libs/vue-good-table.scss");
 /* harmony import */ var _core_scss_vue_libs_vue_good_table_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_core_scss_vue_libs_vue_good_table_scss__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
-//
-//
-//
-//
-//
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -290,7 +287,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/sale").then(function (response) {
-        _this.rows = response.data;
+        var rows = [];
+        response.data.sale.forEach(function (element, i) {
+          var _rows$push;
+
+          console.log(element.client[0].name);
+          rows.push((_rows$push = {
+            id: element.id,
+            due_payment: element.due_payment,
+            amount: element.amount
+          }, _defineProperty(_rows$push, "amount", element.amount), _defineProperty(_rows$push, "start_date", element.start_date), _defineProperty(_rows$push, "name", element.client_id == element.client[0].id ? element.client[0].name : "0"), _rows$push));
+        });
+        _this.rows = rows;
       });
     }
   }
@@ -310,7 +318,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n[dir] .cursor[data-v-5b186162]{\r\n    cursor: pointer;\n}\r\n", ""]);
+exports.push([module.i, "\n[dir] .cursor[data-v-5b186162] {\r\n  cursor: pointer;\n}\r\n", ""]);
 
 // exports
 

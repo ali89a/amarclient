@@ -54,15 +54,8 @@
               <!-- Column: Action -->
               <span v-else-if="props.column.field === 'action'">
                 <span>
-                    <router-link :to="{name:'shop.invoice.preview',params:{id:props.row.id}}">
-                  <feather-icon
-
-                    icon="EyeIcon"
-                    size="16"
-                    class="mx-1 cursor"
-
-
-                  />
+                  <router-link :to="{name:'shop.invoice.preview',params:{id:props.row.id}}">
+                    <feather-icon icon="EyeIcon" size="16" class="mx-1 cursor" />
                   </router-link>
                 </span>
                 <span>
@@ -85,7 +78,9 @@
                     <b-dropdown-item>
                       <feather-icon icon="TrashIcon" class="mr-50" />
                       <span>
-                        <router-link :to="{name:'shop.invoice.preview',params:{id:props.row.id}}">Preview</router-link>
+                        <router-link
+                          :to="{name:'shop.invoice.preview',params:{id:props.row.id}}"
+                        >Preview</router-link>
                       </span>
                     </b-dropdown-item>
                   </b-dropdown>
@@ -148,11 +143,11 @@ import axiosIns from "@/libs/axios";
 export default {
   name: "Index",
   components: {
-    VueGoodTable,
+    VueGoodTable
   },
 
   directives: {
-    Ripple,
+    Ripple
   },
   data() {
     return {
@@ -161,32 +156,32 @@ export default {
       columns: [
         {
           label: "ID",
-          field: "id",
+          field: "id"
         },
         {
           label: "Client",
-          field: "name",
+          field: "name"
         },
         {
           label: "Total",
-          field: "amount",
+          field: "amount"
         },
         {
           label: "ISSUED DATE",
-          field: "start_date",
+          field: "start_date"
         },
 
         {
           label: "BALANCE",
-          field: "due_payment",
+          field: "due_payment"
         },
         {
           label: "Action",
-          field: "action",
-        },
+          field: "action"
+        }
       ],
       rows: [],
-      searchTerm: "",
+      searchTerm: ""
     };
   },
   computed: {},
@@ -195,16 +190,28 @@ export default {
   },
   methods: {
     getSaleData() {
-      axiosIns.get("api/v1/shop/sale").then((response) => {
-        this.rows = response.data;
+      axiosIns.get("api/v1/shop/sale").then(response => {
+         const rows = [];
+        response.data.sale.forEach((element, i) => {
+          console.log(element.client[0].name);
+          rows.push({
+            id: element.id,
+            due_payment: element.due_payment,
+            amount: element.amount,
+            amount: element.amount,
+            start_date: element.start_date,
+            name: (element.client_id == element.client[0].id) ? element.client[0].name : "0",
+          });
+        });
+        this.rows = rows;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.cursor{
-    cursor: pointer;
+.cursor {
+  cursor: pointer;
 }
 </style>

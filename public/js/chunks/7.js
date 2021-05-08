@@ -784,10 +784,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -819,19 +815,7 @@ __webpack_require__.r(__webpack_exports__);
       invoiceData: [],
       invoiceLogs: [],
       totalInstallment: "",
-      invoiceDescription: [{
-        taskTitle: "Native App Development",
-        taskDescription: "Developed a full stack native app using React Native, Bootstrap & Python",
-        rate: "$60.00",
-        hours: "30",
-        total: "$1,800.00"
-      }, {
-        taskTitle: "UI Kit Design",
-        taskDescription: "Designed a UI kit for native app using Sketch, Figma & Adobe XD",
-        rate: "$60.00",
-        hours: "20",
-        total: "$1200.00"
-      }]
+      invoiceDescription: []
     };
   },
   computed: {
@@ -870,6 +854,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.next_payment = response.data.sale_info.next_payment;
         _this.amount = response.data.sale_info.amount;
         _this.invoiceLogs = response.data.sale_info.invoice_log;
+        _this.invoiceDescription = response.data.sale_info.product;
+        console.log(response.data.sale_info.product[0].name);
       });
     }
   },
@@ -1579,7 +1565,9 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("h6", { staticClass: "mb-25" }, [
-                                    _vm._v(_vm._s(_vm.invoiceData.name))
+                                    _vm._v(
+                                      _vm._s(_vm.invoiceData.product[0].name)
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("p", [
@@ -1667,12 +1655,12 @@ var render = function() {
                         attrs: {
                           responsive: "",
                           items: _vm.invoiceDescription,
-                          fields: ["taskDescription", "rate", "hours", "total"]
+                          fields: ["name", "sku"]
                         },
                         scopedSlots: _vm._u(
                           [
                             {
-                              key: "cell(taskDescription)",
+                              key: "cell(name)",
                               fn: function(data) {
                                 return [
                                   _c(
@@ -1680,20 +1668,8 @@ var render = function() {
                                     { staticClass: "font-weight-bold mb-25" },
                                     [
                                       _vm._v(
-                                        "\n              " +
-                                          _vm._s(data.item.taskTitle) +
-                                          "\n            "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "b-card-text",
-                                    { staticClass: "text-nowrap" },
-                                    [
-                                      _vm._v(
-                                        "\n              " +
-                                          _vm._s(data.item.taskDescription) +
+                                        "\n             " +
+                                          _vm._s(data.item.name) +
                                           "\n            "
                                       )
                                     ]
@@ -1704,7 +1680,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          141958717
+                          309935559
                         )
                       }),
                       _vm._v(" "),
