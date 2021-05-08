@@ -510,7 +510,7 @@ var validatorUrlValidator = function validatorUrlValidator(val) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/login-v2-dark.svg";
+module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/login-v2-dark.svg";
 
 /***/ }),
 
@@ -521,7 +521,7 @@ module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/lo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/_/_/_/_/amarclient/frontend/src/assets/images/pages/login-v2.svg";
+module.exports = "/images/_/_/_/_/amar-client/frontend/src/assets/images/pages/login-v2.svg";
 
 /***/ }),
 
@@ -565,8 +565,8 @@ __webpack_require__.r(__webpack_exports__);
 var axiosIns = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
   // You can add your headers here
   // ================================
-  baseURL: 'http://127.0.0.1:8000',
-  // baseURL: 'https://amarclient.com/',
+  // baseURL: 'http://127.0.0.1:8000',
+  baseURL: 'https://amarclient.com/',
   timeout: 90000,
   headers: {
     Accept: 'application/json'
