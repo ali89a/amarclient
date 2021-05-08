@@ -48,7 +48,7 @@
               <!-- Col: Invoice To -->
               <b-col cols="12" xl="6" class="p-0">
                 <h6 class="mb-2">Invoice To:</h6>
-                <h6 class="mb-25">{{ invoiceData.name }}</h6>
+                <h6 class="mb-25">{{ invoiceData.product[0].name }}</h6>
                 <p>{{ invoiceData.address }}</p>
               </b-col>
 
@@ -89,7 +89,7 @@
           >
             <template #cell(name)="data">
               <b-card-text class="font-weight-bold mb-25">
-                {{
+               {{
                 data.item.name
                 }}
               </b-card-text>
@@ -289,7 +289,7 @@ export default {
           this.amount = response.data.sale_info.amount;
           this.invoiceLogs = response.data.sale_info.invoice_log;
           this.invoiceDescription = response.data.sale_info.product;
-          console.log(response.data.sale_info.product);
+          console.log(response.data.sale_info.product[0].name);
         });
     },
   },

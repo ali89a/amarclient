@@ -217,7 +217,7 @@ export default {
             amount: element.amount,
             start_date: element.start_date,
             end_date: element.end_date,
-            client_name: (element.client_id == element.client.id) ? element.client.name : "",
+            client_name: (element.client_id == element.client[0].id) ? element.client[0].name : "0",
           });
         });
         this.rows = rows;

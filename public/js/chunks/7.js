@@ -855,7 +855,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.amount = response.data.sale_info.amount;
         _this.invoiceLogs = response.data.sale_info.invoice_log;
         _this.invoiceDescription = response.data.sale_info.product;
-        console.log(response.data.sale_info.product);
+        console.log(response.data.sale_info.product[0].name);
       });
     }
   },
@@ -1565,7 +1565,9 @@ var render = function() {
                                   ]),
                                   _vm._v(" "),
                                   _c("h6", { staticClass: "mb-25" }, [
-                                    _vm._v(_vm._s(_vm.invoiceData.name))
+                                    _vm._v(
+                                      _vm._s(_vm.invoiceData.product[0].name)
+                                    )
                                   ]),
                                   _vm._v(" "),
                                   _c("p", [
@@ -1666,7 +1668,7 @@ var render = function() {
                                     { staticClass: "font-weight-bold mb-25" },
                                     [
                                       _vm._v(
-                                        "\n              " +
+                                        "\n             " +
                                           _vm._s(data.item.name) +
                                           "\n            "
                                       )
@@ -1678,7 +1680,7 @@ var render = function() {
                           ],
                           null,
                           false,
-                          115818535
+                          309935559
                         )
                       }),
                       _vm._v(" "),
