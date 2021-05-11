@@ -237,17 +237,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axiosIns;
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/sale/Create.vue":
-/*!*************************************************!*\
-  !*** ./frontend/src/views/shop/sale/Create.vue ***!
-  \*************************************************/
+/***/ "./frontend/src/views/shop/product/Edit.vue":
+/*!**************************************************!*\
+  !*** ./frontend/src/views/shop/product/Edit.vue ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Create_vue_vue_type_template_id_1f8dda56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=1f8dda56& */ "./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&");
-/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Edit_vue_vue_type_template_id_d6147b70___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=d6147b70& */ "./frontend/src/views/shop/product/Edit.vue?vue&type=template&id=d6147b70&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/product/Edit.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -257,9 +257,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Create_vue_vue_type_template_id_1f8dda56___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Create_vue_vue_type_template_id_1f8dda56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_d6147b70___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_d6147b70___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -269,47 +269,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "frontend/src/views/shop/sale/Create.vue"
+component.options.__file = "frontend/src/views/shop/product/Edit.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
+/***/ "./frontend/src/views/shop/product/Edit.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./frontend/src/views/shop/product/Edit.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/product/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&":
-/*!********************************************************************************!*\
-  !*** ./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56& ***!
-  \********************************************************************************/
+/***/ "./frontend/src/views/shop/product/Edit.vue?vue&type=template&id=d6147b70&":
+/*!*********************************************************************************!*\
+  !*** ./frontend/src/views/shop/product/Edit.vue?vue&type=template&id=d6147b70& ***!
+  \*********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_1f8dda56___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=1f8dda56& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_1f8dda56___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d6147b70___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=d6147b70& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/product/Edit.vue?vue&type=template&id=d6147b70&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d6147b70___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_1f8dda56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d6147b70___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/product/Edit.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/product/Edit.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -319,132 +319,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
 /* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -536,78 +410,49 @@ __webpack_require__.r(__webpack_exports__);
     BForm: bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BForm"],
     BRow: bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BRow"],
     BCol: bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BCol"],
-    BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BButton"],
-    BFormDatepicker: bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BFormDatepicker"]
+    BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["BButton"]
   },
   data: function data() {
     return {
       form: {
-        product_id: "",
-        client_id: "",
-        sku: "",
-        address: "",
-        amount: "",
-        advance_payment: "",
-        notes: "",
-        due_payment: "",
-        websites: "",
-        next_payment_date: "",
-        next_payment: "",
-        start_date: "",
-        end_date: ""
+        name: '',
+        sku: '',
+        price: ''
       },
-      customers: [],
-      products: [],
-      clientsNames: [],
       required: _validations__WEBPACK_IMPORTED_MODULE_2__["required"]
     };
   },
-  mounted: function mounted() {
-    this.getProducts();
+  created: function created() {
+    this.getproductInfo();
   },
   methods: {
-    getProducts: function getProducts() {
+    validationForm: function validationForm() {
       var _this = this;
 
-      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/sale").then(function (response) {
-        _this.products = response.data.product;
-        _this.clientsNames = response.data.client;
-      });
-    },
-    validationForm: function validationForm() {
-      var _this2 = this;
-
-      this.$refs.createsale.validate().then(function (success) {
+      this.$refs.createproduct.validate().then(function (success) {
         if (success) {
-          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post("api/v1/shop/sale", _this2.form).then(function (response) {
-            console.log(response.data); // first reset your form values
-
-            for (var key in _this2.form) {
-              _this2.form[key] = "";
-            } // then do this to reset your ValidationObserver
-
-
-            _this2.$nextTick(function () {
-              return _this2.$refs.createsale.reset();
+          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].put("api/v1/shop/product/".concat(_this.$route.params.id), _this.form).then(function (response) {
+            // console.log(response)
+            _this.$nextTick(function () {
+              return _this.$refs.createproduct.reset();
             });
 
-            if (response.data.success) {
-              _this2.$bvToast.toast(response.data.message, {
-                title: "Success",
-                variant: "success",
-                solid: true
-              });
-            } else {
-              _this2.$bvToast.toast(response.data.message, {
-                title: "Failed!",
-                variant: "danger",
-                solid: true
-              });
-            }
+            _this.$bvToast.toast(response.data.message, {
+              title: 'Success',
+              variant: 'success',
+              solid: true
+            });
           });
         }
-      })["catch"](function (error) {
-        _this2.$refs.createsale.setErrors(error.response.data.errors);
+      });
+    },
+    getproductInfo: function getproductInfo() {
+      var _this2 = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/product/".concat(this.$route.params.id)).then(function (response) {
+        _this2.form.name = response.data.product_info.name;
+        _this2.form.sku = response.data.product_info.sku;
+        _this2.form.price = response.data.product_info.price;
       });
     }
   }
@@ -615,10 +460,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56& ***!
-  \**************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/product/Edit.vue?vue&type=template&id=d6147b70&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/product/Edit.vue?vue&type=template&id=d6147b70& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -637,7 +482,7 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
             _c("span", { staticClass: "card-title" }, [
-              _vm._v("Sale Information")
+              _vm._v("product Information")
             ])
           ]),
           _vm._v(" "),
@@ -647,7 +492,7 @@ var render = function() {
             [
               _c(
                 "validation-observer",
-                { ref: "createsale" },
+                { ref: "createproduct" },
                 [
                   _c(
                     "b-form",
@@ -661,154 +506,34 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Name" } },
+                                { attrs: { label: "name" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: {
-                                      name: "item_name",
-                                      rules: "required"
-                                    },
+                                    attrs: { name: "Name", rules: "required" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
                                         fn: function(ref) {
                                           var errors = ref.errors
                                           return [
-                                            _c(
-                                              "select",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.form.client_id,
-                                                    expression: "form.client_id"
-                                                  }
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: { required: "" },
-                                                on: {
-                                                  change: function($event) {
-                                                    var $$selectedVal = Array.prototype.filter
-                                                      .call(
-                                                        $event.target.options,
-                                                        function(o) {
-                                                          return o.selected
-                                                        }
-                                                      )
-                                                      .map(function(o) {
-                                                        var val =
-                                                          "_value" in o
-                                                            ? o._value
-                                                            : o.value
-                                                        return val
-                                                      })
-                                                    _vm.$set(
-                                                      _vm.form,
-                                                      "client_id",
-                                                      $event.target.multiple
-                                                        ? $$selectedVal
-                                                        : $$selectedVal[0]
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "option",
-                                                  {
-                                                    attrs: {
-                                                      value: "",
-                                                      selected: ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                      Choose one\n                    "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _vm._l(
-                                                  _vm.clientsNames,
-                                                  function(cName) {
-                                                    return _c(
-                                                      "option",
-                                                      {
-                                                        key: cName.id,
-                                                        domProps: {
-                                                          value: cName.id
-                                                        }
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "\n                      " +
-                                                            _vm._s(cName.name) +
-                                                            "\n                    "
-                                                        )
-                                                      ]
-                                                    )
-                                                  }
-                                                )
-                                              ],
-                                              2
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Address" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: {
-                                      name: "address",
-                                      rules: "required"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-textarea", {
+                                            _c("b-form-input", {
                                               attrs: {
                                                 state:
                                                   errors.length > 0
                                                     ? false
                                                     : null,
-                                                type: "text",
-                                                placeholder: "Address"
+                                                placeholder: "Full Name"
                                               },
                                               model: {
-                                                value: _vm.form.address,
+                                                value: _vm.form.name,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "address",
+                                                    "name",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.address"
+                                                expression: "form.name"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -835,120 +560,10 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Product" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: {
-                                      name: "product",
-                                      rules: "required"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c(
-                                              "select",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.form.product_id,
-                                                    expression:
-                                                      "form.product_id"
-                                                  }
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: { required: "" },
-                                                on: {
-                                                  change: function($event) {
-                                                    var $$selectedVal = Array.prototype.filter
-                                                      .call(
-                                                        $event.target.options,
-                                                        function(o) {
-                                                          return o.selected
-                                                        }
-                                                      )
-                                                      .map(function(o) {
-                                                        var val =
-                                                          "_value" in o
-                                                            ? o._value
-                                                            : o.value
-                                                        return val
-                                                      })
-                                                    _vm.$set(
-                                                      _vm.form,
-                                                      "product_id",
-                                                      $event.target.multiple
-                                                        ? $$selectedVal
-                                                        : $$selectedVal[0]
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "option",
-                                                  {
-                                                    attrs: {
-                                                      value: "",
-                                                      selected: ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                      Choose one\n                    "
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _vm._l(_vm.products, function(
-                                                  product
-                                                ) {
-                                                  return _c(
-                                                    "option",
-                                                    {
-                                                      key: product.id,
-                                                      domProps: {
-                                                        value: product.id
-                                                      }
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                      " +
-                                                          _vm._s(product.name) +
-                                                          "\n                    "
-                                                      )
-                                                    ]
-                                                  )
-                                                })
-                                              ],
-                                              2
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
                                 { attrs: { label: "SKU" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "sku", rules: "required" },
+                                    attrs: { name: "SKU" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -996,13 +611,10 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Total Amount" } },
+                                { attrs: { label: "Price" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: {
-                                      name: "amount",
-                                      rules: "required"
-                                    },
+                                    attrs: { name: "Price" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -1016,18 +628,18 @@ var render = function() {
                                                     ? false
                                                     : null,
                                                 type: "text",
-                                                placeholder: "amount"
+                                                placeholder: "Price"
                                               },
                                               model: {
-                                                value: _vm.form.amount,
+                                                value: _vm.form.price,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "amount",
+                                                    "price",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.amount"
+                                                expression: "form.price"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -1044,369 +656,6 @@ var render = function() {
                                 ],
                                 1
                               )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Advance Payment" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: {
-                                      name: "advance_payment",
-                                      rules: "required"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Advance payment"
-                                              },
-                                              model: {
-                                                value: _vm.form.advance_payment,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "advance_payment",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "form.advance_payment"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Notes" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: { name: "notes", rules: "required" },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Notes"
-                                              },
-                                              model: {
-                                                value: _vm.form.notes,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "notes",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.notes"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Due Payment" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: {
-                                      name: "due_payment",
-                                      rules: "required"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Due payment"
-                                              },
-                                              model: {
-                                                value: _vm.form.due_payment,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "due_payment",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.due_payment"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Websites" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: {
-                                      name: "websites",
-                                      rules: "required"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Websites"
-                                              },
-                                              model: {
-                                                value: _vm.form.websites,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "websites",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.websites"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Next Payment" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: {
-                                      name: "next_payment",
-                                      rules: "required"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Next Payment"
-                                              },
-                                              model: {
-                                                value: _vm.form.next_payment,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "next_payment",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.next_payment"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "label",
-                                { attrs: { for: "example-datepicker" } },
-                                [_vm._v("Next Payment date")]
-                              ),
-                              _vm._v(" "),
-                              _c("b-form-datepicker", {
-                                staticClass: "mb-1",
-                                attrs: { id: "example-datepicker" },
-                                model: {
-                                  value: _vm.form.next_payment_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "next_payment_date", $$v)
-                                  },
-                                  expression: "form.next_payment_date"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "label",
-                                { attrs: { for: "example-datepicker" } },
-                                [_vm._v("Start date")]
-                              ),
-                              _vm._v(" "),
-                              _c("b-form-datepicker", {
-                                staticClass: "mb-1",
-                                attrs: { id: "example-datepicker2" },
-                                model: {
-                                  value: _vm.form.start_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "start_date", $$v)
-                                  },
-                                  expression: "form.start_date"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "label",
-                                { attrs: { for: "example-datepicker" } },
-                                [_vm._v("End date")]
-                              ),
-                              _vm._v(" "),
-                              _c("b-form-datepicker", {
-                                staticClass: "mb-1",
-                                attrs: { id: "example-datepicker3" },
-                                model: {
-                                  value: _vm.form.end_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "end_date", $$v)
-                                  },
-                                  expression: "form.end_date"
-                                }
-                              })
                             ],
                             1
                           ),
@@ -1426,7 +675,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Submit")]
+                                [
+                                  _vm._v(
+                                    "\n                  Update\n                "
+                                  )
+                                ]
                               )
                             ],
                             1
