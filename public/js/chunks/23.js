@@ -225,8 +225,8 @@ __webpack_require__.r(__webpack_exports__);
 var axiosIns = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
   // You can add your headers here
   // ================================
-  // baseURL: 'http://127.0.0.1:8000',
-  baseURL: 'https://amarclient.com/',
+  baseURL: 'http://127.0.0.1:8000',
+  // baseURL: 'https://amarclient.com/',
   timeout: 90000,
   headers: {
     Accept: 'application/json'
@@ -237,17 +237,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axiosIns;
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/expense/Edit.vue":
-/*!**************************************************!*\
-  !*** ./frontend/src/views/shop/expense/Edit.vue ***!
-  \**************************************************/
+/***/ "./frontend/src/views/shop/expense/Create.vue":
+/*!****************************************************!*\
+  !*** ./frontend/src/views/shop/expense/Create.vue ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=d14ee602& */ "./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&");
-/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Create_vue_vue_type_template_id_405d13b1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=405d13b1& */ "./frontend/src/views/shop/expense/Create.vue?vue&type=template&id=405d13b1&");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/expense/Create.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -257,9 +257,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Create_vue_vue_type_template_id_405d13b1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Create_vue_vue_type_template_id_405d13b1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -269,47 +269,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "frontend/src/views/shop/expense/Edit.vue"
+component.options.__file = "frontend/src/views/shop/expense/Create.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&":
-/*!***************************************************************************!*\
-  !*** ./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************/
+/***/ "./frontend/src/views/shop/expense/Create.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./frontend/src/views/shop/expense/Create.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&":
-/*!*********************************************************************************!*\
-  !*** ./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602& ***!
-  \*********************************************************************************/
+/***/ "./frontend/src/views/shop/expense/Create.vue?vue&type=template&id=405d13b1&":
+/*!***********************************************************************************!*\
+  !*** ./frontend/src/views/shop/expense/Create.vue?vue&type=template&id=405d13b1& ***!
+  \***********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=d14ee602& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_405d13b1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=405d13b1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Create.vue?vue&type=template&id=405d13b1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_405d13b1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_405d13b1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Create.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/expense/Create.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -319,6 +319,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
 /* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -415,15 +438,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        name: '',
-        sku: '',
-        price: ''
+        category_id: '',
+        sub_category_id: '',
+        amount: '',
+        notes: ''
       },
+      categories: [],
+      sub_categories: [],
       required: _validations__WEBPACK_IMPORTED_MODULE_2__["required"]
     };
   },
   created: function created() {
-    this.getproductInfo();
+    this.getCategories();
   },
   methods: {
     validationForm: function validationForm() {
@@ -431,28 +457,45 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs.createproduct.validate().then(function (success) {
         if (success) {
-          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].put("api/v1/shop/product/".concat(_this.$route.params.id), _this.form).then(function (response) {
+          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('api/v1/shop/expense', _this.form).then(function (response) {
             // console.log(response)
+            // first reset your form values
+            for (var key in _this.form) {
+              _this.form[key] = '';
+            } // then do this to reset your ValidationObserver
+
+
             _this.$nextTick(function () {
               return _this.$refs.createproduct.reset();
             });
 
-            _this.$bvToast.toast(response.data.message, {
+            _this.$bvToast.toast('Expense created successfully.', {
               title: 'Success',
               variant: 'success',
               solid: true
             });
+          })["catch"](function (error) {
+            _this.$refs.createproduct.setErrors(error.response.data.errors);
           });
         }
       });
     },
-    getproductInfo: function getproductInfo() {
+    getCategories: function getCategories() {
       var _this2 = this;
 
-      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/product/".concat(this.$route.params.id)).then(function (response) {
-        _this2.form.name = response.data.product_info.name;
-        _this2.form.sku = response.data.product_info.sku;
-        _this2.form.price = response.data.product_info.price;
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/v1/shop/get-categories').then(function (response) {
+        _this2.categories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getSubCategories: function getSubCategories(categoryId) {
+      var _this3 = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/get-sub-categories/".concat(categoryId)).then(function (response) {
+        _this3.sub_categories = response.data; // console.log(response)
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }
@@ -460,10 +503,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Create.vue?vue&type=template&id=405d13b1&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/expense/Create.vue?vue&type=template&id=405d13b1& ***!
+  \*****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -482,7 +525,7 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
             _c("span", { staticClass: "card-title" }, [
-              _vm._v("product Information")
+              _vm._v("Expense Information")
             ])
           ]),
           _vm._v(" "),
@@ -506,10 +549,190 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "name" } },
+                                { attrs: { label: "Category" } },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.category_id,
+                                          expression: "form.category_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "" },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "category_id",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                          function($event) {
+                                            return _vm.getSubCategories(
+                                              _vm.form.category_id
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "", selected: "" } },
+                                        [
+                                          _vm._v(
+                                            "\n                      Choose one\n                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.categories, function(
+                                        category
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: category.id,
+                                            domProps: { value: category.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(category.name) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Sub Category" } },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.sub_category_id,
+                                          expression: "form.sub_category_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "sub_category_id",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "", selected: "" } },
+                                        [
+                                          _vm._v(
+                                            "\n                      Choose one\n                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.sub_categories, function(
+                                        sub_category
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: sub_category.id,
+                                            domProps: { value: sub_category.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(sub_category.name) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Amount" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "Name", rules: "required" },
+                                    attrs: {
+                                      name: "amount",
+                                      rules: "required"
+                                    },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -522,18 +745,18 @@ var render = function() {
                                                   errors.length > 0
                                                     ? false
                                                     : null,
-                                                placeholder: "Full Name"
+                                                placeholder: "Amount"
                                               },
                                               model: {
-                                                value: _vm.form.name,
+                                                value: _vm.form.amount,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "name",
+                                                    "amount",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.name"
+                                                expression: "form.amount"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -560,98 +783,17 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "SKU" } },
+                                { attrs: { label: "notes" } },
                                 [
-                                  _c("validation-provider", {
-                                    attrs: { name: "SKU" },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "sku"
-                                              },
-                                              model: {
-                                                value: _vm.form.sku,
-                                                callback: function($$v) {
-                                                  _vm.$set(_vm.form, "sku", $$v)
-                                                },
-                                                expression: "form.sku"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-col",
-                            { attrs: { md: "6" } },
-                            [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Price" } },
-                                [
-                                  _c("validation-provider", {
-                                    attrs: { name: "Price" },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "default",
-                                        fn: function(ref) {
-                                          var errors = ref.errors
-                                          return [
-                                            _c("b-form-input", {
-                                              attrs: {
-                                                state:
-                                                  errors.length > 0
-                                                    ? false
-                                                    : null,
-                                                type: "text",
-                                                placeholder: "Price"
-                                              },
-                                              model: {
-                                                value: _vm.form.price,
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "price",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression: "form.price"
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "small",
-                                              { staticClass: "text-danger" },
-                                              [_vm._v(_vm._s(errors[0]))]
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ])
+                                  _c("b-form-input", {
+                                    attrs: { placeholder: "Notes" },
+                                    model: {
+                                      value: _vm.form.notes,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "notes", $$v)
+                                      },
+                                      expression: "form.notes"
+                                    }
                                   })
                                 ],
                                 1
@@ -677,7 +819,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                  Update\n                "
+                                    "\n                  Submit\n                "
                                   )
                                 ]
                               )
