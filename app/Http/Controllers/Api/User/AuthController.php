@@ -44,7 +44,7 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => $request['password'],
             ]);
-
+            $user->assignRole('Employee');
             $user->generateTwoFactorCode();
             $user->notify(new TwoFactorCode());
 

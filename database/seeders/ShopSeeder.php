@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Shop;
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ShopSeeder extends Seeder
 {
@@ -15,17 +15,17 @@ class ShopSeeder extends Seeder
      */
     public function run()
     {
-        $shop = Shop::create([
-            'name' => 'Test Shop',
-        ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Shop::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::table('shops')->delete();
 
-        User::create([
-            'shop_id' => $shop->id,
-            'name' => 'Test shop user',
-            'email' => 'shop1@gmail.com',
-            'email_verified_at' => now(),
-            'two_factor_verified_at' => now(),
-            'password' => bcrypt('12345678'),
-        ]);
+        $shops = array(
+            array('id' => 1, 'name' => 'EGallery'),
+            array('id' => 2,'name' => 'EShop'),
+        );
+
+        DB::table('shops')->insert($shops);
     }
+
 }
