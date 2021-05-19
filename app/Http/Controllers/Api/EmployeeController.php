@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
@@ -44,7 +45,14 @@ class EmployeeController extends Controller
                 'from' => $request->from,
                 'to' => $request->to,
             ]);
-
+            $user = User::create([
+                'shop_id' =>$request->user()->shop->id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'email_verified_at' => now(),
+                'password' => bcrypt('12345678'),
+            ]);
+            $user->assignRole('Employee');
             DB::commit();
             // all good
         } catch (\Exception $e) {
