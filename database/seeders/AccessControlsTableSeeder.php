@@ -21,8 +21,6 @@ class AccessControlsTableSeeder extends Seeder
 
             $data = [
                 [
-                    'id' => '1',
-                    'shop_id' => '1',
                     'name' => 'Admin',
                     'email' => 'admin@gmail.com',
                     'email_verified_at' => now(),
@@ -31,18 +29,18 @@ class AccessControlsTableSeeder extends Seeder
 
             ];
 
-            DB::table('users')->insert($data);
+            DB::table('admins')->insert($data);
 
         }
 
-        $dev = \App\Models\User::where('email', 'admin@gmail.com')->first();
+        $dev = \App\Models\Admin\Admin::where('email', 'admin@gmail.com')->first();
 
         //data for roles table
         $data = [
             ['name' => 'Super Admin', 'guard_name' => 'admin'],
-            ['name' => 'Super Admin', 'guard_name' => 'web'],
-            ['name' => 'Manager', 'guard_name' => 'web'],
-            ['name' => 'Employee', 'guard_name' => 'web'],
+            ['name' => 'Super Admin', 'guard_name' => 'user'],
+            ['name' => 'Manager', 'guard_name' => 'user'],
+            ['name' => 'Employee', 'guard_name' => 'user'],
         ];
         DB::table('roles')->insert($data);
 
@@ -52,17 +50,17 @@ class AccessControlsTableSeeder extends Seeder
 
 
 
-            ['name' => 'role-list', 'guard_name' => 'web'],
-            ['name' => 'role-create', 'guard_name' => 'web'],
-            ['name' => 'role-show', 'guard_name' => 'web'],
-            ['name' => 'role-edit', 'guard_name' => 'web'],
-            ['name' => 'role-delete', 'guard_name' => 'web'],
+            ['name' => 'role-list', 'guard_name' => 'user'],
+            ['name' => 'role-create', 'guard_name' => 'user'],
+            ['name' => 'role-show', 'guard_name' => 'user'],
+            ['name' => 'role-edit', 'guard_name' => 'user'],
+            ['name' => 'role-delete', 'guard_name' => 'user'],
 
-            ['name' => 'user-list', 'guard_name' => 'web'],
-            ['name' => 'user-create', 'guard_name' => 'web'],
-            ['name' => 'user-show', 'guard_name' => 'web'],
-            ['name' => 'user-edit', 'guard_name' => 'web'],
-            ['name' => 'user-delete', 'guard_name' => 'web'],
+            ['name' => 'user-list', 'guard_name' => 'user'],
+            ['name' => 'user-create', 'guard_name' => 'user'],
+            ['name' => 'user-show', 'guard_name' => 'user'],
+            ['name' => 'user-edit', 'guard_name' => 'user'],
+            ['name' => 'user-delete', 'guard_name' => 'user'],
 
 
 
@@ -71,7 +69,7 @@ class AccessControlsTableSeeder extends Seeder
         DB::table('permissions')->insert($data);
         //Data for role user pivot
         $data = [
-            ['role_id' => 1, 'model_type' => 'App\Models\User', 'model_id' => $dev->id],
+            ['role_id' => 1, 'model_type' => 'App\Models\Admin\Admin', 'model_id' => $dev->id],
         ];
         DB::table('model_has_roles')->insert($data);
         //Data for role permission pivot
