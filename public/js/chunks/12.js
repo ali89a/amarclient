@@ -1,58 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
-/***/ "./frontend/src/@core/layouts/components/Logo.vue":
-/*!********************************************************!*\
-  !*** ./frontend/src/@core/layouts/components/Logo.vue ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Logo.vue?vue&type=template&id=556c28d4& */ "./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "frontend/src/@core/layouts/components/Logo.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&":
-/*!***************************************************************************************!*\
-  !*** ./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4& ***!
-  \***************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Logo.vue?vue&type=template&id=556c28d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./frontend/src/@core/mixins/ui/forms.js":
 /*!***********************************************!*\
   !*** ./frontend/src/@core/mixins/ui/forms.js ***!
@@ -438,12 +385,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _themeConfig__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @themeConfig */ "./frontend/themeConfig.js");
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./frontend/node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var _core_layouts_components_Logo_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @core/layouts/components/Logo.vue */ "./frontend/src/@core/layouts/components/Logo.vue");
-/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
-/* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
-/* harmony import */ var _core_mixins_ui_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @core/mixins/ui/forms */ "./frontend/src/@core/mixins/ui/forms.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/store/index */ "./frontend/src/store/index.js");
-/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
+/* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
+/* harmony import */ var _core_mixins_ui_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @core/mixins/ui/forms */ "./frontend/src/@core/mixins/ui/forms.js");
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/store/index */ "./frontend/src/store/index.js");
+/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
 //
 //
 //
@@ -611,27 +557,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    BRow: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BRow"],
-    BCol: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BCol"],
-    BLink: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BLink"],
-    BFormGroup: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormGroup"],
-    BFormInput: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormInput"],
-    BInputGroupAppend: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BInputGroupAppend"],
-    BInputGroup: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BInputGroup"],
-    BFormCheckbox: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BFormCheckbox"],
-    BCardText: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BCardText"],
-    BCardTitle: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BCardTitle"],
-    BImg: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BImg"],
-    BForm: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BForm"],
-    BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BButton"],
-    BSpinner: bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["BSpinner"],
+    BRow: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BRow"],
+    BCol: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BCol"],
+    BLink: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BLink"],
+    BFormGroup: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BFormGroup"],
+    BFormInput: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BFormInput"],
+    BInputGroupAppend: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BInputGroupAppend"],
+    BInputGroup: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BInputGroup"],
+    BFormCheckbox: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BFormCheckbox"],
+    BCardText: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BCardText"],
+    BCardTitle: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BCardTitle"],
+    BImg: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BImg"],
+    BForm: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BForm"],
+    BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BButton"],
+    BSpinner: bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["BSpinner"],
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_1__["ValidationProvider"],
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_1__["ValidationObserver"]
   },
-  mixins: [_core_mixins_ui_forms__WEBPACK_IMPORTED_MODULE_5__["togglePasswordVisibility"]],
+  mixins: [_core_mixins_ui_forms__WEBPACK_IMPORTED_MODULE_4__["togglePasswordVisibility"]],
   data: function data() {
     return {
       status: '',
@@ -640,7 +585,7 @@ __webpack_require__.r(__webpack_exports__);
       loading: false,
       sideImg: __webpack_require__(/*! @/assets/images/pages/login-v2.svg */ "./frontend/src/assets/images/pages/login-v2.svg"),
       // validation rulesimport store from '@/store/index'
-      required: _validations__WEBPACK_IMPORTED_MODULE_4__["required"]
+      required: _validations__WEBPACK_IMPORTED_MODULE_3__["required"]
     };
   },
   setup: function setup(props) {
@@ -658,7 +603,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon';
     },
     imgUrl: function imgUrl() {
-      if (_store_index__WEBPACK_IMPORTED_MODULE_6__["default"].state.appConfig.layout.skin === 'dark') {
+      if (_store_index__WEBPACK_IMPORTED_MODULE_5__["default"].state.appConfig.layout.skin === 'dark') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.sideImg = __webpack_require__(/*! @/assets/images/pages/login-v2-dark.svg */ "./frontend/src/assets/images/pages/login-v2-dark.svg");
         return this.sideImg;
@@ -671,10 +616,9 @@ __webpack_require__.r(__webpack_exports__);
     validationForm: function validationForm() {
       var _this = this;
 
-      this.loading = true;
       this.$refs.loginValidation.validate().then(function (success) {
         if (success) {
-          _libs_axios__WEBPACK_IMPORTED_MODULE_7__["default"].post('api/v1/shop/login', {
+          _libs_axios__WEBPACK_IMPORTED_MODULE_6__["default"].post('api/v1/shop/login', {
             email: _this.email,
             password: _this.password
           }).then(function (response) {
@@ -767,178 +711,6 @@ var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addS
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4& ***!
-  \*********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "svg",
-    {
-      attrs: {
-        viewBox: "0 0 139 95",
-        version: "1.1",
-        xmlns: "http://www.w3.org/2000/svg",
-        "xmlns:xlink": "http://www.w3.org/1999/xlink",
-        height: "24"
-      }
-    },
-    [
-      _c(
-        "defs",
-        [
-          _c(
-            "linearGradient",
-            {
-              attrs: {
-                id: "linearGradient-1",
-                x1: "100%",
-                y1: "10.5120544%",
-                x2: "50%",
-                y2: "89.4879456%"
-              }
-            },
-            [
-              _c("stop", { attrs: { "stop-color": "#000000", offset: "0%" } }),
-              _vm._v(" "),
-              _c("stop", { attrs: { "stop-color": "#FFFFFF", offset: "100%" } })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "linearGradient",
-            {
-              attrs: {
-                id: "linearGradient-2",
-                x1: "64.0437835%",
-                y1: "46.3276743%",
-                x2: "37.373316%",
-                y2: "100%"
-              }
-            },
-            [
-              _c("stop", {
-                attrs: {
-                  "stop-color": "#EEEEEE",
-                  "stop-opacity": "0",
-                  offset: "0%"
-                }
-              }),
-              _vm._v(" "),
-              _c("stop", { attrs: { "stop-color": "#FFFFFF", offset: "100%" } })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "g",
-        {
-          attrs: {
-            id: "Page-1",
-            stroke: "none",
-            "stroke-width": "1",
-            fill: "none",
-            "fill-rule": "evenodd"
-          }
-        },
-        [
-          _c(
-            "g",
-            {
-              attrs: {
-                id: "Artboard",
-                transform: "translate(-400.000000, -178.000000)"
-              }
-            },
-            [
-              _c(
-                "g",
-                {
-                  attrs: {
-                    id: "Group",
-                    transform: "translate(400.000000, 178.000000)"
-                  }
-                },
-                [
-                  _c("path", {
-                    staticClass: "text-primary",
-                    staticStyle: { fill: "currentColor" },
-                    attrs: {
-                      id: "Path",
-                      d:
-                        "M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("path", {
-                    attrs: {
-                      id: "Path1",
-                      d:
-                        "M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z",
-                      fill: "url(#linearGradient-1)",
-                      opacity: "0.2"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("polygon", {
-                    attrs: {
-                      id: "Path-2",
-                      fill: "#000000",
-                      opacity: "0.049999997",
-                      points:
-                        "69.3922914 32.4202615 32.8435758 70.5039241 54.0490008 16.1851325"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("polygon", {
-                    attrs: {
-                      id: "Path-21",
-                      fill: "#000000",
-                      opacity: "0.099999994",
-                      points:
-                        "69.3922914 32.4202615 32.8435758 70.5039241 58.3683556 20.7402338"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("polygon", {
-                    attrs: {
-                      id: "Path-3",
-                      fill: "url(#linearGradient-2)",
-                      opacity: "0.099999994",
-                      points:
-                        "101.428699 0 83.0667527 94.1480575 130.378721 47.0740288"
-                    }
-                  })
-                ]
-              )
-            ]
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
 
 /***/ }),
 

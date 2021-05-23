@@ -160,7 +160,6 @@
 /* eslint-disable global-require */
 import { $themeConfig } from '@themeConfig'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import VuexyLogo from '@core/layouts/components/Logo.vue'
 import {
   BRow, BCol, BLink, BFormGroup, BFormInput, BInputGroupAppend, BInputGroup, BFormCheckbox, BCardText, BCardTitle, BImg, BForm, BButton, BSpinner,
 } from 'bootstrap-vue'
@@ -224,7 +223,6 @@ export default {
   },
   methods: {
     validationForm() {
-      this.loading = true
       this.$refs.loginValidation.validate().then(success => {
         if (success) {
           axiosIns.post('api/v1/shop/login', {
