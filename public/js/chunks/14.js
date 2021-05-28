@@ -1,2804 +1,3266 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
-/***/ "./frontend/node_modules/flatpickr/dist/esm/index.js":
-/*!***********************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/index.js ***!
-  \***********************************************************/
+/***/ "./frontend/src/@core/layouts/components/Logo.vue":
+/*!********************************************************!*\
+  !*** ./frontend/src/@core/layouts/components/Logo.vue ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _types_options__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types/options */ "./frontend/node_modules/flatpickr/dist/esm/types/options.js");
-/* harmony import */ var _l10n_default__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./l10n/default */ "./frontend/node_modules/flatpickr/dist/esm/l10n/default.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./frontend/node_modules/flatpickr/dist/esm/utils/index.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/dom */ "./frontend/node_modules/flatpickr/dist/esm/utils/dom.js");
-/* harmony import */ var _utils_dates__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/dates */ "./frontend/node_modules/flatpickr/dist/esm/utils/dates.js");
-/* harmony import */ var _utils_formatting__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/formatting */ "./frontend/node_modules/flatpickr/dist/esm/utils/formatting.js");
-/* harmony import */ var _utils_polyfills__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/polyfills */ "./frontend/node_modules/flatpickr/dist/esm/utils/polyfills.js");
-/* harmony import */ var _utils_polyfills__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_utils_polyfills__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Logo.vue?vue&type=template&id=556c28d4& */ "./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
 
 
+/* normalize component */
 
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
 
-
-
-
-const DEBOUNCED_CHANGE_MS = 300;
-function FlatpickrInstance(element, instanceConfig) {
-    const self = {
-        config: Object.assign(Object.assign({}, _types_options__WEBPACK_IMPORTED_MODULE_0__["defaults"]), flatpickr.defaultConfig),
-        l10n: _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"],
-    };
-    self.parseDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateParser"])({ config: self.config, l10n: self.l10n });
-    self._handlers = [];
-    self.pluginElements = [];
-    self.loadedPlugins = [];
-    self._bind = bind;
-    self._setHoursFromDate = setHoursFromDate;
-    self._positionCalendar = positionCalendar;
-    self.changeMonth = changeMonth;
-    self.changeYear = changeYear;
-    self.clear = clear;
-    self.close = close;
-    self._createElement = _utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"];
-    self.destroy = destroy;
-    self.isEnabled = isEnabled;
-    self.jumpToDate = jumpToDate;
-    self.open = open;
-    self.redraw = redraw;
-    self.set = set;
-    self.setDate = setDate;
-    self.toggle = toggle;
-    function setupHelperFunctions() {
-        self.utils = {
-            getDaysInMonth(month = self.currentMonth, yr = self.currentYear) {
-                if (month === 1 && ((yr % 4 === 0 && yr % 100 !== 0) || yr % 400 === 0))
-                    return 29;
-                return self.l10n.daysInMonth[month];
-            },
-        };
-    }
-    function init() {
-        self.element = self.input = element;
-        self.isOpen = false;
-        parseConfig();
-        setupLocale();
-        setupInputs();
-        setupDates();
-        setupHelperFunctions();
-        if (!self.isMobile)
-            build();
-        bindEvents();
-        if (self.selectedDates.length || self.config.noCalendar) {
-            if (self.config.enableTime) {
-                setHoursFromDate(self.config.noCalendar ? self.latestSelectedDateObj : undefined);
-            }
-            updateValue(false);
-        }
-        setCalendarWidth();
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        if (!self.isMobile && isSafari) {
-            positionCalendar();
-        }
-        triggerEvent("onReady");
-    }
-    function bindToInstance(fn) {
-        return fn.bind(self);
-    }
-    function setCalendarWidth() {
-        const config = self.config;
-        if (config.weekNumbers === false && config.showMonths === 1) {
-            return;
-        }
-        else if (config.noCalendar !== true) {
-            window.requestAnimationFrame(function () {
-                if (self.calendarContainer !== undefined) {
-                    self.calendarContainer.style.visibility = "hidden";
-                    self.calendarContainer.style.display = "block";
-                }
-                if (self.daysContainer !== undefined) {
-                    const daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
-                    self.daysContainer.style.width = daysWidth + "px";
-                    self.calendarContainer.style.width =
-                        daysWidth +
-                            (self.weekWrapper !== undefined
-                                ? self.weekWrapper.offsetWidth
-                                : 0) +
-                            "px";
-                    self.calendarContainer.style.removeProperty("visibility");
-                    self.calendarContainer.style.removeProperty("display");
-                }
-            });
-        }
-    }
-    function updateTime(e) {
-        if (self.selectedDates.length === 0) {
-            const defaultDate = self.config.minDate === undefined ||
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(new Date(), self.config.minDate) >= 0
-                ? new Date()
-                : new Date(self.config.minDate.getTime());
-            const defaults = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["getDefaultHours"])(self.config);
-            defaultDate.setHours(defaults.hours, defaults.minutes, defaults.seconds, defaultDate.getMilliseconds());
-            self.selectedDates = [defaultDate];
-            self.latestSelectedDateObj = defaultDate;
-        }
-        if (e !== undefined && e.type !== "blur") {
-            timeWrapper(e);
-        }
-        const prevValue = self._input.value;
-        setHoursFromInputs();
-        updateValue();
-        if (self._input.value !== prevValue) {
-            self._debouncedChange();
-        }
-    }
-    function ampm2military(hour, amPM) {
-        return (hour % 12) + 12 * Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(amPM === self.l10n.amPM[1]);
-    }
-    function military2ampm(hour) {
-        switch (hour % 24) {
-            case 0:
-            case 12:
-                return 12;
-            default:
-                return hour % 12;
-        }
-    }
-    function setHoursFromInputs() {
-        if (self.hourElement === undefined || self.minuteElement === undefined)
-            return;
-        let hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60, seconds = self.secondElement !== undefined
-            ? (parseInt(self.secondElement.value, 10) || 0) % 60
-            : 0;
-        if (self.amPM !== undefined) {
-            hours = ampm2military(hours, self.amPM.textContent);
-        }
-        const limitMinHours = self.config.minTime !== undefined ||
-            (self.config.minDate &&
-                self.minDateHasTime &&
-                self.latestSelectedDateObj &&
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(self.latestSelectedDateObj, self.config.minDate, true) ===
-                    0);
-        const limitMaxHours = self.config.maxTime !== undefined ||
-            (self.config.maxDate &&
-                self.maxDateHasTime &&
-                self.latestSelectedDateObj &&
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(self.latestSelectedDateObj, self.config.maxDate, true) ===
-                    0);
-        if (limitMaxHours) {
-            const maxTime = self.config.maxTime !== undefined
-                ? self.config.maxTime
-                : self.config.maxDate;
-            hours = Math.min(hours, maxTime.getHours());
-            if (hours === maxTime.getHours())
-                minutes = Math.min(minutes, maxTime.getMinutes());
-            if (minutes === maxTime.getMinutes())
-                seconds = Math.min(seconds, maxTime.getSeconds());
-        }
-        if (limitMinHours) {
-            const minTime = self.config.minTime !== undefined
-                ? self.config.minTime
-                : self.config.minDate;
-            hours = Math.max(hours, minTime.getHours());
-            if (hours === minTime.getHours() && minutes < minTime.getMinutes())
-                minutes = minTime.getMinutes();
-            if (minutes === minTime.getMinutes())
-                seconds = Math.max(seconds, minTime.getSeconds());
-        }
-        setHours(hours, minutes, seconds);
-    }
-    function setHoursFromDate(dateObj) {
-        const date = dateObj || self.latestSelectedDateObj;
-        if (date) {
-            setHours(date.getHours(), date.getMinutes(), date.getSeconds());
-        }
-    }
-    function setHours(hours, minutes, seconds) {
-        if (self.latestSelectedDateObj !== undefined) {
-            self.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
-        }
-        if (!self.hourElement || !self.minuteElement || self.isMobile)
-            return;
-        self.hourElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(!self.config.time_24hr
-            ? ((12 + hours) % 12) + 12 * Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(hours % 12 === 0)
-            : hours);
-        self.minuteElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(minutes);
-        if (self.amPM !== undefined)
-            self.amPM.textContent = self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(hours >= 12)];
-        if (self.secondElement !== undefined)
-            self.secondElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(seconds);
-    }
-    function onYearInput(event) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(event);
-        const year = parseInt(eventTarget.value) + (event.delta || 0);
-        if (year / 1000 > 1 ||
-            (event.key === "Enter" && !/[^\d]/.test(year.toString()))) {
-            changeYear(year);
-        }
-    }
-    function bind(element, event, handler, options) {
-        if (event instanceof Array)
-            return event.forEach((ev) => bind(element, ev, handler, options));
-        if (element instanceof Array)
-            return element.forEach((el) => bind(el, event, handler, options));
-        element.addEventListener(event, handler, options);
-        self._handlers.push({
-            remove: () => element.removeEventListener(event, handler),
-        });
-    }
-    function triggerChange() {
-        triggerEvent("onChange");
-    }
-    function bindEvents() {
-        if (self.config.wrap) {
-            ["open", "close", "toggle", "clear"].forEach((evt) => {
-                Array.prototype.forEach.call(self.element.querySelectorAll(`[data-${evt}]`), (el) => bind(el, "click", self[evt]));
-            });
-        }
-        if (self.isMobile) {
-            setupMobile();
-            return;
-        }
-        const debouncedResize = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["debounce"])(onResize, 50);
-        self._debouncedChange = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["debounce"])(triggerChange, DEBOUNCED_CHANGE_MS);
-        if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
-            bind(self.daysContainer, "mouseover", (e) => {
-                if (self.config.mode === "range")
-                    onMouseOver(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e));
-            });
-        bind(window.document.body, "keydown", onKeyDown);
-        if (!self.config.inline && !self.config.static)
-            bind(window, "resize", debouncedResize);
-        if (window.ontouchstart !== undefined)
-            bind(window.document, "touchstart", documentClick);
-        else
-            bind(window.document, "mousedown", documentClick);
-        bind(window.document, "focus", documentClick, { capture: true });
-        if (self.config.clickOpens === true) {
-            bind(self._input, "focus", self.open);
-            bind(self._input, "click", self.open);
-        }
-        if (self.daysContainer !== undefined) {
-            bind(self.monthNav, "click", onMonthNavClick);
-            bind(self.monthNav, ["keyup", "increment"], onYearInput);
-            bind(self.daysContainer, "click", selectDate);
-        }
-        if (self.timeContainer !== undefined &&
-            self.minuteElement !== undefined &&
-            self.hourElement !== undefined) {
-            const selText = (e) => Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e).select();
-            bind(self.timeContainer, ["increment"], updateTime);
-            bind(self.timeContainer, "blur", updateTime, { capture: true });
-            bind(self.timeContainer, "click", timeIncrement);
-            bind([self.hourElement, self.minuteElement], ["focus", "click"], selText);
-            if (self.secondElement !== undefined)
-                bind(self.secondElement, "focus", () => self.secondElement && self.secondElement.select());
-            if (self.amPM !== undefined) {
-                bind(self.amPM, "click", (e) => {
-                    updateTime(e);
-                    triggerChange();
-                });
-            }
-        }
-        if (self.config.allowInput) {
-            bind(self._input, "blur", onBlur);
-        }
-    }
-    function jumpToDate(jumpDate, triggerChange) {
-        const jumpTo = jumpDate !== undefined
-            ? self.parseDate(jumpDate)
-            : self.latestSelectedDateObj ||
-                (self.config.minDate && self.config.minDate > self.now
-                    ? self.config.minDate
-                    : self.config.maxDate && self.config.maxDate < self.now
-                        ? self.config.maxDate
-                        : self.now);
-        const oldYear = self.currentYear;
-        const oldMonth = self.currentMonth;
-        try {
-            if (jumpTo !== undefined) {
-                self.currentYear = jumpTo.getFullYear();
-                self.currentMonth = jumpTo.getMonth();
-            }
-        }
-        catch (e) {
-            e.message = "Invalid date supplied: " + jumpTo;
-            self.config.errorHandler(e);
-        }
-        if (triggerChange && self.currentYear !== oldYear) {
-            triggerEvent("onYearChange");
-            buildMonthSwitch();
-        }
-        if (triggerChange &&
-            (self.currentYear !== oldYear || self.currentMonth !== oldMonth)) {
-            triggerEvent("onMonthChange");
-        }
-        self.redraw();
-    }
-    function timeIncrement(e) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        if (~eventTarget.className.indexOf("arrow"))
-            incrementNumInput(e, eventTarget.classList.contains("arrowUp") ? 1 : -1);
-    }
-    function incrementNumInput(e, delta, inputElem) {
-        const target = e && Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        const input = inputElem ||
-            (target && target.parentNode && target.parentNode.firstChild);
-        const event = createEvent("increment");
-        event.delta = delta;
-        input && input.dispatchEvent(event);
-    }
-    function build() {
-        const fragment = window.document.createDocumentFragment();
-        self.calendarContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-calendar");
-        self.calendarContainer.tabIndex = -1;
-        if (!self.config.noCalendar) {
-            fragment.appendChild(buildMonthNav());
-            self.innerContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-innerContainer");
-            if (self.config.weekNumbers) {
-                const { weekWrapper, weekNumbers } = buildWeeks();
-                self.innerContainer.appendChild(weekWrapper);
-                self.weekNumbers = weekNumbers;
-                self.weekWrapper = weekWrapper;
-            }
-            self.rContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-rContainer");
-            self.rContainer.appendChild(buildWeekdays());
-            if (!self.daysContainer) {
-                self.daysContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-days");
-                self.daysContainer.tabIndex = -1;
-            }
-            buildDays();
-            self.rContainer.appendChild(self.daysContainer);
-            self.innerContainer.appendChild(self.rContainer);
-            fragment.appendChild(self.innerContainer);
-        }
-        if (self.config.enableTime) {
-            fragment.appendChild(buildTime());
-        }
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "rangeMode", self.config.mode === "range");
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "animate", self.config.animate === true);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
-        self.calendarContainer.appendChild(fragment);
-        const customAppend = self.config.appendTo !== undefined &&
-            self.config.appendTo.nodeType !== undefined;
-        if (self.config.inline || self.config.static) {
-            self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
-            if (self.config.inline) {
-                if (!customAppend && self.element.parentNode)
-                    self.element.parentNode.insertBefore(self.calendarContainer, self._input.nextSibling);
-                else if (self.config.appendTo !== undefined)
-                    self.config.appendTo.appendChild(self.calendarContainer);
-            }
-            if (self.config.static) {
-                const wrapper = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-wrapper");
-                if (self.element.parentNode)
-                    self.element.parentNode.insertBefore(wrapper, self.element);
-                wrapper.appendChild(self.element);
-                if (self.altInput)
-                    wrapper.appendChild(self.altInput);
-                wrapper.appendChild(self.calendarContainer);
-            }
-        }
-        if (!self.config.static && !self.config.inline)
-            (self.config.appendTo !== undefined
-                ? self.config.appendTo
-                : window.document.body).appendChild(self.calendarContainer);
-    }
-    function createDay(className, date, dayNumber, i) {
-        const dateIsEnabled = isEnabled(date, true), dayElement = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-day " + className, date.getDate().toString());
-        dayElement.dateObj = date;
-        dayElement.$i = i;
-        dayElement.setAttribute("aria-label", self.formatDate(date, self.config.ariaDateFormat));
-        if (className.indexOf("hidden") === -1 &&
-            Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.now) === 0) {
-            self.todayDateElem = dayElement;
-            dayElement.classList.add("today");
-            dayElement.setAttribute("aria-current", "date");
-        }
-        if (dateIsEnabled) {
-            dayElement.tabIndex = -1;
-            if (isDateSelected(date)) {
-                dayElement.classList.add("selected");
-                self.selectedDateElem = dayElement;
-                if (self.config.mode === "range") {
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(dayElement, "startRange", self.selectedDates[0] &&
-                        Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[0], true) === 0);
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(dayElement, "endRange", self.selectedDates[1] &&
-                        Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[1], true) === 0);
-                    if (className === "nextMonthDay")
-                        dayElement.classList.add("inRange");
-                }
-            }
-        }
-        else {
-            dayElement.classList.add("flatpickr-disabled");
-        }
-        if (self.config.mode === "range") {
-            if (isDateInRange(date) && !isDateSelected(date))
-                dayElement.classList.add("inRange");
-        }
-        if (self.weekNumbers &&
-            self.config.showMonths === 1 &&
-            className !== "prevMonthDay" &&
-            dayNumber % 7 === 1) {
-            self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self.config.getWeek(date) + "</span>");
-        }
-        triggerEvent("onDayCreate", dayElement);
-        return dayElement;
-    }
-    function focusOnDayElem(targetNode) {
-        targetNode.focus();
-        if (self.config.mode === "range")
-            onMouseOver(targetNode);
-    }
-    function getFirstAvailableDay(delta) {
-        const startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
-        const endMonth = delta > 0 ? self.config.showMonths : -1;
-        for (let m = startMonth; m != endMonth; m += delta) {
-            const month = self.daysContainer.children[m];
-            const startIndex = delta > 0 ? 0 : month.children.length - 1;
-            const endIndex = delta > 0 ? month.children.length : -1;
-            for (let i = startIndex; i != endIndex; i += delta) {
-                const c = month.children[i];
-                if (c.className.indexOf("hidden") === -1 && isEnabled(c.dateObj))
-                    return c;
-            }
-        }
-        return undefined;
-    }
-    function getNextAvailableDay(current, delta) {
-        const givenMonth = current.className.indexOf("Month") === -1
-            ? current.dateObj.getMonth()
-            : self.currentMonth;
-        const endMonth = delta > 0 ? self.config.showMonths : -1;
-        const loopDelta = delta > 0 ? 1 : -1;
-        for (let m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
-            const month = self.daysContainer.children[m];
-            const startIndex = givenMonth - self.currentMonth === m
-                ? current.$i + delta
-                : delta < 0
-                    ? month.children.length - 1
-                    : 0;
-            const numMonthDays = month.children.length;
-            for (let i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
-                const c = month.children[i];
-                if (c.className.indexOf("hidden") === -1 &&
-                    isEnabled(c.dateObj) &&
-                    Math.abs(current.$i - i) >= Math.abs(delta))
-                    return focusOnDayElem(c);
-            }
-        }
-        self.changeMonth(loopDelta);
-        focusOnDay(getFirstAvailableDay(loopDelta), 0);
-        return undefined;
-    }
-    function focusOnDay(current, offset) {
-        const dayFocused = isInView(document.activeElement || document.body);
-        const startElem = current !== undefined
-            ? current
-            : dayFocused
-                ? document.activeElement
-                : self.selectedDateElem !== undefined && isInView(self.selectedDateElem)
-                    ? self.selectedDateElem
-                    : self.todayDateElem !== undefined && isInView(self.todayDateElem)
-                        ? self.todayDateElem
-                        : getFirstAvailableDay(offset > 0 ? 1 : -1);
-        if (startElem === undefined) {
-            self._input.focus();
-        }
-        else if (!dayFocused) {
-            focusOnDayElem(startElem);
-        }
-        else {
-            getNextAvailableDay(startElem, offset);
-        }
-    }
-    function buildMonthDays(year, month) {
-        const firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
-        const prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
-        const daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
-        let dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
-        for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
-            days.appendChild(createDay(prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
-        }
-        for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
-            days.appendChild(createDay("", new Date(year, month, dayNumber), dayNumber, dayIndex));
-        }
-        for (let dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth &&
-            (self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
-            days.appendChild(createDay(nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
-        }
-        const dayContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "dayContainer");
-        dayContainer.appendChild(days);
-        return dayContainer;
-    }
-    function buildDays() {
-        if (self.daysContainer === undefined) {
-            return;
-        }
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.daysContainer);
-        if (self.weekNumbers)
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.weekNumbers);
-        const frag = document.createDocumentFragment();
-        for (let i = 0; i < self.config.showMonths; i++) {
-            const d = new Date(self.currentYear, self.currentMonth, 1);
-            d.setMonth(self.currentMonth + i);
-            frag.appendChild(buildMonthDays(d.getFullYear(), d.getMonth()));
-        }
-        self.daysContainer.appendChild(frag);
-        self.days = self.daysContainer.firstChild;
-        if (self.config.mode === "range" && self.selectedDates.length === 1) {
-            onMouseOver();
-        }
-    }
-    function buildMonthSwitch() {
-        if (self.config.showMonths > 1 ||
-            self.config.monthSelectorType !== "dropdown")
-            return;
-        const shouldBuildMonth = function (month) {
-            if (self.config.minDate !== undefined &&
-                self.currentYear === self.config.minDate.getFullYear() &&
-                month < self.config.minDate.getMonth()) {
-                return false;
-            }
-            return !(self.config.maxDate !== undefined &&
-                self.currentYear === self.config.maxDate.getFullYear() &&
-                month > self.config.maxDate.getMonth());
-        };
-        self.monthsDropdownContainer.tabIndex = -1;
-        self.monthsDropdownContainer.innerHTML = "";
-        for (let i = 0; i < 12; i++) {
-            if (!shouldBuildMonth(i))
-                continue;
-            const month = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", "flatpickr-monthDropdown-month");
-            month.value = new Date(self.currentYear, i).getMonth().toString();
-            month.textContent = Object(_utils_formatting__WEBPACK_IMPORTED_MODULE_5__["monthToStr"])(i, self.config.shorthandCurrentMonth, self.l10n);
-            month.tabIndex = -1;
-            if (self.currentMonth === i) {
-                month.selected = true;
-            }
-            self.monthsDropdownContainer.appendChild(month);
-        }
-    }
-    function buildMonth() {
-        const container = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-month");
-        const monthNavFragment = window.document.createDocumentFragment();
-        let monthElement;
-        if (self.config.showMonths > 1 ||
-            self.config.monthSelectorType === "static") {
-            monthElement = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "cur-month");
-        }
-        else {
-            self.monthsDropdownContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("select", "flatpickr-monthDropdown-months");
-            self.monthsDropdownContainer.setAttribute("aria-label", self.l10n.monthAriaLabel);
-            bind(self.monthsDropdownContainer, "change", (e) => {
-                const target = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-                const selectedMonth = parseInt(target.value, 10);
-                self.changeMonth(selectedMonth - self.currentMonth);
-                triggerEvent("onMonthChange");
-            });
-            buildMonthSwitch();
-            monthElement = self.monthsDropdownContainer;
-        }
-        const yearInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("cur-year", { tabindex: "-1" });
-        const yearElement = yearInput.getElementsByTagName("input")[0];
-        yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
-        if (self.config.minDate) {
-            yearElement.setAttribute("min", self.config.minDate.getFullYear().toString());
-        }
-        if (self.config.maxDate) {
-            yearElement.setAttribute("max", self.config.maxDate.getFullYear().toString());
-            yearElement.disabled =
-                !!self.config.minDate &&
-                    self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
-        }
-        const currentMonth = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-current-month");
-        currentMonth.appendChild(monthElement);
-        currentMonth.appendChild(yearInput);
-        monthNavFragment.appendChild(currentMonth);
-        container.appendChild(monthNavFragment);
-        return {
-            container,
-            yearElement,
-            monthElement,
-        };
-    }
-    function buildMonths() {
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.monthNav);
-        self.monthNav.appendChild(self.prevMonthNav);
-        if (self.config.showMonths) {
-            self.yearElements = [];
-            self.monthElements = [];
-        }
-        for (let m = self.config.showMonths; m--;) {
-            const month = buildMonth();
-            self.yearElements.push(month.yearElement);
-            self.monthElements.push(month.monthElement);
-            self.monthNav.appendChild(month.container);
-        }
-        self.monthNav.appendChild(self.nextMonthNav);
-    }
-    function buildMonthNav() {
-        self.monthNav = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-months");
-        self.yearElements = [];
-        self.monthElements = [];
-        self.prevMonthNav = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-prev-month");
-        self.prevMonthNav.innerHTML = self.config.prevArrow;
-        self.nextMonthNav = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-next-month");
-        self.nextMonthNav.innerHTML = self.config.nextArrow;
-        buildMonths();
-        Object.defineProperty(self, "_hidePrevMonthArrow", {
-            get: () => self.__hidePrevMonthArrow,
-            set(bool) {
-                if (self.__hidePrevMonthArrow !== bool) {
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.prevMonthNav, "flatpickr-disabled", bool);
-                    self.__hidePrevMonthArrow = bool;
-                }
-            },
-        });
-        Object.defineProperty(self, "_hideNextMonthArrow", {
-            get: () => self.__hideNextMonthArrow,
-            set(bool) {
-                if (self.__hideNextMonthArrow !== bool) {
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.nextMonthNav, "flatpickr-disabled", bool);
-                    self.__hideNextMonthArrow = bool;
-                }
-            },
-        });
-        self.currentYearElement = self.yearElements[0];
-        updateNavigationCurrentMonth();
-        return self.monthNav;
-    }
-    function buildTime() {
-        self.calendarContainer.classList.add("hasTime");
-        if (self.config.noCalendar)
-            self.calendarContainer.classList.add("noCalendar");
-        const defaults = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["getDefaultHours"])(self.config);
-        self.timeContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-time");
-        self.timeContainer.tabIndex = -1;
-        const separator = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-time-separator", ":");
-        const hourInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("flatpickr-hour", {
-            "aria-label": self.l10n.hourAriaLabel,
-        });
-        self.hourElement = hourInput.getElementsByTagName("input")[0];
-        const minuteInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("flatpickr-minute", {
-            "aria-label": self.l10n.minuteAriaLabel,
-        });
-        self.minuteElement = minuteInput.getElementsByTagName("input")[0];
-        self.hourElement.tabIndex = self.minuteElement.tabIndex = -1;
-        self.hourElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(self.latestSelectedDateObj
-            ? self.latestSelectedDateObj.getHours()
-            : self.config.time_24hr
-                ? defaults.hours
-                : military2ampm(defaults.hours));
-        self.minuteElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(self.latestSelectedDateObj
-            ? self.latestSelectedDateObj.getMinutes()
-            : defaults.minutes);
-        self.hourElement.setAttribute("step", self.config.hourIncrement.toString());
-        self.minuteElement.setAttribute("step", self.config.minuteIncrement.toString());
-        self.hourElement.setAttribute("min", self.config.time_24hr ? "0" : "1");
-        self.hourElement.setAttribute("max", self.config.time_24hr ? "23" : "12");
-        self.hourElement.setAttribute("maxlength", "2");
-        self.minuteElement.setAttribute("min", "0");
-        self.minuteElement.setAttribute("max", "59");
-        self.minuteElement.setAttribute("maxlength", "2");
-        self.timeContainer.appendChild(hourInput);
-        self.timeContainer.appendChild(separator);
-        self.timeContainer.appendChild(minuteInput);
-        if (self.config.time_24hr)
-            self.timeContainer.classList.add("time24hr");
-        if (self.config.enableSeconds) {
-            self.timeContainer.classList.add("hasSeconds");
-            const secondInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("flatpickr-second");
-            self.secondElement = secondInput.getElementsByTagName("input")[0];
-            self.secondElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(self.latestSelectedDateObj
-                ? self.latestSelectedDateObj.getSeconds()
-                : defaults.seconds);
-            self.secondElement.setAttribute("step", self.minuteElement.getAttribute("step"));
-            self.secondElement.setAttribute("min", "0");
-            self.secondElement.setAttribute("max", "59");
-            self.secondElement.setAttribute("maxlength", "2");
-            self.timeContainer.appendChild(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-time-separator", ":"));
-            self.timeContainer.appendChild(secondInput);
-        }
-        if (!self.config.time_24hr) {
-            self.amPM = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-am-pm", self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])((self.latestSelectedDateObj
-                ? self.hourElement.value
-                : self.config.defaultHour) > 11)]);
-            self.amPM.title = self.l10n.toggleTitle;
-            self.amPM.tabIndex = -1;
-            self.timeContainer.appendChild(self.amPM);
-        }
-        return self.timeContainer;
-    }
-    function buildWeekdays() {
-        if (!self.weekdayContainer)
-            self.weekdayContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weekdays");
-        else
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.weekdayContainer);
-        for (let i = self.config.showMonths; i--;) {
-            const container = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weekdaycontainer");
-            self.weekdayContainer.appendChild(container);
-        }
-        updateWeekdays();
-        return self.weekdayContainer;
-    }
-    function updateWeekdays() {
-        if (!self.weekdayContainer) {
-            return;
-        }
-        const firstDayOfWeek = self.l10n.firstDayOfWeek;
-        let weekdays = [...self.l10n.weekdays.shorthand];
-        if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
-            weekdays = [
-                ...weekdays.splice(firstDayOfWeek, weekdays.length),
-                ...weekdays.splice(0, firstDayOfWeek),
-            ];
-        }
-        for (let i = self.config.showMonths; i--;) {
-            self.weekdayContainer.children[i].innerHTML = `
-      <span class='flatpickr-weekday'>
-        ${weekdays.join("</span><span class='flatpickr-weekday'>")}
-      </span>
-      `;
-        }
-    }
-    function buildWeeks() {
-        self.calendarContainer.classList.add("hasWeeks");
-        const weekWrapper = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weekwrapper");
-        weekWrapper.appendChild(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
-        const weekNumbers = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weeks");
-        weekWrapper.appendChild(weekNumbers);
-        return {
-            weekWrapper,
-            weekNumbers,
-        };
-    }
-    function changeMonth(value, isOffset = true) {
-        const delta = isOffset ? value : value - self.currentMonth;
-        if ((delta < 0 && self._hidePrevMonthArrow === true) ||
-            (delta > 0 && self._hideNextMonthArrow === true))
-            return;
-        self.currentMonth += delta;
-        if (self.currentMonth < 0 || self.currentMonth > 11) {
-            self.currentYear += self.currentMonth > 11 ? 1 : -1;
-            self.currentMonth = (self.currentMonth + 12) % 12;
-            triggerEvent("onYearChange");
-            buildMonthSwitch();
-        }
-        buildDays();
-        triggerEvent("onMonthChange");
-        updateNavigationCurrentMonth();
-    }
-    function clear(triggerChangeEvent = true, toInitial = true) {
-        self.input.value = "";
-        if (self.altInput !== undefined)
-            self.altInput.value = "";
-        if (self.mobileInput !== undefined)
-            self.mobileInput.value = "";
-        self.selectedDates = [];
-        self.latestSelectedDateObj = undefined;
-        if (toInitial === true) {
-            self.currentYear = self._initialDate.getFullYear();
-            self.currentMonth = self._initialDate.getMonth();
-        }
-        if (self.config.enableTime === true) {
-            const { hours, minutes, seconds } = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["getDefaultHours"])(self.config);
-            setHours(hours, minutes, seconds);
-        }
-        self.redraw();
-        if (triggerChangeEvent)
-            triggerEvent("onChange");
-    }
-    function close() {
-        self.isOpen = false;
-        if (!self.isMobile) {
-            if (self.calendarContainer !== undefined) {
-                self.calendarContainer.classList.remove("open");
-            }
-            if (self._input !== undefined) {
-                self._input.classList.remove("active");
-            }
-        }
-        triggerEvent("onClose");
-    }
-    function destroy() {
-        if (self.config !== undefined)
-            triggerEvent("onDestroy");
-        for (let i = self._handlers.length; i--;) {
-            self._handlers[i].remove();
-        }
-        self._handlers = [];
-        if (self.mobileInput) {
-            if (self.mobileInput.parentNode)
-                self.mobileInput.parentNode.removeChild(self.mobileInput);
-            self.mobileInput = undefined;
-        }
-        else if (self.calendarContainer && self.calendarContainer.parentNode) {
-            if (self.config.static && self.calendarContainer.parentNode) {
-                const wrapper = self.calendarContainer.parentNode;
-                wrapper.lastChild && wrapper.removeChild(wrapper.lastChild);
-                if (wrapper.parentNode) {
-                    while (wrapper.firstChild)
-                        wrapper.parentNode.insertBefore(wrapper.firstChild, wrapper);
-                    wrapper.parentNode.removeChild(wrapper);
-                }
-            }
-            else
-                self.calendarContainer.parentNode.removeChild(self.calendarContainer);
-        }
-        if (self.altInput) {
-            self.input.type = "text";
-            if (self.altInput.parentNode)
-                self.altInput.parentNode.removeChild(self.altInput);
-            delete self.altInput;
-        }
-        if (self.input) {
-            self.input.type = self.input._type;
-            self.input.classList.remove("flatpickr-input");
-            self.input.removeAttribute("readonly");
-        }
-        [
-            "_showTimeInput",
-            "latestSelectedDateObj",
-            "_hideNextMonthArrow",
-            "_hidePrevMonthArrow",
-            "__hideNextMonthArrow",
-            "__hidePrevMonthArrow",
-            "isMobile",
-            "isOpen",
-            "selectedDateElem",
-            "minDateHasTime",
-            "maxDateHasTime",
-            "days",
-            "daysContainer",
-            "_input",
-            "_positionElement",
-            "innerContainer",
-            "rContainer",
-            "monthNav",
-            "todayDateElem",
-            "calendarContainer",
-            "weekdayContainer",
-            "prevMonthNav",
-            "nextMonthNav",
-            "monthsDropdownContainer",
-            "currentMonthElement",
-            "currentYearElement",
-            "navigationCurrentMonth",
-            "selectedDateElem",
-            "config",
-        ].forEach((k) => {
-            try {
-                delete self[k];
-            }
-            catch (_) { }
-        });
-    }
-    function isCalendarElem(elem) {
-        if (self.config.appendTo && self.config.appendTo.contains(elem))
-            return true;
-        return self.calendarContainer.contains(elem);
-    }
-    function documentClick(e) {
-        if (self.isOpen && !self.config.inline) {
-            const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-            const isCalendarElement = isCalendarElem(eventTarget);
-            const isInput = eventTarget === self.input ||
-                eventTarget === self.altInput ||
-                self.element.contains(eventTarget) ||
-                (e.path &&
-                    e.path.indexOf &&
-                    (~e.path.indexOf(self.input) ||
-                        ~e.path.indexOf(self.altInput)));
-            const lostFocus = e.type === "blur"
-                ? isInput &&
-                    e.relatedTarget &&
-                    !isCalendarElem(e.relatedTarget)
-                : !isInput &&
-                    !isCalendarElement &&
-                    !isCalendarElem(e.relatedTarget);
-            const isIgnored = !self.config.ignoredFocusElements.some((elem) => elem.contains(eventTarget));
-            if (lostFocus && isIgnored) {
-                if (self.timeContainer !== undefined &&
-                    self.minuteElement !== undefined &&
-                    self.hourElement !== undefined &&
-                    self.input.value !== "" &&
-                    self.input.value !== undefined) {
-                    updateTime();
-                }
-                self.close();
-                if (self.config &&
-                    self.config.mode === "range" &&
-                    self.selectedDates.length === 1) {
-                    self.clear(false);
-                    self.redraw();
-                }
-            }
-        }
-    }
-    function changeYear(newYear) {
-        if (!newYear ||
-            (self.config.minDate && newYear < self.config.minDate.getFullYear()) ||
-            (self.config.maxDate && newYear > self.config.maxDate.getFullYear()))
-            return;
-        const newYearNum = newYear, isNewYear = self.currentYear !== newYearNum;
-        self.currentYear = newYearNum || self.currentYear;
-        if (self.config.maxDate &&
-            self.currentYear === self.config.maxDate.getFullYear()) {
-            self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
-        }
-        else if (self.config.minDate &&
-            self.currentYear === self.config.minDate.getFullYear()) {
-            self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
-        }
-        if (isNewYear) {
-            self.redraw();
-            triggerEvent("onYearChange");
-            buildMonthSwitch();
-        }
-    }
-    function isEnabled(date, timeless = true) {
-        var _a;
-        const dateToCheck = self.parseDate(date, undefined, timeless);
-        if ((self.config.minDate &&
-            dateToCheck &&
-            Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0) ||
-            (self.config.maxDate &&
-                dateToCheck &&
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(dateToCheck, self.config.maxDate, timeless !== undefined ? timeless : !self.maxDateHasTime) > 0))
-            return false;
-        if (!self.config.enable && self.config.disable.length === 0)
-            return true;
-        if (dateToCheck === undefined)
-            return false;
-        const bool = !!self.config.enable, array = (_a = self.config.enable) !== null && _a !== void 0 ? _a : self.config.disable;
-        for (let i = 0, d; i < array.length; i++) {
-            d = array[i];
-            if (typeof d === "function" &&
-                d(dateToCheck))
-                return bool;
-            else if (d instanceof Date &&
-                dateToCheck !== undefined &&
-                d.getTime() === dateToCheck.getTime())
-                return bool;
-            else if (typeof d === "string") {
-                const parsed = self.parseDate(d, undefined, true);
-                return parsed && parsed.getTime() === dateToCheck.getTime()
-                    ? bool
-                    : !bool;
-            }
-            else if (typeof d === "object" &&
-                dateToCheck !== undefined &&
-                d.from &&
-                d.to &&
-                dateToCheck.getTime() >= d.from.getTime() &&
-                dateToCheck.getTime() <= d.to.getTime())
-                return bool;
-        }
-        return !bool;
-    }
-    function isInView(elem) {
-        if (self.daysContainer !== undefined)
-            return (elem.className.indexOf("hidden") === -1 &&
-                elem.className.indexOf("flatpickr-disabled") === -1 &&
-                self.daysContainer.contains(elem));
-        return false;
-    }
-    function onBlur(e) {
-        const isInput = e.target === self._input;
-        if (isInput &&
-            (self.selectedDates.length > 0 || self._input.value.length > 0) &&
-            !(e.relatedTarget && isCalendarElem(e.relatedTarget))) {
-            self.setDate(self._input.value, true, e.target === self.altInput
-                ? self.config.altFormat
-                : self.config.dateFormat);
-        }
-    }
-    function onKeyDown(e) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        const isInput = self.config.wrap
-            ? element.contains(eventTarget)
-            : eventTarget === self._input;
-        const allowInput = self.config.allowInput;
-        const allowKeydown = self.isOpen && (!allowInput || !isInput);
-        const allowInlineKeydown = self.config.inline && isInput && !allowInput;
-        if (e.keyCode === 13 && isInput) {
-            if (allowInput) {
-                self.setDate(self._input.value, true, eventTarget === self.altInput
-                    ? self.config.altFormat
-                    : self.config.dateFormat);
-                return eventTarget.blur();
-            }
-            else {
-                self.open();
-            }
-        }
-        else if (isCalendarElem(eventTarget) ||
-            allowKeydown ||
-            allowInlineKeydown) {
-            const isTimeObj = !!self.timeContainer &&
-                self.timeContainer.contains(eventTarget);
-            switch (e.keyCode) {
-                case 13:
-                    if (isTimeObj) {
-                        e.preventDefault();
-                        updateTime();
-                        focusAndClose();
-                    }
-                    else
-                        selectDate(e);
-                    break;
-                case 27:
-                    e.preventDefault();
-                    focusAndClose();
-                    break;
-                case 8:
-                case 46:
-                    if (isInput && !self.config.allowInput) {
-                        e.preventDefault();
-                        self.clear();
-                    }
-                    break;
-                case 37:
-                case 39:
-                    if (!isTimeObj && !isInput) {
-                        e.preventDefault();
-                        if (self.daysContainer !== undefined &&
-                            (allowInput === false ||
-                                (document.activeElement && isInView(document.activeElement)))) {
-                            const delta = e.keyCode === 39 ? 1 : -1;
-                            if (!e.ctrlKey)
-                                focusOnDay(undefined, delta);
-                            else {
-                                e.stopPropagation();
-                                changeMonth(delta);
-                                focusOnDay(getFirstAvailableDay(1), 0);
-                            }
-                        }
-                    }
-                    else if (self.hourElement)
-                        self.hourElement.focus();
-                    break;
-                case 38:
-                case 40:
-                    e.preventDefault();
-                    const delta = e.keyCode === 40 ? 1 : -1;
-                    if ((self.daysContainer &&
-                        eventTarget.$i !== undefined) ||
-                        eventTarget === self.input ||
-                        eventTarget === self.altInput) {
-                        if (e.ctrlKey) {
-                            e.stopPropagation();
-                            changeYear(self.currentYear - delta);
-                            focusOnDay(getFirstAvailableDay(1), 0);
-                        }
-                        else if (!isTimeObj)
-                            focusOnDay(undefined, delta * 7);
-                    }
-                    else if (eventTarget === self.currentYearElement) {
-                        changeYear(self.currentYear - delta);
-                    }
-                    else if (self.config.enableTime) {
-                        if (!isTimeObj && self.hourElement)
-                            self.hourElement.focus();
-                        updateTime(e);
-                        self._debouncedChange();
-                    }
-                    break;
-                case 9:
-                    if (isTimeObj) {
-                        const elems = [
-                            self.hourElement,
-                            self.minuteElement,
-                            self.secondElement,
-                            self.amPM,
-                        ]
-                            .concat(self.pluginElements)
-                            .filter((x) => x);
-                        const i = elems.indexOf(eventTarget);
-                        if (i !== -1) {
-                            const target = elems[i + (e.shiftKey ? -1 : 1)];
-                            e.preventDefault();
-                            (target || self._input).focus();
-                        }
-                    }
-                    else if (!self.config.noCalendar &&
-                        self.daysContainer &&
-                        self.daysContainer.contains(eventTarget) &&
-                        e.shiftKey) {
-                        e.preventDefault();
-                        self._input.focus();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (self.amPM !== undefined && eventTarget === self.amPM) {
-            switch (e.key) {
-                case self.l10n.amPM[0].charAt(0):
-                case self.l10n.amPM[0].charAt(0).toLowerCase():
-                    self.amPM.textContent = self.l10n.amPM[0];
-                    setHoursFromInputs();
-                    updateValue();
-                    break;
-                case self.l10n.amPM[1].charAt(0):
-                case self.l10n.amPM[1].charAt(0).toLowerCase():
-                    self.amPM.textContent = self.l10n.amPM[1];
-                    setHoursFromInputs();
-                    updateValue();
-                    break;
-            }
-        }
-        if (isInput || isCalendarElem(eventTarget)) {
-            triggerEvent("onKeyDown", e);
-        }
-    }
-    function onMouseOver(elem) {
-        if (self.selectedDates.length !== 1 ||
-            (elem &&
-                (!elem.classList.contains("flatpickr-day") ||
-                    elem.classList.contains("flatpickr-disabled"))))
-            return;
-        const hoverDate = elem
-            ? elem.dateObj.getTime()
-            : self.days.firstElementChild.dateObj.getTime(), initialDate = self.parseDate(self.selectedDates[0], undefined, true).getTime(), rangeStartDate = Math.min(hoverDate, self.selectedDates[0].getTime()), rangeEndDate = Math.max(hoverDate, self.selectedDates[0].getTime());
-        let containsDisabled = false;
-        let minRange = 0, maxRange = 0;
-        for (let t = rangeStartDate; t < rangeEndDate; t += _utils_dates__WEBPACK_IMPORTED_MODULE_4__["duration"].DAY) {
-            if (!isEnabled(new Date(t), true)) {
-                containsDisabled =
-                    containsDisabled || (t > rangeStartDate && t < rangeEndDate);
-                if (t < initialDate && (!minRange || t > minRange))
-                    minRange = t;
-                else if (t > initialDate && (!maxRange || t < maxRange))
-                    maxRange = t;
-            }
-        }
-        for (let m = 0; m < self.config.showMonths; m++) {
-            const month = self.daysContainer.children[m];
-            for (let i = 0, l = month.children.length; i < l; i++) {
-                const dayElem = month.children[i], date = dayElem.dateObj;
-                const timestamp = date.getTime();
-                const outOfRange = (minRange > 0 && timestamp < minRange) ||
-                    (maxRange > 0 && timestamp > maxRange);
-                if (outOfRange) {
-                    dayElem.classList.add("notAllowed");
-                    ["inRange", "startRange", "endRange"].forEach((c) => {
-                        dayElem.classList.remove(c);
-                    });
-                    continue;
-                }
-                else if (containsDisabled && !outOfRange)
-                    continue;
-                ["startRange", "inRange", "endRange", "notAllowed"].forEach((c) => {
-                    dayElem.classList.remove(c);
-                });
-                if (elem !== undefined) {
-                    elem.classList.add(hoverDate <= self.selectedDates[0].getTime()
-                        ? "startRange"
-                        : "endRange");
-                    if (initialDate < hoverDate && timestamp === initialDate)
-                        dayElem.classList.add("startRange");
-                    else if (initialDate > hoverDate && timestamp === initialDate)
-                        dayElem.classList.add("endRange");
-                    if (timestamp >= minRange &&
-                        (maxRange === 0 || timestamp <= maxRange) &&
-                        Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["isBetween"])(timestamp, initialDate, hoverDate))
-                        dayElem.classList.add("inRange");
-                }
-            }
-        }
-    }
-    function onResize() {
-        if (self.isOpen && !self.config.static && !self.config.inline)
-            positionCalendar();
-    }
-    function open(e, positionElement = self._positionElement) {
-        if (self.isMobile === true) {
-            if (e) {
-                e.preventDefault();
-                const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-                if (eventTarget) {
-                    eventTarget.blur();
-                }
-            }
-            if (self.mobileInput !== undefined) {
-                self.mobileInput.focus();
-                self.mobileInput.click();
-            }
-            triggerEvent("onOpen");
-            return;
-        }
-        else if (self._input.disabled || self.config.inline) {
-            return;
-        }
-        const wasOpen = self.isOpen;
-        self.isOpen = true;
-        if (!wasOpen) {
-            self.calendarContainer.classList.add("open");
-            self._input.classList.add("active");
-            triggerEvent("onOpen");
-            positionCalendar(positionElement);
-        }
-        if (self.config.enableTime === true && self.config.noCalendar === true) {
-            if (self.config.allowInput === false &&
-                (e === undefined ||
-                    !self.timeContainer.contains(e.relatedTarget))) {
-                setTimeout(() => self.hourElement.select(), 50);
-            }
-        }
-    }
-    function minMaxDateSetter(type) {
-        return (date) => {
-            const dateObj = (self.config[`_${type}Date`] = self.parseDate(date, self.config.dateFormat));
-            const inverseDateObj = self.config[`_${type === "min" ? "max" : "min"}Date`];
-            if (dateObj !== undefined) {
-                self[type === "min" ? "minDateHasTime" : "maxDateHasTime"] =
-                    dateObj.getHours() > 0 ||
-                        dateObj.getMinutes() > 0 ||
-                        dateObj.getSeconds() > 0;
-            }
-            if (self.selectedDates) {
-                self.selectedDates = self.selectedDates.filter((d) => isEnabled(d));
-                if (!self.selectedDates.length && type === "min")
-                    setHoursFromDate(dateObj);
-                updateValue();
-            }
-            if (self.daysContainer) {
-                redraw();
-                if (dateObj !== undefined)
-                    self.currentYearElement[type] = dateObj.getFullYear().toString();
-                else
-                    self.currentYearElement.removeAttribute(type);
-                self.currentYearElement.disabled =
-                    !!inverseDateObj &&
-                        dateObj !== undefined &&
-                        inverseDateObj.getFullYear() === dateObj.getFullYear();
-            }
-        };
-    }
-    function parseConfig() {
-        const boolOpts = [
-            "wrap",
-            "weekNumbers",
-            "allowInput",
-            "allowInvalidPreload",
-            "clickOpens",
-            "time_24hr",
-            "enableTime",
-            "noCalendar",
-            "altInput",
-            "shorthandCurrentMonth",
-            "inline",
-            "static",
-            "enableSeconds",
-            "disableMobile",
-        ];
-        const userConfig = Object.assign(Object.assign({}, JSON.parse(JSON.stringify(element.dataset || {}))), instanceConfig);
-        const formats = {};
-        self.config.parseDate = userConfig.parseDate;
-        self.config.formatDate = userConfig.formatDate;
-        Object.defineProperty(self.config, "enable", {
-            get: () => self.config._enable,
-            set: (dates) => {
-                self.config._enable = parseDateRules(dates);
-            },
-        });
-        Object.defineProperty(self.config, "disable", {
-            get: () => self.config._disable,
-            set: (dates) => {
-                self.config._disable = parseDateRules(dates);
-            },
-        });
-        const timeMode = userConfig.mode === "time";
-        if (!userConfig.dateFormat && (userConfig.enableTime || timeMode)) {
-            const defaultDateFormat = flatpickr.defaultConfig.dateFormat || _types_options__WEBPACK_IMPORTED_MODULE_0__["defaults"].dateFormat;
-            formats.dateFormat =
-                userConfig.noCalendar || timeMode
-                    ? "H:i" + (userConfig.enableSeconds ? ":S" : "")
-                    : defaultDateFormat + " H:i" + (userConfig.enableSeconds ? ":S" : "");
-        }
-        if (userConfig.altInput &&
-            (userConfig.enableTime || timeMode) &&
-            !userConfig.altFormat) {
-            const defaultAltFormat = flatpickr.defaultConfig.altFormat || _types_options__WEBPACK_IMPORTED_MODULE_0__["defaults"].altFormat;
-            formats.altFormat =
-                userConfig.noCalendar || timeMode
-                    ? "h:i" + (userConfig.enableSeconds ? ":S K" : " K")
-                    : defaultAltFormat + ` h:i${userConfig.enableSeconds ? ":S" : ""} K`;
-        }
-        Object.defineProperty(self.config, "minDate", {
-            get: () => self.config._minDate,
-            set: minMaxDateSetter("min"),
-        });
-        Object.defineProperty(self.config, "maxDate", {
-            get: () => self.config._maxDate,
-            set: minMaxDateSetter("max"),
-        });
-        const minMaxTimeSetter = (type) => (val) => {
-            self.config[type === "min" ? "_minTime" : "_maxTime"] = self.parseDate(val, "H:i:S");
-        };
-        Object.defineProperty(self.config, "minTime", {
-            get: () => self.config._minTime,
-            set: minMaxTimeSetter("min"),
-        });
-        Object.defineProperty(self.config, "maxTime", {
-            get: () => self.config._maxTime,
-            set: minMaxTimeSetter("max"),
-        });
-        if (userConfig.mode === "time") {
-            self.config.noCalendar = true;
-            self.config.enableTime = true;
-        }
-        Object.assign(self.config, formats, userConfig);
-        for (let i = 0; i < boolOpts.length; i++)
-            self.config[boolOpts[i]] =
-                self.config[boolOpts[i]] === true ||
-                    self.config[boolOpts[i]] === "true";
-        _types_options__WEBPACK_IMPORTED_MODULE_0__["HOOKS"].filter((hook) => self.config[hook] !== undefined).forEach((hook) => {
-            self.config[hook] = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["arrayify"])(self.config[hook] || []).map(bindToInstance);
-        });
-        self.isMobile =
-            !self.config.disableMobile &&
-                !self.config.inline &&
-                self.config.mode === "single" &&
-                !self.config.disable.length &&
-                !self.config.enable &&
-                !self.config.weekNumbers &&
-                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        for (let i = 0; i < self.config.plugins.length; i++) {
-            const pluginConf = self.config.plugins[i](self) || {};
-            for (const key in pluginConf) {
-                if (_types_options__WEBPACK_IMPORTED_MODULE_0__["HOOKS"].indexOf(key) > -1) {
-                    self.config[key] = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["arrayify"])(pluginConf[key])
-                        .map(bindToInstance)
-                        .concat(self.config[key]);
-                }
-                else if (typeof userConfig[key] === "undefined")
-                    self.config[key] = pluginConf[key];
-            }
-        }
-        if (!userConfig.altInputClass) {
-            self.config.altInputClass =
-                getInputElem().className + " " + self.config.altInputClass;
-        }
-        triggerEvent("onParseConfig");
-    }
-    function getInputElem() {
-        return self.config.wrap
-            ? element.querySelector("[data-input]")
-            : element;
-    }
-    function setupLocale() {
-        if (typeof self.config.locale !== "object" &&
-            typeof flatpickr.l10ns[self.config.locale] === "undefined")
-            self.config.errorHandler(new Error(`flatpickr: invalid locale ${self.config.locale}`));
-        self.l10n = Object.assign(Object.assign({}, flatpickr.l10ns.default), (typeof self.config.locale === "object"
-            ? self.config.locale
-            : self.config.locale !== "default"
-                ? flatpickr.l10ns[self.config.locale]
-                : undefined));
-        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__["tokenRegex"].K = `(${self.l10n.amPM[0]}|${self.l10n.amPM[1]}|${self.l10n.amPM[0].toLowerCase()}|${self.l10n.amPM[1].toLowerCase()})`;
-        const userConfig = Object.assign(Object.assign({}, instanceConfig), JSON.parse(JSON.stringify(element.dataset || {})));
-        if (userConfig.time_24hr === undefined &&
-            flatpickr.defaultConfig.time_24hr === undefined) {
-            self.config.time_24hr = self.l10n.time_24hr;
-        }
-        self.formatDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateFormatter"])(self);
-        self.parseDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateParser"])({ config: self.config, l10n: self.l10n });
-    }
-    function positionCalendar(customPositionElement) {
-        if (typeof self.config.position === "function") {
-            return void self.config.position(self, customPositionElement);
-        }
-        if (self.calendarContainer === undefined)
-            return;
-        triggerEvent("onPreCalendarPosition");
-        const positionElement = customPositionElement || self._positionElement;
-        const calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, ((acc, child) => acc + child.offsetHeight), 0), calendarWidth = self.calendarContainer.offsetWidth, configPos = self.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" ||
-            (configPosVertical !== "below" &&
-                distanceFromBottom < calendarHeight &&
-                inputBounds.top > calendarHeight);
-        const top = window.pageYOffset +
-            inputBounds.top +
-            (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowTop", !showOnTop);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowBottom", showOnTop);
-        if (self.config.inline)
-            return;
-        let left = window.pageXOffset + inputBounds.left;
-        let isCenter = false;
-        let isRight = false;
-        if (configPosHorizontal === "center") {
-            left -= (calendarWidth - inputBounds.width) / 2;
-            isCenter = true;
-        }
-        else if (configPosHorizontal === "right") {
-            left -= calendarWidth - inputBounds.width;
-            isRight = true;
-        }
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowLeft", !isCenter && !isRight);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowCenter", isCenter);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowRight", isRight);
-        const right = window.document.body.offsetWidth -
-            (window.pageXOffset + inputBounds.right);
-        const rightMost = left + calendarWidth > window.document.body.offsetWidth;
-        const centerMost = right + calendarWidth > window.document.body.offsetWidth;
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "rightMost", rightMost);
-        if (self.config.static)
-            return;
-        self.calendarContainer.style.top = `${top}px`;
-        if (!rightMost) {
-            self.calendarContainer.style.left = `${left}px`;
-            self.calendarContainer.style.right = "auto";
-        }
-        else if (!centerMost) {
-            self.calendarContainer.style.left = "auto";
-            self.calendarContainer.style.right = `${right}px`;
-        }
-        else {
-            const doc = getDocumentStyleSheet();
-            if (doc === undefined)
-                return;
-            const bodyWidth = window.document.body.offsetWidth;
-            const centerLeft = Math.max(0, bodyWidth / 2 - calendarWidth / 2);
-            const centerBefore = ".flatpickr-calendar.centerMost:before";
-            const centerAfter = ".flatpickr-calendar.centerMost:after";
-            const centerIndex = doc.cssRules.length;
-            const centerStyle = `{left:${inputBounds.left}px;right:auto;}`;
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "rightMost", false);
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "centerMost", true);
-            doc.insertRule(`${centerBefore},${centerAfter}${centerStyle}`, centerIndex);
-            self.calendarContainer.style.left = `${centerLeft}px`;
-            self.calendarContainer.style.right = "auto";
-        }
-    }
-    function getDocumentStyleSheet() {
-        let editableSheet = null;
-        for (let i = 0; i < document.styleSheets.length; i++) {
-            const sheet = document.styleSheets[i];
-            try {
-                sheet.cssRules;
-            }
-            catch (err) {
-                continue;
-            }
-            editableSheet = sheet;
-            break;
-        }
-        return editableSheet != null ? editableSheet : createStyleSheet();
-    }
-    function createStyleSheet() {
-        const style = document.createElement("style");
-        document.head.appendChild(style);
-        return style.sheet;
-    }
-    function redraw() {
-        if (self.config.noCalendar || self.isMobile)
-            return;
-        buildMonthSwitch();
-        updateNavigationCurrentMonth();
-        buildDays();
-    }
-    function focusAndClose() {
-        self._input.focus();
-        if (window.navigator.userAgent.indexOf("MSIE") !== -1 ||
-            navigator.msMaxTouchPoints !== undefined) {
-            setTimeout(self.close, 0);
-        }
-        else {
-            self.close();
-        }
-    }
-    function selectDate(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const isSelectable = (day) => day.classList &&
-            day.classList.contains("flatpickr-day") &&
-            !day.classList.contains("flatpickr-disabled") &&
-            !day.classList.contains("notAllowed");
-        const t = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["findParent"])(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e), isSelectable);
-        if (t === undefined)
-            return;
-        const target = t;
-        const selectedDate = (self.latestSelectedDateObj = new Date(target.dateObj.getTime()));
-        const shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth ||
-            selectedDate.getMonth() >
-                self.currentMonth + self.config.showMonths - 1) &&
-            self.config.mode !== "range";
-        self.selectedDateElem = target;
-        if (self.config.mode === "single")
-            self.selectedDates = [selectedDate];
-        else if (self.config.mode === "multiple") {
-            const selectedIndex = isDateSelected(selectedDate);
-            if (selectedIndex)
-                self.selectedDates.splice(parseInt(selectedIndex), 1);
-            else
-                self.selectedDates.push(selectedDate);
-        }
-        else if (self.config.mode === "range") {
-            if (self.selectedDates.length === 2) {
-                self.clear(false, false);
-            }
-            self.latestSelectedDateObj = selectedDate;
-            self.selectedDates.push(selectedDate);
-            if (Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(selectedDate, self.selectedDates[0], true) !== 0)
-                self.selectedDates.sort((a, b) => a.getTime() - b.getTime());
-        }
-        setHoursFromInputs();
-        if (shouldChangeMonth) {
-            const isNewYear = self.currentYear !== selectedDate.getFullYear();
-            self.currentYear = selectedDate.getFullYear();
-            self.currentMonth = selectedDate.getMonth();
-            if (isNewYear) {
-                triggerEvent("onYearChange");
-                buildMonthSwitch();
-            }
-            triggerEvent("onMonthChange");
-        }
-        updateNavigationCurrentMonth();
-        buildDays();
-        updateValue();
-        if (!shouldChangeMonth &&
-            self.config.mode !== "range" &&
-            self.config.showMonths === 1)
-            focusOnDayElem(target);
-        else if (self.selectedDateElem !== undefined &&
-            self.hourElement === undefined) {
-            self.selectedDateElem && self.selectedDateElem.focus();
-        }
-        if (self.hourElement !== undefined)
-            self.hourElement !== undefined && self.hourElement.focus();
-        if (self.config.closeOnSelect) {
-            const single = self.config.mode === "single" && !self.config.enableTime;
-            const range = self.config.mode === "range" &&
-                self.selectedDates.length === 2 &&
-                !self.config.enableTime;
-            if (single || range) {
-                focusAndClose();
-            }
-        }
-        triggerChange();
-    }
-    const CALLBACKS = {
-        locale: [setupLocale, updateWeekdays],
-        showMonths: [buildMonths, setCalendarWidth, buildWeekdays],
-        minDate: [jumpToDate],
-        maxDate: [jumpToDate],
-        clickOpens: [
-            () => {
-                if (self.config.clickOpens === true) {
-                    bind(self._input, "focus", self.open);
-                    bind(self._input, "click", self.open);
-                }
-                else {
-                    self._input.removeEventListener("focus", self.open);
-                    self._input.removeEventListener("click", self.open);
-                }
-            },
-        ],
-    };
-    function set(option, value) {
-        if (option !== null && typeof option === "object") {
-            Object.assign(self.config, option);
-            for (const key in option) {
-                if (CALLBACKS[key] !== undefined)
-                    CALLBACKS[key].forEach((x) => x());
-            }
-        }
-        else {
-            self.config[option] = value;
-            if (CALLBACKS[option] !== undefined)
-                CALLBACKS[option].forEach((x) => x());
-            else if (_types_options__WEBPACK_IMPORTED_MODULE_0__["HOOKS"].indexOf(option) > -1)
-                self.config[option] = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["arrayify"])(value);
-        }
-        self.redraw();
-        updateValue(true);
-    }
-    function setSelectedDate(inputDate, format) {
-        let dates = [];
-        if (inputDate instanceof Array)
-            dates = inputDate.map((d) => self.parseDate(d, format));
-        else if (inputDate instanceof Date || typeof inputDate === "number")
-            dates = [self.parseDate(inputDate, format)];
-        else if (typeof inputDate === "string") {
-            switch (self.config.mode) {
-                case "single":
-                case "time":
-                    dates = [self.parseDate(inputDate, format)];
-                    break;
-                case "multiple":
-                    dates = inputDate
-                        .split(self.config.conjunction)
-                        .map((date) => self.parseDate(date, format));
-                    break;
-                case "range":
-                    dates = inputDate
-                        .split(self.l10n.rangeSeparator)
-                        .map((date) => self.parseDate(date, format));
-                    break;
-                default:
-                    break;
-            }
-        }
-        else
-            self.config.errorHandler(new Error(`Invalid date supplied: ${JSON.stringify(inputDate)}`));
-        self.selectedDates = (self.config.allowInvalidPreload
-            ? dates
-            : dates.filter((d) => d instanceof Date && isEnabled(d, false)));
-        if (self.config.mode === "range")
-            self.selectedDates.sort((a, b) => a.getTime() - b.getTime());
-    }
-    function setDate(date, triggerChange = false, format = self.config.dateFormat) {
-        if ((date !== 0 && !date) || (date instanceof Array && date.length === 0))
-            return self.clear(triggerChange);
-        setSelectedDate(date, format);
-        self.latestSelectedDateObj =
-            self.selectedDates[self.selectedDates.length - 1];
-        self.redraw();
-        jumpToDate(undefined, triggerChange);
-        setHoursFromDate();
-        if (self.selectedDates.length === 0) {
-            self.clear(false);
-        }
-        updateValue(triggerChange);
-        if (triggerChange)
-            triggerEvent("onChange");
-    }
-    function parseDateRules(arr) {
-        return arr
-            .slice()
-            .map((rule) => {
-            if (typeof rule === "string" ||
-                typeof rule === "number" ||
-                rule instanceof Date) {
-                return self.parseDate(rule, undefined, true);
-            }
-            else if (rule &&
-                typeof rule === "object" &&
-                rule.from &&
-                rule.to)
-                return {
-                    from: self.parseDate(rule.from, undefined),
-                    to: self.parseDate(rule.to, undefined),
-                };
-            return rule;
-        })
-            .filter((x) => x);
-    }
-    function setupDates() {
-        self.selectedDates = [];
-        self.now = self.parseDate(self.config.now) || new Date();
-        const preloadedDate = self.config.defaultDate ||
-            ((self.input.nodeName === "INPUT" ||
-                self.input.nodeName === "TEXTAREA") &&
-                self.input.placeholder &&
-                self.input.value === self.input.placeholder
-                ? null
-                : self.input.value);
-        if (preloadedDate)
-            setSelectedDate(preloadedDate, self.config.dateFormat);
-        self._initialDate =
-            self.selectedDates.length > 0
-                ? self.selectedDates[0]
-                : self.config.minDate &&
-                    self.config.minDate.getTime() > self.now.getTime()
-                    ? self.config.minDate
-                    : self.config.maxDate &&
-                        self.config.maxDate.getTime() < self.now.getTime()
-                        ? self.config.maxDate
-                        : self.now;
-        self.currentYear = self._initialDate.getFullYear();
-        self.currentMonth = self._initialDate.getMonth();
-        if (self.selectedDates.length > 0)
-            self.latestSelectedDateObj = self.selectedDates[0];
-        if (self.config.minTime !== undefined)
-            self.config.minTime = self.parseDate(self.config.minTime, "H:i");
-        if (self.config.maxTime !== undefined)
-            self.config.maxTime = self.parseDate(self.config.maxTime, "H:i");
-        self.minDateHasTime =
-            !!self.config.minDate &&
-                (self.config.minDate.getHours() > 0 ||
-                    self.config.minDate.getMinutes() > 0 ||
-                    self.config.minDate.getSeconds() > 0);
-        self.maxDateHasTime =
-            !!self.config.maxDate &&
-                (self.config.maxDate.getHours() > 0 ||
-                    self.config.maxDate.getMinutes() > 0 ||
-                    self.config.maxDate.getSeconds() > 0);
-    }
-    function setupInputs() {
-        self.input = getInputElem();
-        if (!self.input) {
-            self.config.errorHandler(new Error("Invalid input element specified"));
-            return;
-        }
-        self.input._type = self.input.type;
-        self.input.type = "text";
-        self.input.classList.add("flatpickr-input");
-        self._input = self.input;
-        if (self.config.altInput) {
-            self.altInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])(self.input.nodeName, self.config.altInputClass);
-            self._input = self.altInput;
-            self.altInput.placeholder = self.input.placeholder;
-            self.altInput.disabled = self.input.disabled;
-            self.altInput.required = self.input.required;
-            self.altInput.tabIndex = self.input.tabIndex;
-            self.altInput.type = "text";
-            self.input.setAttribute("type", "hidden");
-            if (!self.config.static && self.input.parentNode)
-                self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
-        }
-        if (!self.config.allowInput)
-            self._input.setAttribute("readonly", "readonly");
-        self._positionElement = self.config.positionElement || self._input;
-    }
-    function setupMobile() {
-        const inputType = self.config.enableTime
-            ? self.config.noCalendar
-                ? "time"
-                : "datetime-local"
-            : "date";
-        self.mobileInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("input", self.input.className + " flatpickr-mobile");
-        self.mobileInput.tabIndex = 1;
-        self.mobileInput.type = inputType;
-        self.mobileInput.disabled = self.input.disabled;
-        self.mobileInput.required = self.input.required;
-        self.mobileInput.placeholder = self.input.placeholder;
-        self.mobileFormatStr =
-            inputType === "datetime-local"
-                ? "Y-m-d\\TH:i:S"
-                : inputType === "date"
-                    ? "Y-m-d"
-                    : "H:i:S";
-        if (self.selectedDates.length > 0) {
-            self.mobileInput.defaultValue = self.mobileInput.value = self.formatDate(self.selectedDates[0], self.mobileFormatStr);
-        }
-        if (self.config.minDate)
-            self.mobileInput.min = self.formatDate(self.config.minDate, "Y-m-d");
-        if (self.config.maxDate)
-            self.mobileInput.max = self.formatDate(self.config.maxDate, "Y-m-d");
-        if (self.input.getAttribute("step"))
-            self.mobileInput.step = String(self.input.getAttribute("step"));
-        self.input.type = "hidden";
-        if (self.altInput !== undefined)
-            self.altInput.type = "hidden";
-        try {
-            if (self.input.parentNode)
-                self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
-        }
-        catch (_a) { }
-        bind(self.mobileInput, "change", (e) => {
-            self.setDate(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e).value, false, self.mobileFormatStr);
-            triggerEvent("onChange");
-            triggerEvent("onClose");
-        });
-    }
-    function toggle(e) {
-        if (self.isOpen === true)
-            return self.close();
-        self.open(e);
-    }
-    function triggerEvent(event, data) {
-        if (self.config === undefined)
-            return;
-        const hooks = self.config[event];
-        if (hooks !== undefined && hooks.length > 0) {
-            for (let i = 0; hooks[i] && i < hooks.length; i++)
-                hooks[i](self.selectedDates, self.input.value, self, data);
-        }
-        if (event === "onChange") {
-            self.input.dispatchEvent(createEvent("change"));
-            self.input.dispatchEvent(createEvent("input"));
-        }
-    }
-    function createEvent(name) {
-        const e = document.createEvent("Event");
-        e.initEvent(name, true, true);
-        return e;
-    }
-    function isDateSelected(date) {
-        for (let i = 0; i < self.selectedDates.length; i++) {
-            if (Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(self.selectedDates[i], date) === 0)
-                return "" + i;
-        }
-        return false;
-    }
-    function isDateInRange(date) {
-        if (self.config.mode !== "range" || self.selectedDates.length < 2)
-            return false;
-        return (Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[0]) >= 0 &&
-            Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[1]) <= 0);
-    }
-    function updateNavigationCurrentMonth() {
-        if (self.config.noCalendar || self.isMobile || !self.monthNav)
-            return;
-        self.yearElements.forEach((yearElement, i) => {
-            const d = new Date(self.currentYear, self.currentMonth, 1);
-            d.setMonth(self.currentMonth + i);
-            if (self.config.showMonths > 1 ||
-                self.config.monthSelectorType === "static") {
-                self.monthElements[i].textContent =
-                    Object(_utils_formatting__WEBPACK_IMPORTED_MODULE_5__["monthToStr"])(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
-            }
-            else {
-                self.monthsDropdownContainer.value = d.getMonth().toString();
-            }
-            yearElement.value = d.getFullYear().toString();
-        });
-        self._hidePrevMonthArrow =
-            self.config.minDate !== undefined &&
-                (self.currentYear === self.config.minDate.getFullYear()
-                    ? self.currentMonth <= self.config.minDate.getMonth()
-                    : self.currentYear < self.config.minDate.getFullYear());
-        self._hideNextMonthArrow =
-            self.config.maxDate !== undefined &&
-                (self.currentYear === self.config.maxDate.getFullYear()
-                    ? self.currentMonth + 1 > self.config.maxDate.getMonth()
-                    : self.currentYear > self.config.maxDate.getFullYear());
-    }
-    function getDateStr(format) {
-        return self.selectedDates
-            .map((dObj) => self.formatDate(dObj, format))
-            .filter((d, i, arr) => self.config.mode !== "range" ||
-            self.config.enableTime ||
-            arr.indexOf(d) === i)
-            .join(self.config.mode !== "range"
-            ? self.config.conjunction
-            : self.l10n.rangeSeparator);
-    }
-    function updateValue(triggerChange = true) {
-        if (self.mobileInput !== undefined && self.mobileFormatStr) {
-            self.mobileInput.value =
-                self.latestSelectedDateObj !== undefined
-                    ? self.formatDate(self.latestSelectedDateObj, self.mobileFormatStr)
-                    : "";
-        }
-        self.input.value = getDateStr(self.config.dateFormat);
-        if (self.altInput !== undefined) {
-            self.altInput.value = getDateStr(self.config.altFormat);
-        }
-        if (triggerChange !== false)
-            triggerEvent("onValueUpdate");
-    }
-    function onMonthNavClick(e) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        const isPrevMonth = self.prevMonthNav.contains(eventTarget);
-        const isNextMonth = self.nextMonthNav.contains(eventTarget);
-        if (isPrevMonth || isNextMonth) {
-            changeMonth(isPrevMonth ? -1 : 1);
-        }
-        else if (self.yearElements.indexOf(eventTarget) >= 0) {
-            eventTarget.select();
-        }
-        else if (eventTarget.classList.contains("arrowUp")) {
-            self.changeYear(self.currentYear + 1);
-        }
-        else if (eventTarget.classList.contains("arrowDown")) {
-            self.changeYear(self.currentYear - 1);
-        }
-    }
-    function timeWrapper(e) {
-        e.preventDefault();
-        const isKeyDown = e.type === "keydown", eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e), input = eventTarget;
-        if (self.amPM !== undefined && eventTarget === self.amPM) {
-            self.amPM.textContent =
-                self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(self.amPM.textContent === self.l10n.amPM[0])];
-        }
-        const min = parseFloat(input.getAttribute("min")), max = parseFloat(input.getAttribute("max")), step = parseFloat(input.getAttribute("step")), curValue = parseInt(input.value, 10), delta = e.delta ||
-            (isKeyDown ? (e.which === 38 ? 1 : -1) : 0);
-        let newValue = curValue + step * delta;
-        if (typeof input.value !== "undefined" && input.value.length === 2) {
-            const isHourElem = input === self.hourElement, isMinuteElem = input === self.minuteElement;
-            if (newValue < min) {
-                newValue =
-                    max +
-                        newValue +
-                        Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(!isHourElem) +
-                        (Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(isHourElem) && Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(!self.amPM));
-                if (isMinuteElem)
-                    incrementNumInput(undefined, -1, self.hourElement);
-            }
-            else if (newValue > max) {
-                newValue =
-                    input === self.hourElement ? newValue - max - Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(!self.amPM) : min;
-                if (isMinuteElem)
-                    incrementNumInput(undefined, 1, self.hourElement);
-            }
-            if (self.amPM &&
-                isHourElem &&
-                (step === 1
-                    ? newValue + curValue === 23
-                    : Math.abs(newValue - curValue) > step)) {
-                self.amPM.textContent =
-                    self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(self.amPM.textContent === self.l10n.amPM[0])];
-            }
-            input.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(newValue);
-        }
-    }
-    init();
-    return self;
-}
-function _flatpickr(nodeList, config) {
-    const nodes = Array.prototype.slice
-        .call(nodeList)
-        .filter((x) => x instanceof HTMLElement);
-    const instances = [];
-    for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
-        try {
-            if (node.getAttribute("data-fp-omit") !== null)
-                continue;
-            if (node._flatpickr !== undefined) {
-                node._flatpickr.destroy();
-                node._flatpickr = undefined;
-            }
-            node._flatpickr = FlatpickrInstance(node, config || {});
-            instances.push(node._flatpickr);
-        }
-        catch (e) {
-            console.error(e);
-        }
-    }
-    return instances.length === 1 ? instances[0] : instances;
-}
-if (typeof HTMLElement !== "undefined" &&
-    typeof HTMLCollection !== "undefined" &&
-    typeof NodeList !== "undefined") {
-    HTMLCollection.prototype.flatpickr = NodeList.prototype.flatpickr = function (config) {
-        return _flatpickr(this, config);
-    };
-    HTMLElement.prototype.flatpickr = function (config) {
-        return _flatpickr([this], config);
-    };
-}
-var flatpickr = function (selector, config) {
-    if (typeof selector === "string") {
-        return _flatpickr(window.document.querySelectorAll(selector), config);
-    }
-    else if (selector instanceof Node) {
-        return _flatpickr([selector], config);
-    }
-    else {
-        return _flatpickr(selector, config);
-    }
-};
-flatpickr.defaultConfig = {};
-flatpickr.l10ns = {
-    en: Object.assign({}, _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"]),
-    default: Object.assign({}, _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"]),
-};
-flatpickr.localize = (l10n) => {
-    flatpickr.l10ns.default = Object.assign(Object.assign({}, flatpickr.l10ns.default), l10n);
-};
-flatpickr.setDefaults = (config) => {
-    flatpickr.defaultConfig = Object.assign(Object.assign({}, flatpickr.defaultConfig), config);
-};
-flatpickr.parseDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateParser"])({});
-flatpickr.formatDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateFormatter"])({});
-flatpickr.compareDates = _utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"];
-if (typeof jQuery !== "undefined" && typeof jQuery.fn !== "undefined") {
-    jQuery.fn.flatpickr = function (config) {
-        return _flatpickr(this, config);
-    };
-}
-Date.prototype.fp_incr = function (days) {
-    return new Date(this.getFullYear(), this.getMonth(), this.getDate() + (typeof days === "string" ? parseInt(days, 10) : days));
-};
-if (typeof window !== "undefined") {
-    window.flatpickr = flatpickr;
-}
-/* harmony default export */ __webpack_exports__["default"] = (flatpickr);
-
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "frontend/src/@core/layouts/components/Logo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./frontend/node_modules/flatpickr/dist/esm/l10n/default.js":
-/*!******************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/l10n/default.js ***!
-  \******************************************************************/
-/*! exports provided: english, default */
+/***/ "./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&":
+/*!***************************************************************************************!*\
+  !*** ./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "english", function() { return english; });
-const english = {
-    weekdays: {
-        shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-        longhand: [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-        ],
-    },
-    months: {
-        shorthand: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-        ],
-        longhand: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        ],
-    },
-    daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-    firstDayOfWeek: 0,
-    ordinal: (nth) => {
-        const s = nth % 100;
-        if (s > 3 && s < 21)
-            return "th";
-        switch (s % 10) {
-            case 1:
-                return "st";
-            case 2:
-                return "nd";
-            case 3:
-                return "rd";
-            default:
-                return "th";
-        }
-    },
-    rangeSeparator: " to ",
-    weekAbbreviation: "Wk",
-    scrollTitle: "Scroll to increment",
-    toggleTitle: "Click to toggle",
-    amPM: ["AM", "PM"],
-    yearAriaLabel: "Year",
-    monthAriaLabel: "Month",
-    hourAriaLabel: "Hour",
-    minuteAriaLabel: "Minute",
-    time_24hr: false,
-};
-/* harmony default export */ __webpack_exports__["default"] = (english);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Logo.vue?vue&type=template&id=556c28d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Logo_vue_vue_type_template_id_556c28d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
 
 
 /***/ }),
 
-/***/ "./frontend/node_modules/flatpickr/dist/esm/types/options.js":
-/*!*******************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/types/options.js ***!
-  \*******************************************************************/
-/*! exports provided: HOOKS, defaults */
+/***/ "./frontend/src/@core/mixins/ui/transition.js":
+/*!****************************************************!*\
+  !*** ./frontend/src/@core/mixins/ui/transition.js ***!
+  \****************************************************/
+/*! exports provided: heightTransition, _ */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HOOKS", function() { return HOOKS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaults", function() { return defaults; });
-const HOOKS = [
-    "onChange",
-    "onClose",
-    "onDayCreate",
-    "onDestroy",
-    "onKeyDown",
-    "onMonthChange",
-    "onOpen",
-    "onParseConfig",
-    "onReady",
-    "onValueUpdate",
-    "onYearChange",
-    "onPreCalendarPosition",
-];
-const defaults = {
-    _disable: [],
-    allowInput: false,
-    allowInvalidPreload: false,
-    altFormat: "F j, Y",
-    altInput: false,
-    altInputClass: "form-control input",
-    animate: typeof window === "object" &&
-        window.navigator.userAgent.indexOf("MSIE") === -1,
-    ariaDateFormat: "F j, Y",
-    autoFillDefaultTime: true,
-    clickOpens: true,
-    closeOnSelect: true,
-    conjunction: ", ",
-    dateFormat: "Y-m-d",
-    defaultHour: 12,
-    defaultMinute: 0,
-    defaultSeconds: 0,
-    disable: [],
-    disableMobile: false,
-    enableSeconds: false,
-    enableTime: false,
-    errorHandler: (err) => typeof console !== "undefined" && console.warn(err),
-    getWeek: (givenDate) => {
-        const date = new Date(givenDate.getTime());
-        date.setHours(0, 0, 0, 0);
-        date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
-        var week1 = new Date(date.getFullYear(), 0, 4);
-        return (1 +
-            Math.round(((date.getTime() - week1.getTime()) / 86400000 -
-                3 +
-                ((week1.getDay() + 6) % 7)) /
-                7));
-    },
-    hourIncrement: 1,
-    ignoredFocusElements: [],
-    inline: false,
-    locale: "default",
-    minuteIncrement: 5,
-    mode: "single",
-    monthSelectorType: "dropdown",
-    nextArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",
-    noCalendar: false,
-    now: new Date(),
-    onChange: [],
-    onClose: [],
-    onDayCreate: [],
-    onDestroy: [],
-    onKeyDown: [],
-    onMonthChange: [],
-    onOpen: [],
-    onParseConfig: [],
-    onReady: [],
-    onValueUpdate: [],
-    onYearChange: [],
-    onPreCalendarPosition: [],
-    plugins: [],
-    position: "auto",
-    positionElement: undefined,
-    prevArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z' /></svg>",
-    shorthandCurrentMonth: false,
-    showMonths: 1,
-    static: false,
-    time_24hr: false,
-    weekNumbers: false,
-    wrap: false,
-};
-
-
-/***/ }),
-
-/***/ "./frontend/node_modules/flatpickr/dist/esm/utils/dates.js":
-/*!*****************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/utils/dates.js ***!
-  \*****************************************************************/
-/*! exports provided: createDateFormatter, createDateParser, compareDates, compareTimes, isBetween, duration, getDefaultHours */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDateFormatter", function() { return createDateFormatter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDateParser", function() { return createDateParser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareDates", function() { return compareDates; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTimes", function() { return compareTimes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isBetween", function() { return isBetween; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "duration", function() { return duration; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDefaultHours", function() { return getDefaultHours; });
-/* harmony import */ var _formatting__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formatting */ "./frontend/node_modules/flatpickr/dist/esm/utils/formatting.js");
-/* harmony import */ var _types_options__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/options */ "./frontend/node_modules/flatpickr/dist/esm/types/options.js");
-/* harmony import */ var _l10n_default__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../l10n/default */ "./frontend/node_modules/flatpickr/dist/esm/l10n/default.js");
-
-
-
-const createDateFormatter = ({ config = _types_options__WEBPACK_IMPORTED_MODULE_1__["defaults"], l10n = _l10n_default__WEBPACK_IMPORTED_MODULE_2__["english"], isMobile = false, }) => (dateObj, frmt, overrideLocale) => {
-    const locale = overrideLocale || l10n;
-    if (config.formatDate !== undefined && !isMobile) {
-        return config.formatDate(dateObj, frmt, locale);
-    }
-    return frmt
-        .split("")
-        .map((c, i, arr) => _formatting__WEBPACK_IMPORTED_MODULE_0__["formats"][c] && arr[i - 1] !== "\\"
-        ? _formatting__WEBPACK_IMPORTED_MODULE_0__["formats"][c](dateObj, locale, config)
-        : c !== "\\"
-            ? c
-            : "")
-        .join("");
-};
-const createDateParser = ({ config = _types_options__WEBPACK_IMPORTED_MODULE_1__["defaults"], l10n = _l10n_default__WEBPACK_IMPORTED_MODULE_2__["english"] }) => (date, givenFormat, timeless, customLocale) => {
-    if (date !== 0 && !date)
-        return undefined;
-    const locale = customLocale || l10n;
-    let parsedDate;
-    const dateOrig = date;
-    if (date instanceof Date)
-        parsedDate = new Date(date.getTime());
-    else if (typeof date !== "string" &&
-        date.toFixed !== undefined)
-        parsedDate = new Date(date);
-    else if (typeof date === "string") {
-        const format = givenFormat || (config || _types_options__WEBPACK_IMPORTED_MODULE_1__["defaults"]).dateFormat;
-        const datestr = String(date).trim();
-        if (datestr === "today") {
-            parsedDate = new Date();
-            timeless = true;
-        }
-        else if (/Z$/.test(datestr) ||
-            /GMT$/.test(datestr))
-            parsedDate = new Date(date);
-        else if (config && config.parseDate)
-            parsedDate = config.parseDate(date, format);
-        else {
-            parsedDate =
-                !config || !config.noCalendar
-                    ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0)
-                    : new Date(new Date().setHours(0, 0, 0, 0));
-            let matched, ops = [];
-            for (let i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
-                const token = format[i];
-                const isBackSlash = token === "\\";
-                const escaped = format[i - 1] === "\\" || isBackSlash;
-                if (_formatting__WEBPACK_IMPORTED_MODULE_0__["tokenRegex"][token] && !escaped) {
-                    regexStr += _formatting__WEBPACK_IMPORTED_MODULE_0__["tokenRegex"][token];
-                    const match = new RegExp(regexStr).exec(date);
-                    if (match && (matched = true)) {
-                        ops[token !== "Y" ? "push" : "unshift"]({
-                            fn: _formatting__WEBPACK_IMPORTED_MODULE_0__["revFormat"][token],
-                            val: match[++matchIndex],
-                        });
-                    }
-                }
-                else if (!isBackSlash)
-                    regexStr += ".";
-                ops.forEach(({ fn, val }) => (parsedDate = fn(parsedDate, val, locale) || parsedDate));
-            }
-            parsedDate = matched ? parsedDate : undefined;
-        }
-    }
-    if (!(parsedDate instanceof Date && !isNaN(parsedDate.getTime()))) {
-        config.errorHandler(new Error(`Invalid date provided: ${dateOrig}`));
-        return undefined;
-    }
-    if (timeless === true)
-        parsedDate.setHours(0, 0, 0, 0);
-    return parsedDate;
-};
-function compareDates(date1, date2, timeless = true) {
-    if (timeless !== false) {
-        return (new Date(date1.getTime()).setHours(0, 0, 0, 0) -
-            new Date(date2.getTime()).setHours(0, 0, 0, 0));
-    }
-    return date1.getTime() - date2.getTime();
-}
-function compareTimes(date1, date2) {
-    return (3600 * (date1.getHours() - date2.getHours()) +
-        60 * (date1.getMinutes() - date2.getMinutes()) +
-        date1.getSeconds() -
-        date2.getSeconds());
-}
-const isBetween = (ts, ts1, ts2) => {
-    return ts > Math.min(ts1, ts2) && ts < Math.max(ts1, ts2);
-};
-const duration = {
-    DAY: 86400000,
-};
-function getDefaultHours(config) {
-    let hours = config.defaultHour;
-    let minutes = config.defaultMinute;
-    let seconds = config.defaultSeconds;
-    if (config.minDate !== undefined) {
-        const minHour = config.minDate.getHours();
-        const minMinutes = config.minDate.getMinutes();
-        const minSeconds = config.minDate.getSeconds();
-        if (hours < minHour) {
-            hours = minHour;
-        }
-        if (hours === minHour && minutes < minMinutes) {
-            minutes = minMinutes;
-        }
-        if (hours === minHour && minutes === minMinutes && seconds < minSeconds)
-            seconds = config.minDate.getSeconds();
-    }
-    if (config.maxDate !== undefined) {
-        const maxHr = config.maxDate.getHours();
-        const maxMinutes = config.maxDate.getMinutes();
-        hours = Math.min(hours, maxHr);
-        if (hours === maxHr)
-            minutes = Math.min(maxMinutes, minutes);
-        if (hours === maxHr && minutes === maxMinutes)
-            seconds = config.maxDate.getSeconds();
-    }
-    return { hours, minutes, seconds };
-}
-
-
-/***/ }),
-
-/***/ "./frontend/node_modules/flatpickr/dist/esm/utils/dom.js":
-/*!***************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/utils/dom.js ***!
-  \***************************************************************/
-/*! exports provided: toggleClass, createElement, clearNode, findParent, createNumberInput, getEventTarget */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleClass", function() { return toggleClass; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearNode", function() { return clearNode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findParent", function() { return findParent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNumberInput", function() { return createNumberInput; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEventTarget", function() { return getEventTarget; });
-function toggleClass(elem, className, bool) {
-    if (bool === true)
-        return elem.classList.add(className);
-    elem.classList.remove(className);
-}
-function createElement(tag, className, content) {
-    const e = window.document.createElement(tag);
-    className = className || "";
-    content = content || "";
-    e.className = className;
-    if (content !== undefined)
-        e.textContent = content;
-    return e;
-}
-function clearNode(node) {
-    while (node.firstChild)
-        node.removeChild(node.firstChild);
-}
-function findParent(node, condition) {
-    if (condition(node))
-        return node;
-    else if (node.parentNode)
-        return findParent(node.parentNode, condition);
-    return undefined;
-}
-function createNumberInput(inputClassName, opts) {
-    const wrapper = createElement("div", "numInputWrapper"), numInput = createElement("input", "numInput " + inputClassName), arrowUp = createElement("span", "arrowUp"), arrowDown = createElement("span", "arrowDown");
-    if (navigator.userAgent.indexOf("MSIE 9.0") === -1) {
-        numInput.type = "number";
-    }
-    else {
-        numInput.type = "text";
-        numInput.pattern = "\\d*";
-    }
-    if (opts !== undefined)
-        for (const key in opts)
-            numInput.setAttribute(key, opts[key]);
-    wrapper.appendChild(numInput);
-    wrapper.appendChild(arrowUp);
-    wrapper.appendChild(arrowDown);
-    return wrapper;
-}
-function getEventTarget(event) {
-    try {
-        if (typeof event.composedPath === "function") {
-            const path = event.composedPath();
-            return path[0];
-        }
-        return event.target;
-    }
-    catch (error) {
-        return event.target;
-    }
-}
-
-
-/***/ }),
-
-/***/ "./frontend/node_modules/flatpickr/dist/esm/utils/formatting.js":
-/*!**********************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/utils/formatting.js ***!
-  \**********************************************************************/
-/*! exports provided: monthToStr, revFormat, tokenRegex, formats */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "monthToStr", function() { return monthToStr; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "revFormat", function() { return revFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tokenRegex", function() { return tokenRegex; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formats", function() { return formats; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./frontend/node_modules/flatpickr/dist/esm/utils/index.js");
-
-const doNothing = () => undefined;
-const monthToStr = (monthNumber, shorthand, locale) => locale.months[shorthand ? "shorthand" : "longhand"][monthNumber];
-const revFormat = {
-    D: doNothing,
-    F: function (dateObj, monthName, locale) {
-        dateObj.setMonth(locale.months.longhand.indexOf(monthName));
-    },
-    G: (dateObj, hour) => {
-        dateObj.setHours(parseFloat(hour));
-    },
-    H: (dateObj, hour) => {
-        dateObj.setHours(parseFloat(hour));
-    },
-    J: (dateObj, day) => {
-        dateObj.setDate(parseFloat(day));
-    },
-    K: (dateObj, amPM, locale) => {
-        dateObj.setHours((dateObj.getHours() % 12) +
-            12 * Object(_utils__WEBPACK_IMPORTED_MODULE_0__["int"])(new RegExp(locale.amPM[1], "i").test(amPM)));
-    },
-    M: function (dateObj, shortMonth, locale) {
-        dateObj.setMonth(locale.months.shorthand.indexOf(shortMonth));
-    },
-    S: (dateObj, seconds) => {
-        dateObj.setSeconds(parseFloat(seconds));
-    },
-    U: (_, unixSeconds) => new Date(parseFloat(unixSeconds) * 1000),
-    W: function (dateObj, weekNum, locale) {
-        const weekNumber = parseInt(weekNum);
-        const date = new Date(dateObj.getFullYear(), 0, 2 + (weekNumber - 1) * 7, 0, 0, 0, 0);
-        date.setDate(date.getDate() - date.getDay() + locale.firstDayOfWeek);
-        return date;
-    },
-    Y: (dateObj, year) => {
-        dateObj.setFullYear(parseFloat(year));
-    },
-    Z: (_, ISODate) => new Date(ISODate),
-    d: (dateObj, day) => {
-        dateObj.setDate(parseFloat(day));
-    },
-    h: (dateObj, hour) => {
-        dateObj.setHours(parseFloat(hour));
-    },
-    i: (dateObj, minutes) => {
-        dateObj.setMinutes(parseFloat(minutes));
-    },
-    j: (dateObj, day) => {
-        dateObj.setDate(parseFloat(day));
-    },
-    l: doNothing,
-    m: (dateObj, month) => {
-        dateObj.setMonth(parseFloat(month) - 1);
-    },
-    n: (dateObj, month) => {
-        dateObj.setMonth(parseFloat(month) - 1);
-    },
-    s: (dateObj, seconds) => {
-        dateObj.setSeconds(parseFloat(seconds));
-    },
-    u: (_, unixMillSeconds) => new Date(parseFloat(unixMillSeconds)),
-    w: doNothing,
-    y: (dateObj, year) => {
-        dateObj.setFullYear(2000 + parseFloat(year));
-    },
-};
-const tokenRegex = {
-    D: "(\\w+)",
-    F: "(\\w+)",
-    G: "(\\d\\d|\\d)",
-    H: "(\\d\\d|\\d)",
-    J: "(\\d\\d|\\d)\\w+",
-    K: "",
-    M: "(\\w+)",
-    S: "(\\d\\d|\\d)",
-    U: "(.+)",
-    W: "(\\d\\d|\\d)",
-    Y: "(\\d{4})",
-    Z: "(.+)",
-    d: "(\\d\\d|\\d)",
-    h: "(\\d\\d|\\d)",
-    i: "(\\d\\d|\\d)",
-    j: "(\\d\\d|\\d)",
-    l: "(\\w+)",
-    m: "(\\d\\d|\\d)",
-    n: "(\\d\\d|\\d)",
-    s: "(\\d\\d|\\d)",
-    u: "(.+)",
-    w: "(\\d\\d|\\d)",
-    y: "(\\d{2})",
-};
-const formats = {
-    Z: (date) => date.toISOString(),
-    D: function (date, locale, options) {
-        return locale.weekdays.shorthand[formats.w(date, locale, options)];
-    },
-    F: function (date, locale, options) {
-        return monthToStr(formats.n(date, locale, options) - 1, false, locale);
-    },
-    G: function (date, locale, options) {
-        return Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(formats.h(date, locale, options));
-    },
-    H: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getHours()),
-    J: function (date, locale) {
-        return locale.ordinal !== undefined
-            ? date.getDate() + locale.ordinal(date.getDate())
-            : date.getDate();
-    },
-    K: (date, locale) => locale.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_0__["int"])(date.getHours() > 11)],
-    M: function (date, locale) {
-        return monthToStr(date.getMonth(), true, locale);
-    },
-    S: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getSeconds()),
-    U: (date) => date.getTime() / 1000,
-    W: function (date, _, options) {
-        return options.getWeek(date);
-    },
-    Y: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getFullYear(), 4),
-    d: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getDate()),
-    h: (date) => (date.getHours() % 12 ? date.getHours() % 12 : 12),
-    i: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getMinutes()),
-    j: (date) => date.getDate(),
-    l: function (date, locale) {
-        return locale.weekdays.longhand[date.getDay()];
-    },
-    m: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getMonth() + 1),
-    n: (date) => date.getMonth() + 1,
-    s: (date) => date.getSeconds(),
-    u: (date) => date.getTime(),
-    w: (date) => date.getDay(),
-    y: (date) => String(date.getFullYear()).substring(2),
-};
-
-
-/***/ }),
-
-/***/ "./frontend/node_modules/flatpickr/dist/esm/utils/index.js":
-/*!*****************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/utils/index.js ***!
-  \*****************************************************************/
-/*! exports provided: pad, int, debounce, arrayify */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pad", function() { return pad; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int", function() { return int; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "debounce", function() { return debounce; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayify", function() { return arrayify; });
-const pad = (number, length = 2) => `000${number}`.slice(length * -1);
-const int = (bool) => (bool === true ? 1 : 0);
-function debounce(fn, wait) {
-    let t;
-    return function () {
-        clearTimeout(t);
-        t = setTimeout(() => fn.apply(this, arguments), wait);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "heightTransition", function() { return heightTransition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_", function() { return _; });
+var heightTransition = {
+  /*
+      HowTo:
+      1. Add dynamic style to element and set style as `trHeight`
+      2. Set transition speed using `transition: 0.35s height;` <= you can use appropriate value;
+      3. Optionally you can set `overflow: hidden;` to hide element overflow while height is animated.
+      4. Set initial height using `trSetHeight` before any operation. [mounted hook is recommended - You can use `ref` for dynamic contents]
+      5. Toggle height using height operations 🍻
+      6. Toggle usage of $nextTick for height operations is any issue occur [experimental] 🔬
+    */
+  data: function data() {
+    return {
+      trHeight: null
     };
-}
-const arrayify = (obj) => obj instanceof Array ? obj : [obj];
+  },
+  methods: {
+    trAddHeight: function trAddHeight(val) {
+      // Add height to existing height
+      // Usage: Where new element is append or more height is added (e.g. list append)
 
+      /* Assumes:
+       - Height is assigned and is `String`
+       - Incoming value is valid number in `Number` or `String`
+      */
+      var heightValue = Number(this.trHeight.substring(0, this.trHeight.length - 2));
+      this.trHeight = "".concat(heightValue + Number(val), "px");
+    },
+    trTrimHeight: function trTrimHeight(val) {
+      // Remove height from existing height
+      // Usage: Where new element is removed or height is remove (e.g. list pop/ele remove)
 
-/***/ }),
+      /* Assumes:
+       - Height is assigned and is `String`
+       - Incoming value is valid number in `Number` or `String`
+      */
+      var heightValue = Number(this.trHeight.substring(0, this.trHeight.length - 2));
+      this.trHeight = "".concat(heightValue - Number(val), "px");
+    },
+    trSetHeight: function trSetHeight(val) {
+      // Set height
+      // Usage: Mostly for assigning initial value from mounted hook
 
-/***/ "./frontend/node_modules/flatpickr/dist/esm/utils/polyfills.js":
-/*!*********************************************************************!*\
-  !*** ./frontend/node_modules/flatpickr/dist/esm/utils/polyfills.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-if (typeof Object.assign !== "function") {
-    Object.assign = function (target, ...args) {
-        if (!target) {
-            throw TypeError("Cannot convert undefined or null to object");
-        }
-        for (const source of args) {
-            if (source) {
-                Object.keys(source).forEach((key) => (target[key] = source[key]));
-            }
-        }
-        return target;
-    };
-}
-
-
-/***/ }),
-
-/***/ "./frontend/node_modules/vue-flatpickr-component/dist/vue-flatpickr.min.js":
-/*!*********************************************************************************!*\
-  !*** ./frontend/node_modules/vue-flatpickr-component/dist/vue-flatpickr.min.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e(__webpack_require__(/*! flatpickr */ "./frontend/node_modules/flatpickr/dist/esm/index.js")):undefined}("undefined"!=typeof self?self:this,(function(t){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=1)}([function(e,n){e.exports=t},function(t,e,n){"use strict";n.r(e),n.d(e,"Component",(function(){return c})),n.d(e,"Plugin",(function(){return p}));var r=n(0),o=n.n(r),i=["onChange","onClose","onDestroy","onMonthChange","onOpen","onYearChange"];function u(){return(u=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t}).apply(this,arguments)}var a=function(t){return t.replace(/([a-z])([A-Z])/g,"$1-$2").toLowerCase()},f=function(t){return u({},t)},l=i.concat(["onValueUpdate","onDayCreate","onParseConfig","onReady","onPreCalendarPosition","onKeyDown"]),s=["locale","showMonths"],c={name:"flat-pickr",render:function(t){return t("input",{attrs:{type:"text","data-input":!0},props:{disabled:this.disabled},on:{input:this.onInput}})},props:{value:{default:null,required:!0,validator:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array||"number"==typeof t}},config:{type:Object,default:function(){return{wrap:!1,defaultDate:null}}},events:{type:Array,default:function(){return i}},disabled:{type:Boolean,default:!1}},data:function(){return{fp:null}},mounted:function(){var t=this;if(!this.fp){var e=f(this.config);this.events.forEach((function(n){var r,i=o.a.defaultConfig[n]||[];e[n]=(r=e[n]||[],r instanceof Array?r:[r]).concat(i,(function(){for(var e=arguments.length,r=new Array(e),o=0;o<e;o++)r[o]=arguments[o];t.$emit.apply(t,[a(n)].concat(r))}))})),e.defaultDate=this.value||e.defaultDate,this.fp=new o.a(this.getElem(),e),this.fpInput().addEventListener("blur",this.onBlur),this.$on("on-close",this.onClose),this.$watch("disabled",this.watchDisabled,{immediate:!0})}},methods:{getElem:function(){return this.config.wrap?this.$el.parentNode:this.$el},onInput:function(t){var e=this,n=t.target;this.$nextTick((function(){e.$emit("input",n.value)}))},fpInput:function(){return this.fp.altInput||this.fp.input},onBlur:function(t){this.$emit("blur",t.target.value)},onClose:function(t,e){this.$emit("input",e)},watchDisabled:function(t){t?this.fpInput().setAttribute("disabled",t):this.fpInput().removeAttribute("disabled")}},watch:{config:{deep:!0,handler:function(t){var e=this,n=f(t);l.forEach((function(t){delete n[t]})),this.fp.set(n),s.forEach((function(t){void 0!==n[t]&&e.fp.set(t,n[t])}))}},value:function(t){t!==this.$el.value&&this.fp&&this.fp.setDate(t,!0)}},beforeDestroy:function(){this.fp&&(this.fpInput().removeEventListener("blur",this.onBlur),this.fp.destroy(),this.fp=null)}},p=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,c)};c.install=p;e.default=c}]).default}));
-
-/***/ }),
-
-/***/ "./frontend/node_modules/vue-ripple-directive/src/ripple.js":
-/*!******************************************************************!*\
-  !*** ./frontend/node_modules/vue-ripple-directive/src/ripple.js ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var Ripple = {
-    bind: function(el, binding){
-
-        // Default values.
-        var props = {
-            event: 'mousedown',
-            transition: 600
-        };
-
-        setProps(Object.keys(binding.modifiers),props);
-
-        el.addEventListener(props.event, function(event) {
-            rippler(event, el, binding.value);
-        });
-
-        var bg = binding.value || Ripple.color || 'rgba(0, 0, 0, 0.35)';
-        var zIndex = Ripple.zIndex || '9999';
-
-        function rippler(event, el) {
-            var target = el;
-            // Get border to avoid offsetting on ripple container position
-            var targetBorder = parseInt((getComputedStyle(target).borderWidth).replace('px', ''));
-
-            // Get necessary variables
-            var rect        = target.getBoundingClientRect(),
-                left        = rect.left,
-                top         = rect.top,
-                width       = target.offsetWidth,
-                height      = target.offsetHeight,
-                dx          = event.clientX - left,
-                dy          = event.clientY - top,
-                maxX        = Math.max(dx, width - dx),
-                maxY        = Math.max(dy, height - dy),
-                style       = window.getComputedStyle(target),
-                radius      = Math.sqrt((maxX * maxX) + (maxY * maxY)),
-                border      = (targetBorder > 0 ) ? targetBorder : 0;
-
-            // Create the ripple and its container
-            var ripple = document.createElement("div"),
-                rippleContainer = document.createElement("div");
-                rippleContainer.className = 'ripple-container';
-                ripple.className = 'ripple';
-
-            //Styles for ripple
-            ripple.style.marginTop= '0px';
-            ripple.style.marginLeft= '0px';
-            ripple.style.width= '1px';
-            ripple.style.height= '1px';
-            ripple.style.transition= 'all ' + props.transition + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
-            ripple.style.borderRadius= '50%';
-            ripple.style.pointerEvents= 'none';
-            ripple.style.position= 'relative';
-            ripple.style.zIndex= zIndex;
-            ripple.style.backgroundColor  = bg;
-
-            //Styles for rippleContainer
-            rippleContainer.style.position= 'absolute';
-            rippleContainer.style.left = 0 - border + 'px';
-            rippleContainer.style.top = 0 - border + 'px';
-            rippleContainer.style.height = '0';
-            rippleContainer.style.width = '0';
-            rippleContainer.style.pointerEvents = 'none';
-            rippleContainer.style.overflow = 'hidden';
-
-            // Store target position to change it after
-            var storedTargetPosition =  ((target.style.position).length > 0) ? target.style.position : getComputedStyle(target).position;
-            // Change target position to relative to guarantee ripples correct positioning
-            if (storedTargetPosition !== 'relative') {
-                target.style.position = 'relative';
-            }
-
-            rippleContainer.appendChild(ripple);
-            target.appendChild(rippleContainer);
-
-            ripple.style.marginLeft   = dx + "px";
-            ripple.style.marginTop    = dy + "px";
-
-            // No need to set positioning because ripple should be child of target and to it's relative position.
-            // rippleContainer.style.left    = left + (((window.pageXOffset || document.scrollLeft) - (document.clientLeft || 0)) || 0) + "px";
-            // rippleContainer.style.top     = top + (((window.pageYOffset || document.scrollTop) - (document.clientTop || 0)) || 0) + "px";
-            rippleContainer.style.width   = width + "px";
-            rippleContainer.style.height  = height + "px";
-            rippleContainer.style.borderTopLeftRadius  = style.borderTopLeftRadius;
-            rippleContainer.style.borderTopRightRadius  = style.borderTopRightRadius;
-            rippleContainer.style.borderBottomLeftRadius  = style.borderBottomLeftRadius;
-            rippleContainer.style.borderBottomRightRadius  = style.borderBottomRightRadius;
-
-            rippleContainer.style.direction = 'ltr';
-
-            setTimeout(function() {
-                ripple.style.width  = radius * 2 + "px";
-                ripple.style.height = radius * 2 + "px";
-                ripple.style.marginLeft   = dx - radius + "px";
-                ripple.style.marginTop    = dy - radius + "px";
-            }, 0);
-
-            function clearRipple() {
-                setTimeout(function() {
-                    ripple.style.backgroundColor = "rgba(0, 0, 0, 0)";
-                }, 250);
-
-                // Timeout set to get a smooth removal of the ripple
-                setTimeout(function() {
-                    rippleContainer.parentNode.removeChild(rippleContainer);
-                }, 850);
-
-                el.removeEventListener('mouseup', clearRipple, false);
-
-                // After removing event set position to target to it's original one
-                // Timeout it's needed to avoid jerky effect of ripple jumping out parent target
-                setTimeout(function () {
-
-                    var clearPosition = true;
-                    for(var i = 0; i < target.childNodes.length; i++) {
-                        if(target.childNodes[i].className === 'ripple-container') {
-                            clearPosition = false;
-                        }
-                    }
-
-                    if(clearPosition) {
-                        if(storedTargetPosition !== 'static') {
-                            target.style.position = storedTargetPosition;
-                        } else {
-                            target.style.position = '';
-                        }
-                    }
-
-                }, props.transition + 250)
-            }
-
-            if(event.type === 'mousedown') {
-                el.addEventListener('mouseup', clearRipple, false);
-            } else {
-                clearRipple();
-            }
-        }
+      /* Assumes:
+       - Height is not assigned and what to assign for add/remove operation
+       - What to set height at something for odd usage
+       - Incoming value is valid number in `Number` or `String`
+      */
+      if (val === null) this.trHeight = 'auto';else this.trHeight = "".concat(Number(val), "px");
     }
-};
+  }
+}; // Ignore below for now. We will remove it when we add more transition in future.
 
-function setProps(modifiers,props) {
-    modifiers.forEach(function(item) {
-        if(isNaN(Number(item)))
-            props.event = item;
-        else
-            props.transition = item;
-    });
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Ripple);
+var _ = null;
 
 /***/ }),
 
-/***/ "./frontend/node_modules/vue-select/dist/vue-select.js":
+/***/ "./frontend/src/@core/utils/validations/validations.js":
 /*!*************************************************************!*\
-  !*** ./frontend/node_modules/vue-select/dist/vue-select.js ***!
+  !*** ./frontend/src/@core/utils/validations/validations.js ***!
   \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: required, email, min, confirmed, regex, between, alpha, integer, digits, alphaDash, alphaNum, length, positive, credit, password, url */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-!function(t,e){ true?module.exports=e():undefined}("undefined"!=typeof self?self:this,(function(){return function(t){var e={};function n(o){if(e[o])return e[o].exports;var i=e[o]={i:o,l:!1,exports:{}};return t[o].call(i.exports,i,i.exports,n),i.l=!0,i.exports}return n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(o,i,function(e){return t[e]}.bind(null,i));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=8)}([function(t,e,n){var o=n(4),i=n(5),s=n(6);t.exports=function(t){return o(t)||i(t)||s()}},function(t,e){function n(e){return"function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?t.exports=n=function(t){return typeof t}:t.exports=n=function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},n(e)}t.exports=n},function(t,e,n){},function(t,e){t.exports=function(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}},function(t,e){t.exports=function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}},function(t,e){t.exports=function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}},function(t,e){t.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}},function(t,e,n){"use strict";var o=n(2);n.n(o).a},function(t,e,n){"use strict";n.r(e);var o=n(0),i=n.n(o),s=n(1),r=n.n(s),a=n(3),l=n.n(a),c={props:{autoscroll:{type:Boolean,default:!0}},watch:{typeAheadPointer:function(){this.autoscroll&&this.maybeAdjustScroll()}},methods:{maybeAdjustScroll:function(){var t,e=(null===(t=this.$refs.dropdownMenu)||void 0===t?void 0:t.children[this.typeAheadPointer])||!1;if(e){var n=this.getDropdownViewport(),o=e.getBoundingClientRect(),i=o.top,s=o.bottom,r=o.height;if(i<n.top)return this.$refs.dropdownMenu.scrollTop=e.offsetTop;if(s>n.bottom)return this.$refs.dropdownMenu.scrollTop=e.offsetTop-(n.height-r)}},getDropdownViewport:function(){return this.$refs.dropdownMenu?this.$refs.dropdownMenu.getBoundingClientRect():{height:0,top:0,bottom:0}}}},u={data:function(){return{typeAheadPointer:-1}},watch:{filteredOptions:function(){for(var t=0;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}}},methods:{typeAheadUp:function(){for(var t=this.typeAheadPointer-1;t>=0;t--)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}},typeAheadDown:function(){for(var t=this.typeAheadPointer+1;t<this.filteredOptions.length;t++)if(this.selectable(this.filteredOptions[t])){this.typeAheadPointer=t;break}},typeAheadSelect:function(){var t=this.filteredOptions[this.typeAheadPointer];t&&this.select(t)}}},p={props:{loading:{type:Boolean,default:!1}},data:function(){return{mutableLoading:!1}},watch:{search:function(){this.$emit("search",this.search,this.toggleLoading)},loading:function(t){this.mutableLoading=t}},methods:{toggleLoading:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return this.mutableLoading=null==t?!this.mutableLoading:t}}};function h(t,e,n,o,i,s,r,a){var l,c="function"==typeof t?t.options:t;if(e&&(c.render=e,c.staticRenderFns=n,c._compiled=!0),o&&(c.functional=!0),s&&(c._scopeId="data-v-"+s),r?(l=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(r)},c._ssrRegister=l):i&&(l=a?function(){i.call(this,this.$root.$options.shadowRoot)}:i),l)if(c.functional){c._injectStyles=l;var u=c.render;c.render=function(t,e){return l.call(e),u(t,e)}}else{var p=c.beforeCreate;c.beforeCreate=p?[].concat(p,l):[l]}return{exports:t,options:c}}var d={Deselect:h({},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"10",height:"10"}},[e("path",{attrs:{d:"M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"}})])}),[],!1,null,null,null).exports,OpenIndicator:h({},(function(){var t=this.$createElement,e=this._self._c||t;return e("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",width:"14",height:"10"}},[e("path",{attrs:{d:"M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"}})])}),[],!1,null,null,null).exports},f={inserted:function(t,e,n){var o=n.context;if(o.appendToBody){var i=o.$refs.toggle.getBoundingClientRect(),s=i.height,r=i.top,a=i.left,l=i.width,c=window.scrollX||window.pageXOffset,u=window.scrollY||window.pageYOffset;t.unbindPosition=o.calculatePosition(t,o,{width:l+"px",left:c+a+"px",top:u+r+s+"px"}),document.body.appendChild(t)}},unbind:function(t,e,n){n.context.appendToBody&&(t.unbindPosition&&"function"==typeof t.unbindPosition&&t.unbindPosition(),t.parentNode&&t.parentNode.removeChild(t))}};var y=function(t){var e={};return Object.keys(t).sort().forEach((function(n){e[n]=t[n]})),JSON.stringify(e)},b=0;var g=function(){return++b};function v(t,e){var n=Object.keys(t);if(Object.getOwnPropertySymbols){var o=Object.getOwnPropertySymbols(t);e&&(o=o.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),n.push.apply(n,o)}return n}function m(t){for(var e=1;e<arguments.length;e++){var n=null!=arguments[e]?arguments[e]:{};e%2?v(Object(n),!0).forEach((function(e){l()(t,e,n[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):v(Object(n)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(n,e))}))}return t}var _={components:m({},d),mixins:[c,u,p],directives:{appendToBody:f},props:{value:{},components:{type:Object,default:function(){return{}}},options:{type:Array,default:function(){return[]}},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},searchable:{type:Boolean,default:!0},multiple:{type:Boolean,default:!1},placeholder:{type:String,default:""},transition:{type:String,default:"vs__fade"},clearSearchOnSelect:{type:Boolean,default:!0},closeOnSelect:{type:Boolean,default:!0},label:{type:String,default:"label"},autocomplete:{type:String,default:"off"},reduce:{type:Function,default:function(t){return t}},selectable:{type:Function,default:function(t){return!0}},getOptionLabel:{type:Function,default:function(t){return"object"===r()(t)?t.hasOwnProperty(this.label)?t[this.label]:console.warn('[vue-select warn]: Label key "option.'.concat(this.label,'" does not')+" exist in options object ".concat(JSON.stringify(t),".\n")+"https://vue-select.org/api/props.html#getoptionlabel"):t}},getOptionKey:{type:Function,default:function(t){if("object"!==r()(t))return t;try{return t.hasOwnProperty("id")?t.id:y(t)}catch(e){return console.warn("[vue-select warn]: Could not stringify this option to generate unique key. Please provide'getOptionKey' prop to return a unique key for each option.\nhttps://vue-select.org/api/props.html#getoptionkey",t,e)}}},onTab:{type:Function,default:function(){this.selectOnTab&&!this.isComposing&&this.typeAheadSelect()}},taggable:{type:Boolean,default:!1},tabindex:{type:Number,default:null},pushTags:{type:Boolean,default:!1},filterable:{type:Boolean,default:!0},filterBy:{type:Function,default:function(t,e,n){return(e||"").toLowerCase().indexOf(n.toLowerCase())>-1}},filter:{type:Function,default:function(t,e){var n=this;return t.filter((function(t){var o=n.getOptionLabel(t);return"number"==typeof o&&(o=o.toString()),n.filterBy(t,o,e)}))}},createOption:{type:Function,default:function(t){return"object"===r()(this.optionList[0])?l()({},this.label,t):t}},resetOnOptionsChange:{default:!1,validator:function(t){return["function","boolean"].includes(r()(t))}},clearSearchOnBlur:{type:Function,default:function(t){var e=t.clearSearchOnSelect,n=t.multiple;return e&&!n}},noDrop:{type:Boolean,default:!1},inputId:{type:String},dir:{type:String,default:"auto"},selectOnTab:{type:Boolean,default:!1},selectOnKeyCodes:{type:Array,default:function(){return[13]}},searchInputQuerySelector:{type:String,default:"[type=search]"},mapKeydown:{type:Function,default:function(t,e){return t}},appendToBody:{type:Boolean,default:!1},calculatePosition:{type:Function,default:function(t,e,n){var o=n.width,i=n.top,s=n.left;t.style.top=i,t.style.left=s,t.style.width=o}}},data:function(){return{uid:g(),search:"",open:!1,isComposing:!1,pushedTags:[],_value:[]}},watch:{options:function(t,e){var n=this;!this.taggable&&("function"==typeof n.resetOnOptionsChange?n.resetOnOptionsChange(t,e,n.selectedValue):n.resetOnOptionsChange)&&this.clearSelection(),this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value)},value:function(t){this.isTrackingValues&&this.setInternalValueFromOptions(t)},multiple:function(){this.clearSelection()},open:function(t){this.$emit(t?"open":"close")}},created:function(){this.mutableLoading=this.loading,void 0!==this.value&&this.isTrackingValues&&this.setInternalValueFromOptions(this.value),this.$on("option:created",this.pushTag)},methods:{setInternalValueFromOptions:function(t){var e=this;Array.isArray(t)?this.$data._value=t.map((function(t){return e.findOptionFromReducedValue(t)})):this.$data._value=this.findOptionFromReducedValue(t)},select:function(t){this.$emit("option:selecting",t),this.isOptionSelected(t)||(this.taggable&&!this.optionExists(t)&&this.$emit("option:created",t),this.multiple&&(t=this.selectedValue.concat(t)),this.updateValue(t),this.$emit("option:selected",t)),this.onAfterSelect(t)},deselect:function(t){var e=this;this.$emit("option:deselecting",t),this.updateValue(this.selectedValue.filter((function(n){return!e.optionComparator(n,t)}))),this.$emit("option:deselected",t)},clearSelection:function(){this.updateValue(this.multiple?[]:null)},onAfterSelect:function(t){this.closeOnSelect&&(this.open=!this.open,this.searchEl.blur()),this.clearSearchOnSelect&&(this.search="")},updateValue:function(t){var e=this;void 0===this.value&&(this.$data._value=t),null!==t&&(t=Array.isArray(t)?t.map((function(t){return e.reduce(t)})):this.reduce(t)),this.$emit("input",t)},toggleDropdown:function(t){var e=t.target!==this.searchEl;e&&t.preventDefault();var n=[].concat(i()(this.$refs.deselectButtons||[]),i()([this.$refs.clearButton]||false));void 0===this.searchEl||n.filter(Boolean).some((function(e){return e.contains(t.target)||e===t.target}))?t.preventDefault():this.open&&e?this.searchEl.blur():this.disabled||(this.open=!0,this.searchEl.focus())},isOptionSelected:function(t){var e=this;return this.selectedValue.some((function(n){return e.optionComparator(n,t)}))},optionComparator:function(t,e){return this.getOptionKey(t)===this.getOptionKey(e)},findOptionFromReducedValue:function(t){var e=this,n=[].concat(i()(this.options),i()(this.pushedTags)).filter((function(n){return JSON.stringify(e.reduce(n))===JSON.stringify(t)}));return 1===n.length?n[0]:n.find((function(t){return e.optionComparator(t,e.$data._value)}))||t},closeSearchOptions:function(){this.open=!1,this.$emit("search:blur")},maybeDeleteValue:function(){if(!this.searchEl.value.length&&this.selectedValue&&this.selectedValue.length&&this.clearable){var t=null;this.multiple&&(t=i()(this.selectedValue.slice(0,this.selectedValue.length-1))),this.updateValue(t)}},optionExists:function(t){var e=this;return this.optionList.some((function(n){return e.optionComparator(n,t)}))},normalizeOptionForSlot:function(t){return"object"===r()(t)?t:l()({},this.label,t)},pushTag:function(t){this.pushedTags.push(t)},onEscape:function(){this.search.length?this.search="":this.searchEl.blur()},onSearchBlur:function(){if(!this.mousedown||this.searching){var t=this.clearSearchOnSelect,e=this.multiple;return this.clearSearchOnBlur({clearSearchOnSelect:t,multiple:e})&&(this.search=""),void this.closeSearchOptions()}this.mousedown=!1,0!==this.search.length||0!==this.options.length||this.closeSearchOptions()},onSearchFocus:function(){this.open=!0,this.$emit("search:focus")},onMousedown:function(){this.mousedown=!0},onMouseUp:function(){this.mousedown=!1},onSearchKeyDown:function(t){var e=this,n=function(t){return t.preventDefault(),!e.isComposing&&e.typeAheadSelect()},o={8:function(t){return e.maybeDeleteValue()},9:function(t){return e.onTab()},27:function(t){return e.onEscape()},38:function(t){return t.preventDefault(),e.typeAheadUp()},40:function(t){return t.preventDefault(),e.typeAheadDown()}};this.selectOnKeyCodes.forEach((function(t){return o[t]=n}));var i=this.mapKeydown(o,this);if("function"==typeof i[t.keyCode])return i[t.keyCode](t)}},computed:{isTrackingValues:function(){return void 0===this.value||this.$options.propsData.hasOwnProperty("reduce")},selectedValue:function(){var t=this.value;return this.isTrackingValues&&(t=this.$data._value),t?[].concat(t):[]},optionList:function(){return this.options.concat(this.pushTags?this.pushedTags:[])},searchEl:function(){return this.$scopedSlots.search?this.$refs.selectedOptions.querySelector(this.searchInputQuerySelector):this.$refs.search},scope:function(){var t=this,e={search:this.search,loading:this.loading,searching:this.searching,filteredOptions:this.filteredOptions};return{search:{attributes:m({disabled:this.disabled,placeholder:this.searchPlaceholder,tabindex:this.tabindex,readonly:!this.searchable,id:this.inputId,"aria-autocomplete":"list","aria-labelledby":"vs".concat(this.uid,"__combobox"),"aria-controls":"vs".concat(this.uid,"__listbox"),ref:"search",type:"search",autocomplete:this.autocomplete,value:this.search},this.dropdownOpen&&this.filteredOptions[this.typeAheadPointer]?{"aria-activedescendant":"vs".concat(this.uid,"__option-").concat(this.typeAheadPointer)}:{}),events:{compositionstart:function(){return t.isComposing=!0},compositionend:function(){return t.isComposing=!1},keydown:this.onSearchKeyDown,blur:this.onSearchBlur,focus:this.onSearchFocus,input:function(e){return t.search=e.target.value}}},spinner:{loading:this.mutableLoading},noOptions:{search:this.search,loading:this.loading,searching:this.searching},openIndicator:{attributes:{ref:"openIndicator",role:"presentation",class:"vs__open-indicator"}},listHeader:e,listFooter:e,header:m({},e,{deselect:this.deselect}),footer:m({},e,{deselect:this.deselect})}},childComponents:function(){return m({},d,{},this.components)},stateClasses:function(){return{"vs--open":this.dropdownOpen,"vs--single":!this.multiple,"vs--searching":this.searching&&!this.noDrop,"vs--searchable":this.searchable&&!this.noDrop,"vs--unsearchable":!this.searchable,"vs--loading":this.mutableLoading,"vs--disabled":this.disabled}},searching:function(){return!!this.search},dropdownOpen:function(){return!this.noDrop&&(this.open&&!this.mutableLoading)},searchPlaceholder:function(){if(this.isValueEmpty&&this.placeholder)return this.placeholder},filteredOptions:function(){var t=[].concat(this.optionList);if(!this.filterable&&!this.taggable)return t;var e=this.search.length?this.filter(t,this.search,this):t;if(this.taggable&&this.search.length){var n=this.createOption(this.search);this.optionExists(n)||e.unshift(n)}return e},isValueEmpty:function(){return 0===this.selectedValue.length},showClearButton:function(){return!this.multiple&&this.clearable&&!this.open&&!this.isValueEmpty}}},O=(n(7),h(_,(function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"v-select",class:t.stateClasses,attrs:{dir:t.dir}},[t._t("header",null,null,t.scope.header),t._v(" "),n("div",{ref:"toggle",staticClass:"vs__dropdown-toggle",attrs:{id:"vs"+t.uid+"__combobox",role:"combobox","aria-expanded":t.dropdownOpen.toString(),"aria-owns":"vs"+t.uid+"__listbox","aria-label":"Search for option"},on:{mousedown:function(e){return t.toggleDropdown(e)}}},[n("div",{ref:"selectedOptions",staticClass:"vs__selected-options"},[t._l(t.selectedValue,(function(e){return t._t("selected-option-container",[n("span",{key:t.getOptionKey(e),staticClass:"vs__selected"},[t._t("selected-option",[t._v("\n            "+t._s(t.getOptionLabel(e))+"\n          ")],null,t.normalizeOptionForSlot(e)),t._v(" "),t.multiple?n("button",{ref:"deselectButtons",refInFor:!0,staticClass:"vs__deselect",attrs:{disabled:t.disabled,type:"button",title:"Deselect "+t.getOptionLabel(e),"aria-label":"Deselect "+t.getOptionLabel(e)},on:{click:function(n){return t.deselect(e)}}},[n(t.childComponents.Deselect,{tag:"component"})],1):t._e()],2)],{option:t.normalizeOptionForSlot(e),deselect:t.deselect,multiple:t.multiple,disabled:t.disabled})})),t._v(" "),t._t("search",[n("input",t._g(t._b({staticClass:"vs__search"},"input",t.scope.search.attributes,!1),t.scope.search.events))],null,t.scope.search)],2),t._v(" "),n("div",{ref:"actions",staticClass:"vs__actions"},[n("button",{directives:[{name:"show",rawName:"v-show",value:t.showClearButton,expression:"showClearButton"}],ref:"clearButton",staticClass:"vs__clear",attrs:{disabled:t.disabled,type:"button",title:"Clear Selected","aria-label":"Clear Selected"},on:{click:t.clearSelection}},[n(t.childComponents.Deselect,{tag:"component"})],1),t._v(" "),t._t("open-indicator",[t.noDrop?t._e():n(t.childComponents.OpenIndicator,t._b({tag:"component"},"component",t.scope.openIndicator.attributes,!1))],null,t.scope.openIndicator),t._v(" "),t._t("spinner",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.mutableLoading,expression:"mutableLoading"}],staticClass:"vs__spinner"},[t._v("Loading...")])],null,t.scope.spinner)],2)]),t._v(" "),n("transition",{attrs:{name:t.transition}},[t.dropdownOpen?n("ul",{directives:[{name:"append-to-body",rawName:"v-append-to-body"}],key:"vs"+t.uid+"__listbox",ref:"dropdownMenu",staticClass:"vs__dropdown-menu",attrs:{id:"vs"+t.uid+"__listbox",role:"listbox",tabindex:"-1"},on:{mousedown:function(e){return e.preventDefault(),t.onMousedown(e)},mouseup:t.onMouseUp}},[t._t("list-header",null,null,t.scope.listHeader),t._v(" "),t._l(t.filteredOptions,(function(e,o){return n("li",{key:t.getOptionKey(e),staticClass:"vs__dropdown-option",class:{"vs__dropdown-option--selected":t.isOptionSelected(e),"vs__dropdown-option--highlight":o===t.typeAheadPointer,"vs__dropdown-option--disabled":!t.selectable(e)},attrs:{role:"option",id:"vs"+t.uid+"__option-"+o,"aria-selected":o===t.typeAheadPointer||null},on:{mouseover:function(n){t.selectable(e)&&(t.typeAheadPointer=o)},mousedown:function(n){n.preventDefault(),n.stopPropagation(),t.selectable(e)&&t.select(e)}}},[t._t("option",[t._v("\n          "+t._s(t.getOptionLabel(e))+"\n        ")],null,t.normalizeOptionForSlot(e))],2)})),t._v(" "),0===t.filteredOptions.length?n("li",{staticClass:"vs__no-options"},[t._t("no-options",[t._v("Sorry, no matching options.")],null,t.scope.noOptions)],2):t._e(),t._v(" "),t._t("list-footer",null,null,t.scope.listFooter)],2):n("ul",{staticStyle:{display:"none",visibility:"hidden"},attrs:{id:"vs"+t.uid+"__listbox",role:"listbox"}})]),t._v(" "),t._t("footer",null,null,t.scope.footer)],2)}),[],!1,null,null,null).exports),w={ajax:p,pointer:u,pointerScroll:c};n.d(e,"VueSelect",(function(){return O})),n.d(e,"mixins",(function(){return w}));e.default=O}])}));
-//# sourceMappingURL=vue-select.js.map
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "required", function() { return required; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "email", function() { return email; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "min", function() { return min; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confirmed", function() { return confirmed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "regex", function() { return regex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "between", function() { return between; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alpha", function() { return alpha; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "integer", function() { return integer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "digits", function() { return digits; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alphaDash", function() { return alphaDash; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alphaNum", function() { return alphaNum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "length", function() { return length; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "positive", function() { return positive; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "credit", function() { return credit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "password", function() { return password; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "url", function() { return url; });
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./frontend/node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate/dist/rules */ "./frontend/node_modules/vee-validate/dist/rules.js");
+/* harmony import */ var vee_validate_dist_locale_ar_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate/dist/locale/ar.json */ "./frontend/node_modules/vee-validate/dist/locale/ar.json");
+var vee_validate_dist_locale_ar_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! vee-validate/dist/locale/ar.json */ "./frontend/node_modules/vee-validate/dist/locale/ar.json", 1);
+/* harmony import */ var vee_validate_dist_locale_en_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vee-validate/dist/locale/en.json */ "./frontend/node_modules/vee-validate/dist/locale/en.json");
+var vee_validate_dist_locale_en_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! vee-validate/dist/locale/en.json */ "./frontend/node_modules/vee-validate/dist/locale/en.json", 1);
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./validators */ "./frontend/src/@core/utils/validations/validators.js");
+
+
+
+ // eslint-disable-next-line object-curly-newline
+
+ // ////////////////////////////////////////////////////////
+// General
+// ////////////////////////////////////////////////////////
+
+var required = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('required', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["required"]);
+var email = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('email', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["email"]);
+var min = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('min', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["min"]);
+var confirmed = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('confirmed', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["confirmed"]);
+var regex = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('regex', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["regex"]);
+var between = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('between', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["between"]);
+var alpha = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('alpha', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["alpha"]);
+var integer = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('integer', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["integer"]);
+var digits = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('digits', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["digits"]);
+var alphaDash = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('alpha-dash', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["alpha_dash"]);
+var alphaNum = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('alpha-num', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["alpha_num"]);
+var length = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('length', vee_validate_dist_rules__WEBPACK_IMPORTED_MODULE_1__["length"]);
+var positive = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('positive', {
+  validate: _validators__WEBPACK_IMPORTED_MODULE_4__["validatorPositive"],
+  message: 'Please enter positive number!'
+});
+var credit = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('credit-card', {
+  validate: _validators__WEBPACK_IMPORTED_MODULE_4__["validatorCreditCard"],
+  message: 'It is not valid credit card!'
+});
+var password = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('password', {
+  validate: _validators__WEBPACK_IMPORTED_MODULE_4__["validatorPassword"],
+  message: 'Your {_field_} must contain at least one uppercase, one lowercase, one special character and one digit'
+});
+var url = Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('url', {
+  validate: _validators__WEBPACK_IMPORTED_MODULE_4__["validatorUrlValidator"],
+  message: 'URL is invalid'
+}); // Install English and Arabic localizations.
+
+Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["localize"])({
+  en: {
+    messages: vee_validate_dist_locale_en_json__WEBPACK_IMPORTED_MODULE_3__.messages,
+    names: {
+      email: 'Email',
+      password: 'Password'
+    },
+    fields: {
+      password: {
+        min: '{_field_} is too short, you want to get hacked?'
+      }
+    }
+  },
+  ar: {
+    messages: vee_validate_dist_locale_ar_json__WEBPACK_IMPORTED_MODULE_2__.messages,
+    names: {
+      email: 'البريد الإلكتروني',
+      password: 'كلمة السر'
+    },
+    fields: {
+      password: {
+        min: 'كلمة السر قصيرة جداً سيتم اختراقك'
+      }
+    }
+  }
+}); // ////////////////////////////////////////////////////////
+// NOTE:
+// Quasar validation for reference only
+// Remove this note once development is finished and make sure to
+// to convert all of them in veevalidate version
+// ////////////////////////////////////////////////////////
+// export const required = (val) => {
+//   return (val && val.length > 0) || '*Field is required'
+// }
+// export const required_obj = (obj) => {
+//   if (obj === null || obj === undefined) return '*Field is required'
+//   return (Object.entries(obj).length > 0 && obj.constructor === Object) || '*Field is required'
+// }
+// export const no_blank_spaces_arr = (arr) => {
+//   return arr.every(val => (val.trim() && val.trim().length > 0)) || 'Blank Spaces are not allowed'
+// }
+// export const url = val => {
+//   // If blank return
+//   if (val === undefined || val === null || val.length === 0) return true
+//   // Used
+//   // https://stackoverflow.com/questions/4314741/url-regex-validation
+//   // Other
+//   // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+//   // https://www.w3resource.com/javascript-exercises/javascript-regexp-exercise-9.php
+//   // https://www.geeksforgeeks.org/how-to-validate-url-using-regular-expression-in-javascript/
+//   /* eslint-disable no-useless-escape */
+//   const re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/
+//   /* eslint-enable no-useless-escape */
+//   return re.test(val) || 'URL is invalid'
+// }
+// export const date = val => {
+//   // If blank return
+//   if (val === undefined || val === null || val.length === 0) return true
+//   // https://github.com/quasarframework/quasar/blob/dev/ui/src/utils/patterns.js
+//   return /^-?[\d]+\/[0-1]\d\/[0-3]\d$/.test(val) || 'Date is invalid'
+// }
+// export const max = (val, max) => {
+//   // If blank return
+//   if (val === undefined || val === null) return true
+//   return val.length <= max || `More than ${max} characters are not allowed`
+// }
+// export const max_arr = (val, max) => {
+//   return val.length <= max || `More than ${max} values are not allowed`
+// }
+// export const min = (val, min) => {
+//   // If blank return
+//   if (val === undefined || val === null || val.length === 0) return true
+//   return val.length >= min || `Minimum ${min} characters are required`
+// }
+// export const num_range = (val, min, max) => {
+//   // If blank return
+//   if (val === undefined || val === null || val.length === 0) return true
+//   const msg = 'Value is invalid'
+//   if (min === null) return val <= max || msg
+//   else if (max === null) return val >= min || msg
+//   else return (val >= min && val <= max) || msg
+// }
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./frontend/node_modules/flatpickr/dist/flatpickr.css":
-/*!**************************************************************************************!*\
-  !*** ./node_modules/css-loader!./frontend/node_modules/flatpickr/dist/flatpickr.css ***!
-  \**************************************************************************************/
+/***/ "./frontend/src/@core/utils/validations/validators.js":
+/*!************************************************************!*\
+  !*** ./frontend/src/@core/utils/validations/validators.js ***!
+  \************************************************************/
+/*! exports provided: validatorPositive, validatorPassword, validatorCreditCard, validatorUrlValidator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validatorPositive", function() { return validatorPositive; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validatorPassword", function() { return validatorPassword; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validatorCreditCard", function() { return validatorCreditCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validatorUrlValidator", function() { return validatorUrlValidator; });
+var validatorPositive = function validatorPositive(value) {
+  if (value >= 0) {
+    return true;
+  }
+
+  return false;
+};
+var validatorPassword = function validatorPassword(password) {
+  /* eslint-disable no-useless-escape */
+  var regExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}/;
+  /* eslint-enable no-useless-escape */
+
+  var validPassword = regExp.test(password);
+  return validPassword;
+};
+var validatorCreditCard = function validatorCreditCard(creditnum) {
+  /* eslint-disable no-useless-escape */
+  var cRegExp = /^(?:3[47][0-9]{13})$/;
+  /* eslint-enable no-useless-escape */
+
+  var validCreditCard = cRegExp.test(creditnum);
+  return validCreditCard;
+};
+var validatorUrlValidator = function validatorUrlValidator(val) {
+  if (val === undefined || val === null || val.length === 0) {
+    return true;
+  }
+  /* eslint-disable no-useless-escape */
+
+
+  var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+  /* eslint-enable no-useless-escape */
+
+  return re.test(val);
+};
+
+/***/ }),
+
+/***/ "./frontend/src/libs/axios.js":
+/*!************************************!*\
+  !*** ./frontend/src/libs/axios.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./frontend/node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./frontend/node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+ // axios
+
+
+var axiosIns = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
+  // You can add your headers here
+  // ================================
+  baseURL: 'http://127.0.0.1:8000',
+  // baseURL: 'https://amarclient.com/',
+  timeout: 90000,
+  headers: {
+    Accept: 'application/json'
+  }
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axiosIns;
+/* harmony default export */ __webpack_exports__["default"] = (axiosIns);
+
+/***/ }),
+
+/***/ "./frontend/src/views/shop/sale/Create.vue":
+/*!*************************************************!*\
+  !*** ./frontend/src/views/shop/sale/Create.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Create_vue_vue_type_template_id_1f8dda56_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=1f8dda56&scoped=true& */ "./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&scoped=true&");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Create_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Create.vue?vue&type=style&index=0&lang=scss& */ "./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _Create_vue_vue_type_style_index_1_id_1f8dda56_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true& */ "./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
+  _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Create_vue_vue_type_template_id_1f8dda56_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Create_vue_vue_type_template_id_1f8dda56_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1f8dda56",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "frontend/src/views/shop/sale/Create.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss&":
+/*!***********************************************************************************!*\
+  !*** ./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss& ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/sass-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true& ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_1_id_1f8dda56_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/sass-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_1_id_1f8dda56_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_1_id_1f8dda56_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_1_id_1f8dda56_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_sass_loader_dist_cjs_js_ref_11_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_style_index_1_id_1f8dda56_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&scoped=true&":
+/*!********************************************************************************************!*\
+  !*** ./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&scoped=true& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_1f8dda56_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=1f8dda56&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_1f8dda56_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_1f8dda56_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./frontend/node_modules/vee-validate/dist/vee-validate.esm.js");
+/* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
+/* harmony import */ var _core_layouts_components_Logo_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @core/layouts/components/Logo.vue */ "./frontend/src/@core/layouts/components/Logo.vue");
+/* harmony import */ var _core_mixins_ui_transition__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @core/mixins/ui/transition */ "./frontend/src/@core/mixins/ui/transition.js");
+/* harmony import */ var vue_ripple_directive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-ripple-directive */ "./frontend/node_modules/vue-ripple-directive/src/ripple.js");
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-select */ "./frontend/node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_flatpickr_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-flatpickr-component */ "./frontend/node_modules/vue-flatpickr-component/dist/vue-flatpickr.min.js");
+/* harmony import */ var vue_flatpickr_component__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_flatpickr_component__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+ // import invoiceStoreModule from '../invoiceStoreModule'
+// import InvoiceSidebarAddNewCustomer from '../InvoiceSidebarAddNewCustomer.vue'
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    BRow: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BRow"],
+    BCol: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BCol"],
+    BCard: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BCard"],
+    BCardBody: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BCardBody"],
+    BButton: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BButton"],
+    BCardText: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BCardText"],
+    BForm: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BForm"],
+    BFormGroup: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BFormGroup"],
+    BFormInput: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BFormInput"],
+    BInputGroup: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BInputGroup"],
+    BInputGroupPrepend: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BInputGroupPrepend"],
+    BFormTextarea: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BFormTextarea"],
+    BFormCheckbox: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BFormCheckbox"],
+    BPopover: bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["BPopover"],
+    flatPickr: vue_flatpickr_component__WEBPACK_IMPORTED_MODULE_7___default.a,
+    vSelect: vue_select__WEBPACK_IMPORTED_MODULE_6___default.a,
+    Logo: _core_layouts_components_Logo_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationProvider"],
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationObserver"] // InvoiceSidebarAddNewCustomer,
+
+  },
+  directives: {
+    Ripple: vue_ripple_directive__WEBPACK_IMPORTED_MODULE_4__["default"],
+    'b-toggle': bootstrap_vue__WEBPACK_IMPORTED_MODULE_5__["VBToggle"]
+  },
+  mixins: [_core_mixins_ui_transition__WEBPACK_IMPORTED_MODULE_3__["heightTransition"]],
+  data: function data() {
+    return {
+      invoiceData: {
+        invoice_no: '',
+        date: new Date(),
+        next_payment: '',
+        client_id: ''
+      },
+      clients: [],
+      customer: {},
+      form: {
+        name: '',
+        company: '',
+        email: ''
+      },
+      products: []
+    };
+  },
+  mounted: function mounted() {
+    this.getAllClients();
+    this.initTrHeight();
+  },
+  created: function created() {
+    window.addEventListener('resize', this.initTrHeight);
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener('resize', this.initTrHeight);
+  },
+  methods: {
+    getAllClients: function getAllClients() {
+      var _this = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_8__["default"].get('api/v1/shop/client').then(function (response) {
+        // console.log(response.data)
+        _this.clients = response.data;
+      });
+    },
+    clientCreate: function clientCreate() {
+      var _this2 = this;
+
+      this.$refs.createCustomer.validate().then(function (success) {
+        if (success) {
+          _libs_axios__WEBPACK_IMPORTED_MODULE_8__["default"].post('api/v1/shop/client', _this2.form).then(function (response) {
+            console.log(response); // first reset your form values
+            // eslint-disable-next-line guard-for-in,no-restricted-syntax
+
+            for (var key in _this2.form) {
+              _this2.form[key] = '';
+            } // then do this to reset your ValidationObserver
+
+
+            _this2.$nextTick(function () {
+              return _this2.$refs.createCustomer.reset();
+            });
+
+            _this2.$bvToast.toast(response.data.message, {
+              title: 'Success',
+              variant: 'success',
+              solid: true
+            });
+
+            _this2.getAllClients();
+
+            _this2.$refs.createClientSidebar.hide();
+          })["catch"](function (error) {
+            _this2.$refs.createCustomer.setErrors(error.response.data.errors);
+          });
+        }
+      });
+    },
+    addNewItemInItemForm: function addNewItemInItemForm() {
+      var _this3 = this;
+
+      this.$refs.form.style.overflow = 'hidden';
+      this.invoiceData.items.push(JSON.parse(JSON.stringify(this.itemFormBlankItem)));
+      this.$nextTick(function () {
+        _this3.trAddHeight(_this3.$refs.row[0].offsetHeight);
+
+        setTimeout(function () {
+          _this3.$refs.form.style.overflow = null;
+        }, 350);
+      });
+    },
+    removeItem: function removeItem(index) {
+      this.invoiceData.items.splice(index, 1);
+      this.trTrimHeight(this.$refs.row[0].offsetHeight);
+    },
+    initTrHeight: function initTrHeight() {
+      var _this4 = this;
+
+      this.trSetHeight(null);
+      this.$nextTick(function () {
+        _this4.trSetHeight(_this4.$refs.form.scrollHeight);
+      });
+    }
+  },
+  setup: function setup() {
+    var paymentMethods = ['Bank Account', 'PayPal', 'UPI Transfer'];
+    return {
+      paymentMethods: paymentMethods
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/sass-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+exports.i(__webpack_require__(/*! -!../../../../../node_modules/css-loader!flatpickr/dist/flatpickr.css */ "./node_modules/css-loader/index.js!./frontend/node_modules/flatpickr/dist/flatpickr.css"), "");
+
+// module
+exports.push([module.i, ".v-select {\n  position: relative;\n  font-family: inherit;\n}\n.v-select,\n.v-select * {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n\n/* KeyFrames */\n@-webkit-keyframes vSelectSpinner-ltr {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@-webkit-keyframes vSelectSpinner-rtl {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg);\n}\n}\n@keyframes vSelectSpinner-ltr {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes vSelectSpinner-rtl {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg);\n}\n}\n/* Dropdown Default Transition */\n.vs__fade-enter-active,\n.vs__fade-leave-active {\n  pointer-events: none;\n  -webkit-transition: opacity 0.15s cubic-bezier(1, 0.5, 0.8, 1);\n  transition: opacity 0.15s cubic-bezier(1, 0.5, 0.8, 1);\n}\n[dir] .vs__fade-enter-active, [dir] .vs__fade-leave-active {\n  -webkit-transition: opacity 0.15s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.vs__fade-enter,\n.vs__fade-leave-to {\n  opacity: 0;\n}\n\n/** Component States */\n/*\n * Disabled\n *\n * When the component is disabled, all interaction\n * should be prevented. Here we modify the bg color,\n * and change the cursor displayed on the interactive\n * components.\n */\n[dir] .vs--disabled .vs__dropdown-toggle, [dir] .vs--disabled .vs__clear, [dir] .vs--disabled .vs__search, [dir] .vs--disabled .vs__selected, [dir] .vs--disabled .vs__open-indicator {\n  cursor: not-allowed;\n  background-color: #f8f8f8;\n}\n\n/*\n *  RTL - Right to Left Support\n *\n *  Because we're using a flexbox layout, the `dir=\"rtl\"`\n *  HTML attribute does most of the work for us by\n *  rearranging the child elements visually.\n */\n.v-select[dir=rtl] .vs__actions {\n  padding: 0 3px 0 6px;\n}\n.v-select[dir=rtl] .vs__clear {\n  margin-left: 6px;\n  margin-right: 0;\n}\n.v-select[dir=rtl] .vs__deselect {\n  margin-left: 0;\n  margin-right: 2px;\n}\n.v-select[dir=rtl] .vs__dropdown-menu {\n  text-align: right;\n}\n\n/**\n    Dropdown Toggle\n\n    The dropdown toggle is the primary wrapper of the component. It\n    has two direct descendants: .vs__selected-options, and .vs__actions.\n\n    .vs__selected-options holds the .vs__selected's as well as the\n    main search input.\n\n    .vs__actions holds the clear button and dropdown toggle.\n */\n.vs__dropdown-toggle {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  white-space: normal;\n}\n[dir] .vs__dropdown-toggle {\n  padding: 0 0 4px 0;\n  background: none;\n  border: 1px solid #d8d6de;\n  border-radius: 0.357rem;\n}\n.vs__selected-options {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-preferred-size: 100%;\n      flex-basis: 100%;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  position: relative;\n}\n[dir] .vs__selected-options {\n  padding: 0 2px;\n}\n.vs__actions {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n[dir=ltr] .vs__actions {\n  padding: 4px 6px 0 3px;\n}\n[dir=rtl] .vs__actions {\n  padding: 4px 3px 0 6px;\n}\n\n/* Dropdown Toggle States */\n[dir] .vs--searchable .vs__dropdown-toggle {\n  cursor: text;\n}\n[dir] .vs--unsearchable .vs__dropdown-toggle {\n  cursor: pointer;\n}\n[dir] .vs--open .vs__dropdown-toggle {\n  border-bottom-color: transparent;\n}\n[dir=ltr] .vs--open .vs__dropdown-toggle {\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n[dir=rtl] .vs--open .vs__dropdown-toggle {\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.vs__open-indicator {\n  fill: rgba(60, 60, 60, 0.5);\n  -webkit-transform: scale(1);\n  transition: -webkit-transform 150ms cubic-bezier(1, -0.115, 0.975, 0.855);\n  -webkit-transition: -webkit-transform 150ms cubic-bezier(1, -0.115, 0.975, 0.855);\n  transition: transform 150ms cubic-bezier(1, -0.115, 0.975, 0.855);\n  transition: transform 150ms cubic-bezier(1, -0.115, 0.975, 0.855), -webkit-transform 150ms cubic-bezier(1, -0.115, 0.975, 0.855);\n  -webkit-transition-timing-function: cubic-bezier(1, -0.115, 0.975, 0.855);\n}\n[dir] .vs__open-indicator {\n          -webkit-transform: scale(1);\n                  transform: scale(1);\n  -webkit-transition: -webkit-transform 150ms cubic-bezier(1, -0.115, 0.975, 0.855);\n          -webkit-transition-timing-function: cubic-bezier(1, -0.115, 0.975, 0.855);\n                  transition-timing-function: cubic-bezier(1, -0.115, 0.975, 0.855);\n}\n[dir=ltr] .vs--open .vs__open-indicator {\n  -webkit-transform: rotate(180deg) scale(1);\n  transform: rotate(180deg) scale(1);\n}\n[dir=rtl] .vs--open .vs__open-indicator {\n  -webkit-transform: rotate(-180deg) scale(1);\n          transform: rotate(-180deg) scale(1);\n}\n.vs--loading .vs__open-indicator {\n  opacity: 0;\n}\n\n/* Clear Button */\n.vs__clear {\n  fill: rgba(60, 60, 60, 0.5);\n}\n[dir] .vs__clear {\n  padding: 0;\n  border: 0;\n  background-color: transparent;\n  cursor: pointer;\n}\n[dir=ltr] .vs__clear {\n  margin-right: 8px;\n}\n[dir=rtl] .vs__clear {\n  margin-left: 8px;\n}\n\n/* Dropdown Menu */\n.vs__dropdown-menu {\n  display: block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: absolute;\n  top: calc(100% - 1px);\n  z-index: 1000;\n  width: 100%;\n  max-height: 350px;\n  min-width: 160px;\n  overflow-y: auto;\n  -webkit-box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);\n  list-style: none;\n}\n[dir] .vs__dropdown-menu {\n  padding: 5px 0;\n  margin: 0;\n          -webkit-box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);\n                  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.1);\n  border: 1px solid #d8d6de;\n  border-top-style: none;\n  border-radius: 0 0 0.357rem 0.357rem;\n  background: #fff;\n}\n[dir=ltr] .vs__dropdown-menu {\n  left: 0;\n  text-align: left;\n}\n[dir=rtl] .vs__dropdown-menu {\n  right: 0;\n  text-align: right;\n}\n[dir] .vs__no-options {\n  text-align: center;\n}\n\n/* List Items */\n.vs__dropdown-option {\n  line-height: 1.42857143;\n  /* Normalize line height */\n  display: block;\n  color: #333;\n  /* Overrides most CSS frameworks */\n  white-space: nowrap;\n}\n[dir] .vs__dropdown-option {\n  padding: 3px 20px;\n  clear: both;\n}\n[dir] .vs__dropdown-option:hover {\n  cursor: pointer;\n}\n.vs__dropdown-option--highlight {\n  color: #7367f0 !important;\n}\n[dir] .vs__dropdown-option--highlight {\n  background: rgba(115, 103, 240, 0.12);\n}\n.vs__dropdown-option--disabled {\n  color: rgba(60, 60, 60, 0.5);\n}\n[dir] .vs__dropdown-option--disabled {\n  background: inherit;\n}\n[dir] .vs__dropdown-option--disabled:hover {\n  cursor: inherit;\n}\n\n/* Selected Tags */\n.vs__selected {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  color: #333;\n  line-height: 1.8;\n  z-index: 0;\n}\n[dir] .vs__selected {\n  background-color: #7367f0;\n  border: 0 solid rgba(60, 60, 60, 0.26);\n  border-radius: 0.357rem;\n  margin: 4px 2px 0px 2px;\n  padding: 0 0.25em;\n}\n.vs__deselect {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  fill: rgba(60, 60, 60, 0.5);\n}\n[dir] .vs__deselect {\n  padding: 0;\n  border: 0;\n  cursor: pointer;\n  background: none;\n  text-shadow: 0 1px 0 #fff;\n}\n[dir=ltr] .vs__deselect {\n  margin-left: 4px;\n}\n[dir=rtl] .vs__deselect {\n  margin-right: 4px;\n}\n\n/* States */\n[dir] .vs--single .vs__selected {\n  background-color: transparent;\n  border-color: transparent;\n}\n.vs--single.vs--open .vs__selected {\n  position: absolute;\n  opacity: 0.4;\n}\n.vs--single.vs--searching .vs__selected {\n  display: none;\n}\n\n/* Search Input */\n/**\n * Super weird bug... If this declaration is grouped\n * below, the cancel button will still appear in chrome.\n * If it's up here on it's own, it'll hide it.\n */\n.vs__search::-webkit-search-cancel-button {\n  display: none;\n}\n.vs__search::-webkit-search-decoration,\n.vs__search::-webkit-search-results-button,\n.vs__search::-webkit-search-results-decoration,\n.vs__search::-ms-clear {\n  display: none;\n}\n.vs__search,\n.vs__search:focus {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  line-height: 1.8;\n  font-size: 1em;\n  outline: none;\n  -webkit-box-shadow: none;\n  width: 0;\n  max-width: 100%;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  z-index: 1;\n}\n[dir] .vs__search, [dir] .vs__search:focus {\n  border: 1px solid transparent;\n  margin: 4px 0 0 0;\n  padding: 0 7px;\n  background: none;\n          -webkit-box-shadow: none;\n                  box-shadow: none;\n}\n[dir=ltr] .vs__search, [dir=ltr] .vs__search:focus {\n  border-left: none;\n}\n[dir=rtl] .vs__search, [dir=rtl] .vs__search:focus {\n  border-right: none;\n}\n.vs__search::-webkit-input-placeholder {\n  color: #6e6b7b;\n}\n.vs__search::-moz-placeholder {\n  color: #6e6b7b;\n}\n.vs__search:-ms-input-placeholder {\n  color: #6e6b7b;\n}\n.vs__search::-ms-input-placeholder {\n  color: #6e6b7b;\n}\n.vs__search::placeholder {\n  color: #6e6b7b;\n}\n\n/**\n    States\n */\n.vs--unsearchable .vs__search {\n  opacity: 1;\n}\n[dir] .vs--unsearchable:not(.vs--disabled) .vs__search:hover {\n  cursor: pointer;\n}\n.vs--single.vs--searching:not(.vs--open):not(.vs--loading) .vs__search {\n  opacity: 0.2;\n}\n\n/* Loading Spinner */\n.vs__spinner {\n  -ms-flex-item-align: center;\n      align-self: center;\n  opacity: 0;\n  font-size: 5px;\n  text-indent: -9999em;\n  overflow: hidden;\n  -webkit-transform: translateZ(0);\n  -webkit-transition: opacity 0.1s;\n  transition: opacity 0.1s;\n}\n[dir] .vs__spinner {\n  border-top: 0.9em solid rgba(100, 100, 100, 0.1);\n  border-bottom: 0.9em solid rgba(100, 100, 100, 0.1);\n          -webkit-transform: translateZ(0);\n                  transform: translateZ(0);\n  -webkit-transition: opacity 0.1s;\n}\n[dir=ltr] .vs__spinner {\n  border-right: 0.9em solid rgba(100, 100, 100, 0.1);\n  border-left: 0.9em solid rgba(60, 60, 60, 0.45);\n  -webkit-animation:  vSelectSpinner-ltr 1.1s infinite linear;\n  animation:  vSelectSpinner-ltr 1.1s infinite linear;\n}\n[dir=rtl] .vs__spinner {\n  border-left: 0.9em solid rgba(100, 100, 100, 0.1);\n  border-right: 0.9em solid rgba(60, 60, 60, 0.45);\n  -webkit-animation:  vSelectSpinner-rtl 1.1s infinite linear;\n          animation:  vSelectSpinner-rtl 1.1s infinite linear;\n}\n.vs__spinner,\n.vs__spinner:after {\n  width: 5em;\n  height: 5em;\n}\n[dir] .vs__spinner, [dir] .vs__spinner:after {\n  border-radius: 50%;\n}\n\n/* Loading Spinner States */\n.vs--loading .vs__spinner {\n  opacity: 1;\n}\n.vs__open-indicator {\n  fill: none;\n}\n[dir] .vs__open-indicator {\n  margin-top: 0.15rem;\n}\n.vs__dropdown-toggle {\n  -webkit-transition: all 0.25s ease-in-out;\n  transition: all 0.25s ease-in-out;\n}\n[dir] .vs__dropdown-toggle {\n  padding: 0.59px 0 4px 0;\n  -webkit-transition: all 0.25s ease-in-out;\n}\n[dir=ltr] .vs--single .vs__dropdown-toggle {\n  padding-left: 6px;\n}\n[dir=rtl] .vs--single .vs__dropdown-toggle {\n  padding-right: 6px;\n}\n.vs__dropdown-option--disabled {\n  opacity: 0.5;\n}\n[dir] .vs__dropdown-option--disabled.vs__dropdown-option--selected {\n  background: #7367f0 !important;\n}\n.vs__dropdown-option {\n  color: #6e6b7b;\n}\n[dir] .vs__dropdown-option, [dir] .vs__no-options {\n  padding: 7px 20px;\n}\n.vs__dropdown-option--selected {\n  background-color: #7367f0;\n  color: #fff;\n  position: relative;\n}\n.vs__dropdown-option--selected::after {\n  content: \"\";\n  height: 1.1rem;\n  width: 1.1rem;\n  display: inline-block;\n  position: absolute;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n  right: 20px;\n  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E\");\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: 1.1rem;\n}\n[dir=rtl] .vs__dropdown-option--selected::after {\n  left: 20px;\n  right: unset;\n}\n.vs__dropdown-option--selected.vs__dropdown-option--highlight {\n  color: #fff !important;\n  background-color: #7367f0 !important;\n}\n.vs__clear svg {\n  color: #6e6b7b;\n}\n.vs__selected {\n  color: #fff;\n}\n.v-select.vs--single .vs__selected {\n  color: #6e6b7b;\n  transition: -webkit-transform 0.2s ease;\n  -webkit-transition: -webkit-transform 0.2s ease;\n  transition: transform 0.2s ease;\n  transition: transform 0.2s ease, -webkit-transform 0.2s ease;\n}\n[dir] .v-select.vs--single .vs__selected {\n  margin-top: 5px;\n  -webkit-transition: -webkit-transform 0.2s ease;\n}\n[dir=ltr] .v-select.vs--single .vs__selected input {\n  padding-left: 0;\n}\n[dir=rtl] .v-select.vs--single .vs__selected input {\n  padding-right: 0;\n}\n[dir=ltr] .vs--single.vs--open .vs__selected {\n  -webkit-transform: translateX(5px);\n  transform: translateX(5px);\n}\n[dir=rtl] .vs--single.vs--open .vs__selected {\n  -webkit-transform: translateX(-5px);\n          transform: translateX(-5px);\n}\n.vs__selected .vs__deselect {\n  color: inherit;\n}\n.v-select:not(.vs--single) .vs__selected {\n  font-size: 0.9rem;\n}\n[dir] .v-select:not(.vs--single) .vs__selected {\n  border-radius: 3px;\n  padding: 0 0.6em;\n}\n[dir=ltr] .v-select:not(.vs--single) .vs__selected {\n  margin: 5px 2px 2px 5px;\n}\n[dir=rtl] .v-select:not(.vs--single) .vs__selected {\n  margin: 5px 5px 2px 2px;\n}\n.v-select:not(.vs--single) .vs__deselect svg {\n  -webkit-transform: scale(0.8);\n  vertical-align: text-top;\n}\n[dir] .v-select:not(.vs--single) .vs__deselect svg {\n          -webkit-transform: scale(0.8);\n                  transform: scale(0.8);\n}\n.vs__dropdown-menu {\n  top: calc(100% + 1rem);\n}\n[dir] .vs__dropdown-menu {\n  border: none;\n  border-radius: 6px;\n  padding: 0;\n}\n.vs--open .vs__dropdown-toggle {\n  -webkit-box-shadow: 0 3px 10px 0 rgba(34, 41, 47, 0.1);\n}\n[dir] .vs--open .vs__dropdown-toggle {\n  border-color: #7367f0;\n  border-bottom-color: #7367f0;\n          -webkit-box-shadow: 0 3px 10px 0 rgba(34, 41, 47, 0.1);\n                  box-shadow: 0 3px 10px 0 rgba(34, 41, 47, 0.1);\n}\n[dir=ltr] .vs--open .vs__dropdown-toggle {\n  border-bottom-left-radius: 0.357rem;\n  border-bottom-right-radius: 0.357rem;\n}\n[dir=rtl] .vs--open .vs__dropdown-toggle {\n  border-bottom-right-radius: 0.357rem;\n  border-bottom-left-radius: 0.357rem;\n}\n.select-size-lg .vs__selected {\n  font-size: 1rem !important;\n}\n[dir] .select-size-lg.vs--single.vs--open .vs__selected {\n  margin-top: 6px;\n}\n.select-size-lg .vs__dropdown-toggle,\n.select-size-lg .vs__selected {\n  font-size: 1.25rem;\n}\n[dir] .select-size-lg .vs__dropdown-toggle {\n  padding: 5px;\n}\n[dir] .select-size-lg .vs__dropdown-toggle input {\n  margin-top: 0;\n}\n.select-size-lg .vs__deselect svg {\n  -webkit-transform: scale(1) !important;\n  vertical-align: middle !important;\n}\n[dir] .select-size-lg .vs__deselect svg {\n          -webkit-transform: scale(1) !important;\n                  transform: scale(1) !important;\n}\n[dir] .select-size-sm .vs__dropdown-toggle {\n  padding-bottom: 0;\n  padding: 1px;\n}\n[dir] .select-size-sm.vs--single .vs__dropdown-toggle {\n  padding: 2px;\n}\n.select-size-sm .vs__dropdown-toggle,\n.select-size-sm .vs__selected {\n  font-size: 0.9rem;\n}\n[dir] .select-size-sm .vs__actions {\n  padding-top: 2px;\n  padding-bottom: 2px;\n}\n.select-size-sm .vs__deselect svg {\n  vertical-align: middle !important;\n}\n[dir] .select-size-sm .vs__search {\n  margin-top: 0;\n}\n.select-size-sm.v-select .vs__selected {\n  font-size: 0.75rem;\n}\n[dir] .select-size-sm.v-select .vs__selected {\n  padding: 0 0.3rem;\n}\n[dir] .select-size-sm.v-select:not(.vs--single) .vs__selected {\n  margin: 4px 5px;\n}\n[dir] .select-size-sm.v-select.vs--single .vs__selected {\n  margin-top: 1px;\n}\n[dir] .select-size-sm.vs--single.vs--open .vs__selected {\n  margin-top: 4px;\n}\n.dark-layout .vs__dropdown-toggle {\n  color: #b4b7bd;\n}\n[dir] .dark-layout .vs__dropdown-toggle {\n  background: #283046;\n  border-color: #404656;\n}\n.dark-layout .vs__selected-options input {\n  color: #b4b7bd;\n}\n.dark-layout .vs__selected-options input::-webkit-input-placeholder {\n  color: #676d7d;\n}\n.dark-layout .vs__selected-options input::-moz-placeholder {\n  color: #676d7d;\n}\n.dark-layout .vs__selected-options input:-ms-input-placeholder {\n  color: #676d7d;\n}\n.dark-layout .vs__selected-options input::-ms-input-placeholder {\n  color: #676d7d;\n}\n.dark-layout .vs__selected-options input::placeholder {\n  color: #676d7d;\n}\n.dark-layout .vs__actions svg {\n  fill: #404656;\n}\n[dir] .dark-layout .vs__dropdown-menu {\n  background: #283046;\n}\n.dark-layout .vs__dropdown-menu li {\n  color: #b4b7bd;\n}\n.dark-layout .v-select:not(.vs--single) .vs__selected {\n  color: #7367f0;\n}\n[dir] .dark-layout .v-select:not(.vs--single) .vs__selected {\n  background-color: rgba(115, 103, 240, 0.12);\n}\n.dark-layout .v-select.vs--single .vs__selected {\n  color: #b4b7bd !important;\n}\n.dark-layout .vs--disabled .vs__dropdown-toggle,\n.dark-layout .vs--disabled .vs__clear,\n.dark-layout .vs--disabled .vs__search,\n.dark-layout .vs--disabled .vs__selected,\n.dark-layout .vs--disabled .vs__open-indicator {\n  opacity: 0.5;\n}\n[dir] .dark-layout .vs--disabled .vs__dropdown-toggle, [dir] .dark-layout .vs--disabled .vs__clear, [dir] .dark-layout .vs--disabled .vs__search, [dir] .dark-layout .vs--disabled .vs__selected, [dir] .dark-layout .vs--disabled .vs__open-indicator {\n  background-color: #283046;\n}\n.flatpickr-calendar .flatpickr-day {\n  color: #6e6b7b;\n}\n[dir] .flatpickr-calendar .flatpickr-day.today {\n  border-color: #7367f0;\n}\n.flatpickr-calendar .flatpickr-day.today:hover {\n  color: #6e6b7b;\n}\n[dir] .flatpickr-calendar .flatpickr-day.today:hover {\n  background: transparent;\n}\n.flatpickr-calendar .flatpickr-day.selected, .flatpickr-calendar .flatpickr-day.selected:hover {\n  color: #fff;\n}\n[dir] .flatpickr-calendar .flatpickr-day.selected, [dir] .flatpickr-calendar .flatpickr-day.selected:hover {\n  background: #7367f0;\n  border-color: #7367f0;\n}\n[dir] .flatpickr-calendar .flatpickr-day.inRange, [dir] .flatpickr-calendar .flatpickr-day.inRange:hover {\n  background: #f3f2fe;\n  border-color: #f3f2fe;\n}\n[dir=ltr] .flatpickr-calendar .flatpickr-day.inRange, [dir=ltr] .flatpickr-calendar .flatpickr-day.inRange:hover {\n  -webkit-box-shadow: -5px 0 0 #f3f2fe, 5px 0 0 #f3f2fe;\n  box-shadow: -5px 0 0 #f3f2fe, 5px 0 0 #f3f2fe;\n}\n[dir=rtl] .flatpickr-calendar .flatpickr-day.inRange, [dir=rtl] .flatpickr-calendar .flatpickr-day.inRange:hover {\n  -webkit-box-shadow: 5px 0 0 #f3f2fe, -5px 0 0 #f3f2fe;\n          box-shadow: 5px 0 0 #f3f2fe, -5px 0 0 #f3f2fe;\n}\n.flatpickr-calendar .flatpickr-day.startRange, .flatpickr-calendar .flatpickr-day.endRange, .flatpickr-calendar .flatpickr-day.startRange:hover, .flatpickr-calendar .flatpickr-day.endRange:hover {\n  color: #fff;\n}\n[dir] .flatpickr-calendar .flatpickr-day.startRange, [dir] .flatpickr-calendar .flatpickr-day.endRange, [dir] .flatpickr-calendar .flatpickr-day.startRange:hover, [dir] .flatpickr-calendar .flatpickr-day.endRange:hover {\n  background: #7367f0;\n  border-color: #7367f0;\n}\n[dir=ltr] .flatpickr-calendar .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)), [dir=ltr] .flatpickr-calendar .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)), [dir=ltr] .flatpickr-calendar .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {\n  -webkit-box-shadow: -10px 0 0 #7367f0;\n  box-shadow: -10px 0 0 #7367f0;\n}\n[dir=rtl] .flatpickr-calendar .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)), [dir=rtl] .flatpickr-calendar .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)), [dir=rtl] .flatpickr-calendar .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {\n  -webkit-box-shadow: 10px 0 0 #7367f0;\n          box-shadow: 10px 0 0 #7367f0;\n}\n.flatpickr-calendar .flatpickr-day.flatpickr-disabled, .flatpickr-calendar .flatpickr-day.prevMonthDay, .flatpickr-calendar .flatpickr-day.nextMonthDay {\n  color: #dae1e7;\n}\n[dir] .flatpickr-calendar .flatpickr-day:hover {\n  background: #f6f6f6;\n}\n.flatpickr-calendar:after, .flatpickr-calendar:before {\n  display: none;\n}\n.flatpickr-calendar .flatpickr-months .flatpickr-prev-month,\n.flatpickr-calendar .flatpickr-months .flatpickr-next-month {\n  top: -5px;\n}\n.flatpickr-calendar .flatpickr-months .flatpickr-prev-month:hover i, .flatpickr-calendar .flatpickr-months .flatpickr-prev-month:hover svg,\n.flatpickr-calendar .flatpickr-months .flatpickr-next-month:hover i,\n.flatpickr-calendar .flatpickr-months .flatpickr-next-month:hover svg {\n  fill: #7367f0;\n}\n.flatpickr-calendar .flatpickr-current-month span.cur-month {\n  font-weight: 300;\n}\n[dir] .flatpickr-time input:hover, [dir] .flatpickr-time .flatpickr-am-pm:hover, [dir] .flatpickr-time input:focus, [dir] .flatpickr-time .flatpickr-am-pm:focus {\n  background: #fff;\n}\n.dark-layout .flatpickr-calendar {\n  -webkit-box-shadow: none;\n}\n[dir] .dark-layout .flatpickr-calendar {\n  background: #161d31;\n  border-color: #161d31;\n          -webkit-box-shadow: none;\n                  box-shadow: none;\n}\n.dark-layout .flatpickr-calendar .flatpickr-months i,\n.dark-layout .flatpickr-calendar .flatpickr-months svg {\n  fill: #b4b7bd;\n}\n.dark-layout .flatpickr-calendar .flatpickr-month {\n  color: #b4b7bd;\n}\n[dir=ltr] .dark-layout .flatpickr-calendar .flatpickr-weekwrapper .flatpickr-weeks {\n  -webkit-box-shadow: 1px 0 0 #3b4253;\n  box-shadow: 1px 0 0 #3b4253;\n}\n[dir=rtl] .dark-layout .flatpickr-calendar .flatpickr-weekwrapper .flatpickr-weeks {\n  -webkit-box-shadow: -1px 0 0 #3b4253;\n          box-shadow: -1px 0 0 #3b4253;\n}\n.dark-layout .flatpickr-calendar .flatpickr-weekday {\n  color: #b4b7bd;\n}\n.dark-layout .flatpickr-calendar .flatpickr-day, .dark-layout .flatpickr-calendar .flatpickr-day.today:hover {\n  color: #b4b7bd;\n}\n.dark-layout .flatpickr-calendar .flatpickr-day.selected {\n  color: #fff;\n}\n.dark-layout .flatpickr-calendar .flatpickr-day.prevMonthDay, .dark-layout .flatpickr-calendar .flatpickr-day.nextMonthDay, .dark-layout .flatpickr-calendar .flatpickr-day.flatpickr-disabled {\n  color: #4e5154 !important;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-day.inRange, [dir] .dark-layout .flatpickr-calendar .flatpickr-day.inRange:hover {\n  background: #283046;\n  border-color: #283046;\n}\n[dir=ltr] .dark-layout .flatpickr-calendar .flatpickr-day.inRange, [dir=ltr] .dark-layout .flatpickr-calendar .flatpickr-day.inRange:hover {\n  -webkit-box-shadow: -5px 0 0 #283046, 5px 0 0 #283046;\n  box-shadow: -5px 0 0 #283046, 5px 0 0 #283046;\n}\n[dir=rtl] .dark-layout .flatpickr-calendar .flatpickr-day.inRange, [dir=rtl] .dark-layout .flatpickr-calendar .flatpickr-day.inRange:hover {\n  -webkit-box-shadow: 5px 0 0 #283046, -5px 0 0 #283046;\n          box-shadow: 5px 0 0 #283046, -5px 0 0 #283046;\n}\n.dark-layout .flatpickr-calendar .flatpickr-day:hover:not(.selected):not(.today):not(.startRange):not(.endRange) {\n  color: #b4b7bd;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-day:hover:not(.selected):not(.today):not(.startRange):not(.endRange) {\n  border-color: #283046;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-days .flatpickr-day:hover:not(.selected):not(.today):not(.startRange):not(.endRange) {\n  background: #283046;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-time {\n  border-color: #161d31 !important;\n}\n.dark-layout .flatpickr-calendar .flatpickr-time .numInput,\n.dark-layout .flatpickr-calendar .flatpickr-time .flatpickr-am-pm {\n  color: #b4b7bd;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-time .numInput:hover, [dir] .dark-layout .flatpickr-calendar .flatpickr-time .flatpickr-am-pm:hover {\n  background: #161d31;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-time .arrowUp:after {\n  border-bottom-color: #b4b7bd;\n}\n[dir] .dark-layout .flatpickr-calendar .flatpickr-time .arrowDown:after {\n  border-top-color: #b4b7bd;\n}\n[dir] .dark-layout .flatpickr-time input:hover, [dir] .dark-layout .flatpickr-time .flatpickr-am-pm:hover, [dir] .dark-layout .flatpickr-time input:focus, [dir] .dark-layout .flatpickr-time .flatpickr-am-pm:focus {\n  background: #161d31;\n}\n.flatpickr-input[readonly],\n.flatpickr-input ~ .form-control[readonly],\n.flatpickr-human-friendly[readonly] {\n  opacity: 1 !important;\n}\n[dir] .flatpickr-input[readonly], [dir] .flatpickr-input ~ .form-control[readonly], [dir] .flatpickr-human-friendly[readonly] {\n  background-color: inherit;\n}\n[dir] .flatpickr-weekdays {\n  margin-top: 8px;\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months {\n  -webkit-appearance: none;\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months,\n.flatpickr-current-month .numInputWrapper {\n  font-size: 1.1rem;\n  -webkit-transition: all 0.15s ease-out;\n  transition: all 0.15s ease-out;\n}\n[dir] .flatpickr-current-month .flatpickr-monthDropdown-months, [dir] .flatpickr-current-month .numInputWrapper {\n  border-radius: 4px;\n  padding: 2px;\n  -webkit-transition: all 0.15s ease-out;\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months span,\n.flatpickr-current-month .numInputWrapper span {\n  display: none;\n}\nhtml[dir=rtl] .flatpickr-calendar .flatpickr-prev-month svg,\nhtml[dir=rtl] .flatpickr-calendar .flatpickr-next-month svg {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n.invoice-add-wrapper .add-new-client-header {\n  color: #28c76f;\n}\n[dir] .invoice-add-wrapper .add-new-client-header {\n  padding: 7px 20px;\n}\n[dir] .invoice-add-wrapper .add-new-client-header:hover {\n  background-color: rgba(40, 199, 111, 0.12);\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/sass-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, ".flatpickr-calendar {\n  background: transparent;\n  opacity: 0;\n  display: none;\n  text-align: center;\n  visibility: hidden;\n  padding: 0;\n  -webkit-animation: none;\n          animation: none;\n  direction: ltr;\n  border: 0;\n  font-size: 14px;\n  line-height: 24px;\n  border-radius: 5px;\n  position: absolute;\n  width: 307.875px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -ms-touch-action: manipulation;\n      touch-action: manipulation;\n  background: #fff;\n  -webkit-box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0,0,0,0.08);\n          box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgba(0,0,0,0.08);\n}\n.flatpickr-calendar.open,\n.flatpickr-calendar.inline {\n  opacity: 1;\n  max-height: 640px;\n  visibility: visible;\n}\n.flatpickr-calendar.open {\n  display: inline-block;\n  z-index: 99999;\n}\n.flatpickr-calendar.animate.open {\n  -webkit-animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);\n          animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);\n}\n.flatpickr-calendar.inline {\n  display: block;\n  position: relative;\n  top: 2px;\n}\n.flatpickr-calendar.static {\n  position: absolute;\n  top: calc(100% + 2px);\n}\n.flatpickr-calendar.static.open {\n  z-index: 999;\n  display: block;\n}\n.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:nth-child(n+1) .flatpickr-day.inRange:nth-child(7n+7) {\n  -webkit-box-shadow: none !important;\n          box-shadow: none !important;\n}\n.flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:nth-child(n+2) .flatpickr-day.inRange:nth-child(7n+1) {\n  -webkit-box-shadow: -2px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;\n          box-shadow: -2px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;\n}\n.flatpickr-calendar .hasWeeks .dayContainer,\n.flatpickr-calendar .hasTime .dayContainer {\n  border-bottom: 0;\n  border-bottom-right-radius: 0;\n  border-bottom-left-radius: 0;\n}\n.flatpickr-calendar .hasWeeks .dayContainer {\n  border-left: 0;\n}\n.flatpickr-calendar.hasTime .flatpickr-time {\n  height: 40px;\n  border-top: 1px solid #e6e6e6;\n}\n.flatpickr-calendar.noCalendar.hasTime .flatpickr-time {\n  height: auto;\n}\n.flatpickr-calendar:before,\n.flatpickr-calendar:after {\n  position: absolute;\n  display: block;\n  pointer-events: none;\n  border: solid transparent;\n  content: '';\n  height: 0;\n  width: 0;\n  left: 22px;\n}\n.flatpickr-calendar.rightMost:before,\n.flatpickr-calendar.arrowRight:before,\n.flatpickr-calendar.rightMost:after,\n.flatpickr-calendar.arrowRight:after {\n  left: auto;\n  right: 22px;\n}\n.flatpickr-calendar.arrowCenter:before,\n.flatpickr-calendar.arrowCenter:after {\n  left: 50%;\n  right: 50%;\n}\n.flatpickr-calendar:before {\n  border-width: 5px;\n  margin: 0 -5px;\n}\n.flatpickr-calendar:after {\n  border-width: 4px;\n  margin: 0 -4px;\n}\n.flatpickr-calendar.arrowTop:before,\n.flatpickr-calendar.arrowTop:after {\n  bottom: 100%;\n}\n.flatpickr-calendar.arrowTop:before {\n  border-bottom-color: #e6e6e6;\n}\n.flatpickr-calendar.arrowTop:after {\n  border-bottom-color: #fff;\n}\n.flatpickr-calendar.arrowBottom:before,\n.flatpickr-calendar.arrowBottom:after {\n  top: 100%;\n}\n.flatpickr-calendar.arrowBottom:before {\n  border-top-color: #e6e6e6;\n}\n.flatpickr-calendar.arrowBottom:after {\n  border-top-color: #fff;\n}\n.flatpickr-calendar:focus {\n  outline: 0;\n}\n.flatpickr-wrapper {\n  position: relative;\n  display: inline-block;\n}\n.flatpickr-months {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n}\n.flatpickr-months .flatpickr-month {\n  background: transparent;\n  color: rgba(0,0,0,0.9);\n  fill: rgba(0,0,0,0.9);\n  height: 34px;\n  line-height: 1;\n  text-align: center;\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow: hidden;\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\n.flatpickr-months .flatpickr-prev-month,\n.flatpickr-months .flatpickr-next-month {\n  text-decoration: none;\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  height: 34px;\n  padding: 10px;\n  z-index: 3;\n  color: rgba(0,0,0,0.9);\n  fill: rgba(0,0,0,0.9);\n}\n.flatpickr-months .flatpickr-prev-month.flatpickr-disabled,\n.flatpickr-months .flatpickr-next-month.flatpickr-disabled {\n  display: none;\n}\n.flatpickr-months .flatpickr-prev-month i,\n.flatpickr-months .flatpickr-next-month i {\n  position: relative;\n}\n.flatpickr-months .flatpickr-prev-month.flatpickr-prev-month,\n.flatpickr-months .flatpickr-next-month.flatpickr-prev-month {\n/*\n      /*rtl:begin:ignore*/\n/*\n      */\n  left: 0;\n/*\n      /*rtl:end:ignore*/\n/*\n      */\n}\n/*\n      /*rtl:begin:ignore*/\n/*\n      /*rtl:end:ignore*/\n.flatpickr-months .flatpickr-prev-month.flatpickr-next-month,\n.flatpickr-months .flatpickr-next-month.flatpickr-next-month {\n/*\n      /*rtl:begin:ignore*/\n/*\n      */\n  right: 0;\n/*\n      /*rtl:end:ignore*/\n/*\n      */\n}\n/*\n      /*rtl:begin:ignore*/\n/*\n      /*rtl:end:ignore*/\n.flatpickr-months .flatpickr-prev-month:hover,\n.flatpickr-months .flatpickr-next-month:hover {\n  color: #959ea9;\n}\n.flatpickr-months .flatpickr-prev-month:hover svg,\n.flatpickr-months .flatpickr-next-month:hover svg {\n  fill: #f64747;\n}\n.flatpickr-months .flatpickr-prev-month svg,\n.flatpickr-months .flatpickr-next-month svg {\n  width: 14px;\n  height: 14px;\n}\n.flatpickr-months .flatpickr-prev-month svg path,\n.flatpickr-months .flatpickr-next-month svg path {\n  -webkit-transition: fill 0.1s;\n  transition: fill 0.1s;\n  fill: inherit;\n}\n.numInputWrapper {\n  position: relative;\n  height: auto;\n}\n.numInputWrapper input,\n.numInputWrapper span {\n  display: inline-block;\n}\n.numInputWrapper input {\n  width: 100%;\n}\n.numInputWrapper input::-ms-clear {\n  display: none;\n}\n.numInputWrapper input::-webkit-outer-spin-button,\n.numInputWrapper input::-webkit-inner-spin-button {\n  margin: 0;\n  -webkit-appearance: none;\n}\n.numInputWrapper span {\n  position: absolute;\n  right: 0;\n  width: 14px;\n  padding: 0 4px 0 2px;\n  height: 50%;\n  line-height: 50%;\n  opacity: 0;\n  cursor: pointer;\n  border: 1px solid rgba(57,57,57,0.15);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.numInputWrapper span:hover {\n  background: rgba(0,0,0,0.1);\n}\n.numInputWrapper span:active {\n  background: rgba(0,0,0,0.2);\n}\n.numInputWrapper span:after {\n  display: block;\n  content: \"\";\n  position: absolute;\n}\n.numInputWrapper span.arrowUp {\n  top: 0;\n  border-bottom: 0;\n}\n.numInputWrapper span.arrowUp:after {\n  border-left: 4px solid transparent;\n  border-right: 4px solid transparent;\n  border-bottom: 4px solid rgba(57,57,57,0.6);\n  top: 26%;\n}\n.numInputWrapper span.arrowDown {\n  top: 50%;\n}\n.numInputWrapper span.arrowDown:after {\n  border-left: 4px solid transparent;\n  border-right: 4px solid transparent;\n  border-top: 4px solid rgba(57,57,57,0.6);\n  top: 40%;\n}\n.numInputWrapper span svg {\n  width: inherit;\n  height: auto;\n}\n.numInputWrapper span svg path {\n  fill: rgba(0,0,0,0.5);\n}\n.numInputWrapper:hover {\n  background: rgba(0,0,0,0.05);\n}\n.numInputWrapper:hover span {\n  opacity: 1;\n}\n.flatpickr-current-month {\n  font-size: 135%;\n  line-height: inherit;\n  font-weight: 300;\n  color: inherit;\n  position: absolute;\n  width: 75%;\n  left: 12.5%;\n  padding: 7.48px 0 0 0;\n  line-height: 1;\n  height: 34px;\n  display: inline-block;\n  text-align: center;\n  -webkit-transform: translate3d(0px, 0px, 0px);\n          transform: translate3d(0px, 0px, 0px);\n}\n.flatpickr-current-month span.cur-month {\n  font-family: inherit;\n  font-weight: 700;\n  color: inherit;\n  display: inline-block;\n  margin-left: 0.5ch;\n  padding: 0;\n}\n.flatpickr-current-month span.cur-month:hover {\n  background: rgba(0,0,0,0.05);\n}\n.flatpickr-current-month .numInputWrapper {\n  width: 6ch;\n  width: 7ch\\0;\n  display: inline-block;\n}\n.flatpickr-current-month .numInputWrapper span.arrowUp:after {\n  border-bottom-color: rgba(0,0,0,0.9);\n}\n.flatpickr-current-month .numInputWrapper span.arrowDown:after {\n  border-top-color: rgba(0,0,0,0.9);\n}\n.flatpickr-current-month input.cur-year {\n  background: transparent;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: text;\n  padding: 0 0 0 0.5ch;\n  margin: 0;\n  display: inline-block;\n  font-size: inherit;\n  font-family: inherit;\n  font-weight: 300;\n  line-height: inherit;\n  height: auto;\n  border: 0;\n  border-radius: 0;\n  vertical-align: initial;\n  -webkit-appearance: textfield;\n  -moz-appearance: textfield;\n  appearance: textfield;\n}\n.flatpickr-current-month input.cur-year:focus {\n  outline: 0;\n}\n.flatpickr-current-month input.cur-year[disabled],\n.flatpickr-current-month input.cur-year[disabled]:hover {\n  font-size: 100%;\n  color: rgba(0,0,0,0.5);\n  background: transparent;\n  pointer-events: none;\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months {\n  appearance: menulist;\n  background: transparent;\n  border: none;\n  border-radius: 0;\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  font-size: inherit;\n  font-family: inherit;\n  font-weight: 300;\n  height: auto;\n  line-height: inherit;\n  margin: -1px 0 0 0;\n  outline: none;\n  padding: 0 0 0 0.5ch;\n  position: relative;\n  vertical-align: initial;\n  -webkit-box-sizing: border-box;\n  -webkit-appearance: menulist;\n  -moz-appearance: menulist;\n  width: auto;\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months:focus,\n.flatpickr-current-month .flatpickr-monthDropdown-months:active {\n  outline: none;\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months:hover {\n  background: rgba(0,0,0,0.05);\n}\n.flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {\n  background-color: transparent;\n  outline: none;\n  padding: 0;\n}\n.flatpickr-weekdays {\n  background: transparent;\n  text-align: center;\n  overflow: hidden;\n  width: 100%;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n      -ms-flex-align: center;\n          align-items: center;\n  height: 28px;\n}\n.flatpickr-weekdays .flatpickr-weekdaycontainer {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n}\nspan.flatpickr-weekday {\n  cursor: default;\n  font-size: 90%;\n  background: transparent;\n  color: rgba(0,0,0,0.54);\n  line-height: 1;\n  margin: 0;\n  text-align: center;\n  display: block;\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  font-weight: bolder;\n}\n.dayContainer,\n.flatpickr-weeks {\n  padding: 1px 0 0 0;\n}\n.flatpickr-days {\n  position: relative;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: start;\n  -webkit-align-items: flex-start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  width: 307.875px;\n}\n.flatpickr-days:focus {\n  outline: 0;\n}\n.dayContainer {\n  padding: 0;\n  outline: 0;\n  text-align: left;\n  width: 307.875px;\n  min-width: 307.875px;\n  max-width: 307.875px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  display: inline-block;\n  display: -ms-flexbox;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-flex-wrap: wrap;\n          flex-wrap: wrap;\n  -ms-flex-wrap: wrap;\n  -ms-flex-pack: justify;\n  -webkit-justify-content: space-around;\n          justify-content: space-around;\n  -webkit-transform: translate3d(0px, 0px, 0px);\n          transform: translate3d(0px, 0px, 0px);\n  opacity: 1;\n}\n.dayContainer + .dayContainer {\n  -webkit-box-shadow: -1px 0 0 #e6e6e6;\n          box-shadow: -1px 0 0 #e6e6e6;\n}\n.flatpickr-day {\n  background: none;\n  border: 1px solid transparent;\n  border-radius: 150px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #393939;\n  cursor: pointer;\n  font-weight: 400;\n  width: 14.2857143%;\n  -webkit-flex-basis: 14.2857143%;\n      -ms-flex-preferred-size: 14.2857143%;\n          flex-basis: 14.2857143%;\n  max-width: 39px;\n  height: 39px;\n  line-height: 39px;\n  margin: 0;\n  display: inline-block;\n  position: relative;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  text-align: center;\n}\n.flatpickr-day.inRange,\n.flatpickr-day.prevMonthDay.inRange,\n.flatpickr-day.nextMonthDay.inRange,\n.flatpickr-day.today.inRange,\n.flatpickr-day.prevMonthDay.today.inRange,\n.flatpickr-day.nextMonthDay.today.inRange,\n.flatpickr-day:hover,\n.flatpickr-day.prevMonthDay:hover,\n.flatpickr-day.nextMonthDay:hover,\n.flatpickr-day:focus,\n.flatpickr-day.prevMonthDay:focus,\n.flatpickr-day.nextMonthDay:focus {\n  cursor: pointer;\n  outline: 0;\n  background: #e6e6e6;\n  border-color: #e6e6e6;\n}\n.flatpickr-day.today {\n  border-color: #959ea9;\n}\n.flatpickr-day.today:hover,\n.flatpickr-day.today:focus {\n  border-color: #959ea9;\n  background: #959ea9;\n  color: #fff;\n}\n.flatpickr-day.selected,\n.flatpickr-day.startRange,\n.flatpickr-day.endRange,\n.flatpickr-day.selected.inRange,\n.flatpickr-day.startRange.inRange,\n.flatpickr-day.endRange.inRange,\n.flatpickr-day.selected:focus,\n.flatpickr-day.startRange:focus,\n.flatpickr-day.endRange:focus,\n.flatpickr-day.selected:hover,\n.flatpickr-day.startRange:hover,\n.flatpickr-day.endRange:hover,\n.flatpickr-day.selected.prevMonthDay,\n.flatpickr-day.startRange.prevMonthDay,\n.flatpickr-day.endRange.prevMonthDay,\n.flatpickr-day.selected.nextMonthDay,\n.flatpickr-day.startRange.nextMonthDay,\n.flatpickr-day.endRange.nextMonthDay {\n  background: #569ff7;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  color: #fff;\n  border-color: #569ff7;\n}\n.flatpickr-day.selected.startRange,\n.flatpickr-day.startRange.startRange,\n.flatpickr-day.endRange.startRange {\n  border-radius: 50px 0 0 50px;\n}\n.flatpickr-day.selected.endRange,\n.flatpickr-day.startRange.endRange,\n.flatpickr-day.endRange.endRange {\n  border-radius: 0 50px 50px 0;\n}\n.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)),\n.flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)),\n.flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {\n  -webkit-box-shadow: -10px 0 0 #569ff7;\n          box-shadow: -10px 0 0 #569ff7;\n}\n.flatpickr-day.selected.startRange.endRange,\n.flatpickr-day.startRange.startRange.endRange,\n.flatpickr-day.endRange.startRange.endRange {\n  border-radius: 50px;\n}\n.flatpickr-day.inRange {\n  border-radius: 0;\n  -webkit-box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;\n          box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;\n}\n.flatpickr-day.flatpickr-disabled,\n.flatpickr-day.flatpickr-disabled:hover,\n.flatpickr-day.prevMonthDay,\n.flatpickr-day.nextMonthDay,\n.flatpickr-day.notAllowed,\n.flatpickr-day.notAllowed.prevMonthDay,\n.flatpickr-day.notAllowed.nextMonthDay {\n  color: rgba(57,57,57,0.3);\n  background: transparent;\n  border-color: transparent;\n  cursor: default;\n}\n.flatpickr-day.flatpickr-disabled,\n.flatpickr-day.flatpickr-disabled:hover {\n  cursor: not-allowed;\n  color: rgba(57,57,57,0.1);\n}\n.flatpickr-day.week.selected {\n  border-radius: 0;\n  -webkit-box-shadow: -5px 0 0 #569ff7, 5px 0 0 #569ff7;\n          box-shadow: -5px 0 0 #569ff7, 5px 0 0 #569ff7;\n}\n.flatpickr-day.hidden {\n  visibility: hidden;\n}\n.rangeMode .flatpickr-day {\n  margin-top: 1px;\n}\n.flatpickr-weekwrapper {\n  float: left;\n}\n.flatpickr-weekwrapper .flatpickr-weeks {\n  padding: 0 12px;\n  -webkit-box-shadow: 1px 0 0 #e6e6e6;\n          box-shadow: 1px 0 0 #e6e6e6;\n}\n.flatpickr-weekwrapper .flatpickr-weekday {\n  float: none;\n  width: 100%;\n  line-height: 28px;\n}\n.flatpickr-weekwrapper span.flatpickr-day,\n.flatpickr-weekwrapper span.flatpickr-day:hover {\n  display: block;\n  width: 100%;\n  max-width: none;\n  color: rgba(57,57,57,0.3);\n  background: transparent;\n  cursor: default;\n  border: none;\n}\n.flatpickr-innerContainer {\n  display: block;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  overflow: hidden;\n}\n.flatpickr-rContainer {\n  display: inline-block;\n  padding: 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.flatpickr-time {\n  text-align: center;\n  outline: 0;\n  display: block;\n  height: 0;\n  line-height: 40px;\n  max-height: 40px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: -ms-flexbox;\n  display: flex;\n}\n.flatpickr-time:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n.flatpickr-time .numInputWrapper {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  width: 40%;\n  height: 40px;\n  float: left;\n}\n.flatpickr-time .numInputWrapper span.arrowUp:after {\n  border-bottom-color: #393939;\n}\n.flatpickr-time .numInputWrapper span.arrowDown:after {\n  border-top-color: #393939;\n}\n.flatpickr-time.hasSeconds .numInputWrapper {\n  width: 26%;\n}\n.flatpickr-time.time24hr .numInputWrapper {\n  width: 49%;\n}\n.flatpickr-time input {\n  background: transparent;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  border: 0;\n  border-radius: 0;\n  text-align: center;\n  margin: 0;\n  padding: 0;\n  height: inherit;\n  line-height: inherit;\n  color: #393939;\n  font-size: 14px;\n  position: relative;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-appearance: textfield;\n  -moz-appearance: textfield;\n  appearance: textfield;\n}\n.flatpickr-time input.flatpickr-hour {\n  font-weight: bold;\n}\n.flatpickr-time input.flatpickr-minute,\n.flatpickr-time input.flatpickr-second {\n  font-weight: 400;\n}\n.flatpickr-time input:focus {\n  outline: 0;\n  border: 0;\n}\n.flatpickr-time .flatpickr-time-separator,\n.flatpickr-time .flatpickr-am-pm {\n  height: inherit;\n  float: left;\n  line-height: inherit;\n  color: #393939;\n  font-weight: bold;\n  width: 2%;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  -webkit-align-self: center;\n      -ms-flex-item-align: center;\n          align-self: center;\n}\n.flatpickr-time .flatpickr-am-pm {\n  outline: 0;\n  width: 18%;\n  cursor: pointer;\n  text-align: center;\n  font-weight: 400;\n}\n.flatpickr-time input:hover,\n.flatpickr-time .flatpickr-am-pm:hover,\n.flatpickr-time input:focus,\n.flatpickr-time .flatpickr-am-pm:focus {\n  background: #eee;\n}\n.flatpickr-input[readonly] {\n  cursor: pointer;\n}\n@-webkit-keyframes fpFadeInDown {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -20px, 0);\n            transform: translate3d(0, -20px, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fpFadeInDown {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -20px, 0);\n            transform: translate3d(0, -20px, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n  }\n}\n", ""]);
+exports.push([module.i, "[dir=ltr] .invoice-preview .invoice-padding[data-v-1f8dda56], [dir=ltr] .invoice-edit .invoice-padding[data-v-1f8dda56], [dir=ltr] .invoice-add .invoice-padding[data-v-1f8dda56] {\n  padding-left: 2.5rem;\n  padding-right: 2.5rem;\n}[dir=rtl] .invoice-preview .invoice-padding[data-v-1f8dda56], [dir=rtl] .invoice-edit .invoice-padding[data-v-1f8dda56], [dir=rtl] .invoice-add .invoice-padding[data-v-1f8dda56] {\n  padding-right: 2.5rem;\n  padding-left: 2.5rem;\n}\n[dir=ltr] .invoice-preview .table th[data-v-1f8dda56]:first-child, [dir=ltr] .invoice-preview .table td[data-v-1f8dda56]:first-child, [dir=ltr] .invoice-edit .table th[data-v-1f8dda56]:first-child, [dir=ltr] .invoice-edit .table td[data-v-1f8dda56]:first-child, [dir=ltr] .invoice-add .table th[data-v-1f8dda56]:first-child, [dir=ltr] .invoice-add .table td[data-v-1f8dda56]:first-child {\n  padding-left: 2.5rem;\n}\n[dir=rtl] .invoice-preview .table th[data-v-1f8dda56]:first-child, [dir=rtl] .invoice-preview .table td[data-v-1f8dda56]:first-child, [dir=rtl] .invoice-edit .table th[data-v-1f8dda56]:first-child, [dir=rtl] .invoice-edit .table td[data-v-1f8dda56]:first-child, [dir=rtl] .invoice-add .table th[data-v-1f8dda56]:first-child, [dir=rtl] .invoice-add .table td[data-v-1f8dda56]:first-child {\n  padding-right: 2.5rem;\n}\n.invoice-preview .logo-wrapper[data-v-1f8dda56],\n.invoice-edit .logo-wrapper[data-v-1f8dda56],\n.invoice-add .logo-wrapper[data-v-1f8dda56] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n[dir] .invoice-preview .logo-wrapper[data-v-1f8dda56], [dir] .invoice-edit .logo-wrapper[data-v-1f8dda56], [dir] .invoice-add .logo-wrapper[data-v-1f8dda56] {\n  margin-bottom: 1.9rem;\n}\n.invoice-preview .logo-wrapper .invoice-logo[data-v-1f8dda56],\n.invoice-edit .logo-wrapper .invoice-logo[data-v-1f8dda56],\n.invoice-add .logo-wrapper .invoice-logo[data-v-1f8dda56] {\n  font-size: 2.142rem;\n  font-weight: bold;\n  letter-spacing: -0.54px;\n}\n[dir] .invoice-preview .logo-wrapper .invoice-logo[data-v-1f8dda56], [dir] .invoice-edit .logo-wrapper .invoice-logo[data-v-1f8dda56], [dir] .invoice-add .logo-wrapper .invoice-logo[data-v-1f8dda56] {\n  margin-bottom: 0;\n}\n[dir=ltr] .invoice-preview .logo-wrapper .invoice-logo[data-v-1f8dda56], [dir=ltr] .invoice-edit .logo-wrapper .invoice-logo[data-v-1f8dda56], [dir=ltr] .invoice-add .logo-wrapper .invoice-logo[data-v-1f8dda56] {\n  margin-left: 1rem;\n}\n[dir=rtl] .invoice-preview .logo-wrapper .invoice-logo[data-v-1f8dda56], [dir=rtl] .invoice-edit .logo-wrapper .invoice-logo[data-v-1f8dda56], [dir=rtl] .invoice-add .logo-wrapper .invoice-logo[data-v-1f8dda56] {\n  margin-right: 1rem;\n}\n.invoice-preview .invoice-title[data-v-1f8dda56],\n.invoice-edit .invoice-title[data-v-1f8dda56],\n.invoice-add .invoice-title[data-v-1f8dda56] {\n  font-size: 1.285rem;\n}\n[dir] .invoice-preview .invoice-title[data-v-1f8dda56], [dir] .invoice-edit .invoice-title[data-v-1f8dda56], [dir] .invoice-add .invoice-title[data-v-1f8dda56] {\n  margin-bottom: 1rem;\n}\n.invoice-preview .invoice-title .invoice-number[data-v-1f8dda56],\n.invoice-edit .invoice-title .invoice-number[data-v-1f8dda56],\n.invoice-add .invoice-title .invoice-number[data-v-1f8dda56] {\n  font-weight: 600;\n}\n.invoice-preview .invoice-date-wrapper[data-v-1f8dda56],\n.invoice-edit .invoice-date-wrapper[data-v-1f8dda56],\n.invoice-add .invoice-date-wrapper[data-v-1f8dda56] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n[dir] .invoice-preview .invoice-date-wrapper[data-v-1f8dda56]:not(:last-of-type), [dir] .invoice-edit .invoice-date-wrapper[data-v-1f8dda56]:not(:last-of-type), [dir] .invoice-add .invoice-date-wrapper[data-v-1f8dda56]:not(:last-of-type) {\n  margin-bottom: 0.5rem;\n}\n.invoice-preview .invoice-date-wrapper .invoice-date-title[data-v-1f8dda56],\n.invoice-edit .invoice-date-wrapper .invoice-date-title[data-v-1f8dda56],\n.invoice-add .invoice-date-wrapper .invoice-date-title[data-v-1f8dda56] {\n  width: 7rem;\n}\n[dir] .invoice-preview .invoice-date-wrapper .invoice-date-title[data-v-1f8dda56], [dir] .invoice-edit .invoice-date-wrapper .invoice-date-title[data-v-1f8dda56], [dir] .invoice-add .invoice-date-wrapper .invoice-date-title[data-v-1f8dda56] {\n  margin-bottom: 0;\n}\n.invoice-preview .invoice-date-wrapper .invoice-date[data-v-1f8dda56],\n.invoice-edit .invoice-date-wrapper .invoice-date[data-v-1f8dda56],\n.invoice-add .invoice-date-wrapper .invoice-date[data-v-1f8dda56] {\n  font-weight: 600;\n}\n[dir] .invoice-preview .invoice-date-wrapper .invoice-date[data-v-1f8dda56], [dir] .invoice-edit .invoice-date-wrapper .invoice-date[data-v-1f8dda56], [dir] .invoice-add .invoice-date-wrapper .invoice-date[data-v-1f8dda56] {\n  margin-bottom: 0;\n}\n[dir=ltr] .invoice-preview .invoice-date-wrapper .invoice-date[data-v-1f8dda56], [dir=ltr] .invoice-edit .invoice-date-wrapper .invoice-date[data-v-1f8dda56], [dir=ltr] .invoice-add .invoice-date-wrapper .invoice-date[data-v-1f8dda56] {\n  margin-left: 0.5rem;\n}\n[dir=rtl] .invoice-preview .invoice-date-wrapper .invoice-date[data-v-1f8dda56], [dir=rtl] .invoice-edit .invoice-date-wrapper .invoice-date[data-v-1f8dda56], [dir=rtl] .invoice-add .invoice-date-wrapper .invoice-date[data-v-1f8dda56] {\n  margin-right: 0.5rem;\n}\n[dir] .invoice-preview .invoice-spacing[data-v-1f8dda56], [dir] .invoice-edit .invoice-spacing[data-v-1f8dda56], [dir] .invoice-add .invoice-spacing[data-v-1f8dda56] {\n  margin: 1.45rem 0;\n}\n.invoice-preview .invoice-number-date .title[data-v-1f8dda56],\n.invoice-edit .invoice-number-date .title[data-v-1f8dda56],\n.invoice-add .invoice-number-date .title[data-v-1f8dda56] {\n  width: 115px;\n}\n.invoice-preview .invoice-total-wrapper[data-v-1f8dda56],\n.invoice-edit .invoice-total-wrapper[data-v-1f8dda56],\n.invoice-add .invoice-total-wrapper[data-v-1f8dda56] {\n  width: 100%;\n  max-width: 12rem;\n}\n.invoice-preview .invoice-total-wrapper .invoice-total-item[data-v-1f8dda56],\n.invoice-edit .invoice-total-wrapper .invoice-total-item[data-v-1f8dda56],\n.invoice-add .invoice-total-wrapper .invoice-total-item[data-v-1f8dda56] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n[dir] .invoice-preview .invoice-total-wrapper .invoice-total-item .invoice-total-title[data-v-1f8dda56], [dir] .invoice-edit .invoice-total-wrapper .invoice-total-item .invoice-total-title[data-v-1f8dda56], [dir] .invoice-add .invoice-total-wrapper .invoice-total-item .invoice-total-title[data-v-1f8dda56] {\n  margin-bottom: 0.35rem;\n}\n.invoice-preview .invoice-total-wrapper .invoice-total-item .invoice-total-amount[data-v-1f8dda56],\n.invoice-edit .invoice-total-wrapper .invoice-total-item .invoice-total-amount[data-v-1f8dda56],\n.invoice-add .invoice-total-wrapper .invoice-total-item .invoice-total-amount[data-v-1f8dda56] {\n  font-weight: 600;\n}\n[dir] .invoice-preview .invoice-total-wrapper .invoice-total-item .invoice-total-amount[data-v-1f8dda56], [dir] .invoice-edit .invoice-total-wrapper .invoice-total-item .invoice-total-amount[data-v-1f8dda56], [dir] .invoice-add .invoice-total-wrapper .invoice-total-item .invoice-total-amount[data-v-1f8dda56] {\n  margin-bottom: 0.35rem;\n}\n@media (min-width: 768px) {\n[dir] .invoice-preview .invoice-title[data-v-1f8dda56], [dir] .invoice-edit .invoice-title[data-v-1f8dda56], [dir] .invoice-add .invoice-title[data-v-1f8dda56] {\n    margin-bottom: 3rem;\n}\n[dir=ltr] .invoice-preview .invoice-title[data-v-1f8dda56], [dir=ltr] .invoice-edit .invoice-title[data-v-1f8dda56], [dir=ltr] .invoice-add .invoice-title[data-v-1f8dda56] {\n    text-align: right;\n}\n[dir=rtl] .invoice-preview .invoice-title[data-v-1f8dda56], [dir=rtl] .invoice-edit .invoice-title[data-v-1f8dda56], [dir=rtl] .invoice-add .invoice-title[data-v-1f8dda56] {\n    text-align: left;\n}\n}\n[dir] .invoice-edit .invoice-preview-card .invoice-title[data-v-1f8dda56], [dir] .invoice-add .invoice-preview-card .invoice-title[data-v-1f8dda56] {\n  margin-bottom: 0;\n}\n[dir=ltr] .invoice-edit .invoice-preview-card .invoice-title[data-v-1f8dda56], [dir=ltr] .invoice-add .invoice-preview-card .invoice-title[data-v-1f8dda56] {\n  text-align: left;\n  margin-right: 3.5rem;\n}\n[dir=rtl] .invoice-edit .invoice-preview-card .invoice-title[data-v-1f8dda56], [dir=rtl] .invoice-add .invoice-preview-card .invoice-title[data-v-1f8dda56] {\n  text-align: right;\n  margin-left: 3.5rem;\n}\n.invoice-edit .invoice-preview-card .invoice-edit-input[data-v-1f8dda56],\n.invoice-edit .invoice-preview-card .invoice-edit-input-group[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .invoice-edit-input[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .invoice-edit-input-group[data-v-1f8dda56] {\n  max-width: 11.21rem;\n}\n[dir] .invoice-edit .invoice-preview-card .invoice-product-details[data-v-1f8dda56], [dir] .invoice-add .invoice-preview-card .invoice-product-details[data-v-1f8dda56] {\n  background-color: #fcfcfc;\n  padding: 3.75rem 3.45rem 2.3rem 3.45rem;\n}\n[dir] .invoice-edit .invoice-preview-card .invoice-product-details .product-details-border[data-v-1f8dda56], [dir] .invoice-add .invoice-preview-card .invoice-product-details .product-details-border[data-v-1f8dda56] {\n  border: 1px solid #ebe9f1;\n  border-radius: 0.357rem;\n}\n[dir] .invoice-edit .invoice-preview-card .invoice-to-title[data-v-1f8dda56], [dir] .invoice-add .invoice-preview-card .invoice-to-title[data-v-1f8dda56] {\n  margin-bottom: 1.9rem;\n}\n.invoice-edit .invoice-preview-card .col-title[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .col-title[data-v-1f8dda56] {\n  position: absolute;\n  top: -3.2rem;\n}\n.invoice-edit .invoice-preview-card .item-options-menu[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .item-options-menu[data-v-1f8dda56] {\n  min-width: 20rem;\n}\n[dir] .invoice-edit .invoice-preview-card .repeater-wrapper[data-v-1f8dda56]:not(:last-child), [dir] .invoice-add .invoice-preview-card .repeater-wrapper[data-v-1f8dda56]:not(:last-child) {\n  margin-bottom: 3rem;\n}\n.invoice-edit .invoice-preview-card .invoice-calculations .total-amt-title[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .invoice-calculations .total-amt-title[data-v-1f8dda56] {\n  width: 100px;\n}\n@media (max-width: 769px) {\n.invoice-edit .invoice-preview-card .invoice-title[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .invoice-title[data-v-1f8dda56] {\n    width: 115px;\n}\n[dir=ltr] .invoice-edit .invoice-preview-card .invoice-title[data-v-1f8dda56], [dir=ltr] .invoice-add .invoice-preview-card .invoice-title[data-v-1f8dda56] {\n    margin-right: 0;\n}\n[dir=rtl] .invoice-edit .invoice-preview-card .invoice-title[data-v-1f8dda56], [dir=rtl] .invoice-add .invoice-preview-card .invoice-title[data-v-1f8dda56] {\n    margin-left: 0;\n}\n.invoice-edit .invoice-preview-card .invoice-edit-input[data-v-1f8dda56],\n.invoice-add .invoice-preview-card .invoice-edit-input[data-v-1f8dda56] {\n    max-width: 100%;\n}\n}\n@media (max-width: 992px) {\n.invoice-edit .col-title[data-v-1f8dda56],\n.invoice-add .col-title[data-v-1f8dda56] {\n    top: -1.5rem !important;\n}\n}\n@media print {\n[dir] .invoice-edit hr[data-v-1f8dda56], [dir] .invoice-add hr[data-v-1f8dda56] {\n    margin-top: 1rem !important;\n    margin-bottom: 1rem !important;\n}\n}\n[dir] .form-item-section[data-v-1f8dda56] {\n  background-color: #fcfcfc;\n}\n.form-item-action-col[data-v-1f8dda56] {\n  width: 27px;\n}\n.repeater-form[data-v-1f8dda56] {\n  -webkit-transition: 0.35s height;\n  transition: 0.35s height;\n}\n[dir] .repeater-form[data-v-1f8dda56] {\n  -webkit-transition: 0.35s height;\n}\n[dir] .v-select.item-selector-title[data-v-1f8dda56], [dir] .v-select.payment-selector[data-v-1f8dda56] {\n  background-color: #fff;\n}\n[dir] .dark-layout .v-select.item-selector-title[data-v-1f8dda56], [dir] .dark-layout .v-select.payment-selector[data-v-1f8dda56] {\n  background-color: unset;\n}\n[dir] .dark-layout .form-item-section[data-v-1f8dda56] {\n  background-color: #161d31;\n}\n[dir] .dark-layout .form-item-section .row .border[data-v-1f8dda56] {\n  background-color: #283046;\n}", ""]);
 
 // exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/sass-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/sass-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/sass-loader/dist/cjs.js??ref--11-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--7-2!../../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../../node_modules/sass-loader/dist/cjs.js??ref--11-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=style&index=1&id=1f8dda56&lang=scss&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/@core/layouts/components/Logo.vue?vue&type=template&id=556c28d4& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "svg",
+    {
+      attrs: {
+        viewBox: "0 0 139 95",
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+        height: "24"
+      }
+    },
+    [
+      _c(
+        "defs",
+        [
+          _c(
+            "linearGradient",
+            {
+              attrs: {
+                id: "linearGradient-1",
+                x1: "100%",
+                y1: "10.5120544%",
+                x2: "50%",
+                y2: "89.4879456%"
+              }
+            },
+            [
+              _c("stop", { attrs: { "stop-color": "#000000", offset: "0%" } }),
+              _vm._v(" "),
+              _c("stop", { attrs: { "stop-color": "#FFFFFF", offset: "100%" } })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "linearGradient",
+            {
+              attrs: {
+                id: "linearGradient-2",
+                x1: "64.0437835%",
+                y1: "46.3276743%",
+                x2: "37.373316%",
+                y2: "100%"
+              }
+            },
+            [
+              _c("stop", {
+                attrs: {
+                  "stop-color": "#EEEEEE",
+                  "stop-opacity": "0",
+                  offset: "0%"
+                }
+              }),
+              _vm._v(" "),
+              _c("stop", { attrs: { "stop-color": "#FFFFFF", offset: "100%" } })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "g",
+        {
+          attrs: {
+            id: "Page-1",
+            stroke: "none",
+            "stroke-width": "1",
+            fill: "none",
+            "fill-rule": "evenodd"
+          }
+        },
+        [
+          _c(
+            "g",
+            {
+              attrs: {
+                id: "Artboard",
+                transform: "translate(-400.000000, -178.000000)"
+              }
+            },
+            [
+              _c(
+                "g",
+                {
+                  attrs: {
+                    id: "Group",
+                    transform: "translate(400.000000, 178.000000)"
+                  }
+                },
+                [
+                  _c("path", {
+                    staticClass: "text-primary",
+                    staticStyle: { fill: "currentColor" },
+                    attrs: {
+                      id: "Path",
+                      d:
+                        "M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      id: "Path1",
+                      d:
+                        "M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z",
+                      fill: "url(#linearGradient-1)",
+                      opacity: "0.2"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("polygon", {
+                    attrs: {
+                      id: "Path-2",
+                      fill: "#000000",
+                      opacity: "0.049999997",
+                      points:
+                        "69.3922914 32.4202615 32.8435758 70.5039241 54.0490008 16.1851325"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("polygon", {
+                    attrs: {
+                      id: "Path-21",
+                      fill: "#000000",
+                      opacity: "0.099999994",
+                      points:
+                        "69.3922914 32.4202615 32.8435758 70.5039241 58.3683556 20.7402338"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("polygon", {
+                    attrs: {
+                      id: "Path-3",
+                      fill: "url(#linearGradient-2)",
+                      opacity: "0.099999994",
+                      points:
+                        "101.428699 0 83.0667527 94.1480575 130.378721 47.0740288"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/sale/Create.vue?vue&type=template&id=1f8dda56&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "invoice-add-wrapper" },
+    [
+      _c(
+        "b-row",
+        { staticClass: "invoice-add" },
+        [
+          _c(
+            "b-col",
+            { attrs: { cols: "12", xl: "9", md: "8" } },
+            [
+              _c(
+                "b-form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "b-card",
+                    {
+                      staticClass: "invoice-preview-card",
+                      attrs: { "no-body": "" }
+                    },
+                    [
+                      _c(
+                        "b-card-body",
+                        { staticClass: "invoice-padding pb-0" },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0"
+                            },
+                            [
+                              _c(
+                                "div",
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "logo-wrapper" },
+                                    [
+                                      _c("logo"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "h3",
+                                        {
+                                          staticClass:
+                                            "text-primary invoice-logo"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    Vuexy\n                  "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("b-card-text", { staticClass: "mb-25" }, [
+                                    _vm._v(
+                                      "\n                  Office 149, 450 South Brand Brooklyn\n                "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("b-card-text", { staticClass: "mb-25" }, [
+                                    _vm._v(
+                                      "\n                  San Diego County, CA 91905, USA\n                "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("b-card-text", { staticClass: "mb-0" }, [
+                                    _vm._v(
+                                      "\n                  +1 (123) 456 7891, +44 (876) 543 2198\n                "
+                                    )
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "invoice-number-date mt-md-0 mt-2"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex align-items-center justify-content-md-end mb-1"
+                                    },
+                                    [
+                                      _c(
+                                        "h4",
+                                        { staticClass: "invoice-title" },
+                                        [
+                                          _vm._v(
+                                            "\n                    Invoice\n                  "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "b-input-group",
+                                        {
+                                          staticClass:
+                                            "input-group-merge invoice-edit-input-group disabled"
+                                        },
+                                        [
+                                          _c(
+                                            "b-input-group-prepend",
+                                            { attrs: { "is-text": "" } },
+                                            [
+                                              _c("feather-icon", {
+                                                attrs: { icon: "HashIcon" }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c("b-form-input", {
+                                            attrs: {
+                                              id: "invoice-data-id",
+                                              disabled: ""
+                                            },
+                                            model: {
+                                              value: _vm.invoiceData.invoice_no,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.invoiceData,
+                                                  "invoice_no",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "invoiceData.invoice_no"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex align-items-center mb-1"
+                                    },
+                                    [
+                                      _c("span", { staticClass: "title" }, [
+                                        _vm._v(
+                                          "\n                    Date:\n                  "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("flat-pickr", {
+                                        staticClass:
+                                          "form-control invoice-edit-input",
+                                        model: {
+                                          value: _vm.invoiceData.date,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.invoiceData,
+                                              "date",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "invoiceData.date"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-flex align-items-center"
+                                    },
+                                    [
+                                      _c("span", { staticClass: "title" }, [
+                                        _vm._v(
+                                          "\n                    Due Date:\n                  "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("flat-pickr", {
+                                        staticClass:
+                                          "form-control invoice-edit-input",
+                                        model: {
+                                          value: _vm.invoiceData.next_payment,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.invoiceData,
+                                              "next_payment",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "invoiceData.next_payment"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("hr", { staticClass: "invoice-spacing" }),
+                      _vm._v(" "),
+                      _c(
+                        "b-card-body",
+                        { staticClass: "invoice-padding pt-0" },
+                        [
+                          _c(
+                            "b-row",
+                            { staticClass: "invoice-spacing" },
+                            [
+                              _c(
+                                "b-col",
+                                {
+                                  staticClass: "mb-lg-1",
+                                  attrs: { cols: "12", xl: "6" }
+                                },
+                                [
+                                  _c("h6", { staticClass: "mb-2" }, [
+                                    _vm._v(
+                                      "\n                  Invoice To:\n                "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-select", {
+                                    attrs: {
+                                      dir: "ltr",
+                                      options: _vm.clients,
+                                      label: "company",
+                                      "input-id": "invoice-data-client",
+                                      clearable: false
+                                    },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "list-header",
+                                        fn: function() {
+                                          return [
+                                            _c(
+                                              "li",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "b-toggle",
+                                                    rawName:
+                                                      "v-b-toggle.sidebar-invoice-add-new-customer",
+                                                    modifiers: {
+                                                      "sidebar-invoice-add-new-customer": true
+                                                    }
+                                                  }
+                                                ],
+                                                staticClass:
+                                                  "add-new-client-header d-flex align-items-center my-50"
+                                              },
+                                              [
+                                                _c("feather-icon", {
+                                                  attrs: {
+                                                    icon: "PlusIcon",
+                                                    size: "16"
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "align-middle ml-25"
+                                                  },
+                                                  [_vm._v("Add New Customer")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ]),
+                                    model: {
+                                      value: _vm.invoiceData.client_id,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.invoiceData,
+                                          "client_id",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "invoiceData.client_id"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.invoiceData.client
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "mt-1" },
+                                        [
+                                          _c("h6", { staticClass: "mb-25" }, [
+                                            _vm._v(
+                                              "\n                    " +
+                                                _vm._s(
+                                                  _vm.invoiceData.client.name
+                                                ) +
+                                                "\n                  "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-card-text",
+                                            { staticClass: "mb-25" },
+                                            [
+                                              _vm._v(
+                                                "\n                    " +
+                                                  _vm._s(
+                                                    _vm.invoiceData.client
+                                                      .company
+                                                  ) +
+                                                  "\n                  "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-card-text",
+                                            { staticClass: "mb-25" },
+                                            [
+                                              _vm._v(
+                                                "\n                    " +
+                                                  _vm._s(
+                                                    _vm.invoiceData.client
+                                                      .address
+                                                  ) +
+                                                  ", " +
+                                                  _vm._s(
+                                                    _vm.invoiceData.client
+                                                      .country
+                                                  ) +
+                                                  "\n                  "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-card-text",
+                                            { staticClass: "mb-25" },
+                                            [
+                                              _vm._v(
+                                                "\n                    " +
+                                                  _vm._s(
+                                                    _vm.invoiceData.client
+                                                      .contact
+                                                  ) +
+                                                  "\n                  "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-card-text",
+                                            { staticClass: "mb-0" },
+                                            [
+                                              _vm._v(
+                                                "\n                    " +
+                                                  _vm._s(
+                                                    _vm.invoiceData.client
+                                                      .companyEmail
+                                                  ) +
+                                                  "\n                  "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-col",
+                                {
+                                  staticClass:
+                                    "mt-xl-0 mt-2 justify-content-end d-xl-flex d-block",
+                                  attrs: { xl: "6", cols: "12" }
+                                },
+                                [
+                                  _c("div", [
+                                    _c("h6", { staticClass: "mb-2" }, [
+                                      _vm._v(
+                                        "\n                    Payment Details:\n                  "
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("table", [
+                                      _c("tbody", [
+                                        _c("tr", [
+                                          _c("td", { staticClass: "pr-1" }, [
+                                            _vm._v(
+                                              "\n                          Total Due:\n                        "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass: "font-weight-bold"
+                                              },
+                                              [_vm._v("$12,110.55")]
+                                            )
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", { staticClass: "pr-1" }, [
+                                            _vm._v(
+                                              "\n                          Bank name:\n                        "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [_vm._v("American Bank")])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", { staticClass: "pr-1" }, [
+                                            _vm._v(
+                                              "\n                          Country:\n                        "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [_vm._v("United States")])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", { staticClass: "pr-1" }, [
+                                            _vm._v(
+                                              "\n                          IBAN:\n                        "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v("ETD95476213874685")
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c("td", { staticClass: "pr-1" }, [
+                                            _vm._v(
+                                              "\n                          SWIFT code:\n                        "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [_vm._v("BR91905")])
+                                        ])
+                                      ])
+                                    ])
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-card-body",
+                        { staticClass: "invoice-padding form-item-section" },
+                        [
+                          _c(
+                            "div",
+                            {
+                              ref: "form",
+                              staticClass: "repeater-form",
+                              style: { height: _vm.trHeight }
+                            },
+                            _vm._l(_vm.products, function(item, index) {
+                              return _c(
+                                "b-row",
+                                {
+                                  key: index,
+                                  ref: "row",
+                                  refInFor: true,
+                                  staticClass: "pb-2"
+                                },
+                                [
+                                  _c("b-col", { attrs: { cols: "12" } }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "d-none d-lg-flex" },
+                                      [
+                                        _c(
+                                          "b-row",
+                                          { staticClass: "flex-grow-1 px-1" },
+                                          [
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "5" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                        Item\n                      "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "3" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                        Cost\n                      "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "2" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                        Qty\n                      "
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "2" }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                        Price\n                      "
+                                                )
+                                              ]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", {
+                                          staticClass: "form-item-action-col"
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "d-flex border rounded" },
+                                      [
+                                        _c(
+                                          "b-row",
+                                          { staticClass: "flex-grow-1 p-2" },
+                                          [
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "5" }
+                                              },
+                                              [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "d-inline d-lg-none"
+                                                  },
+                                                  [_vm._v("Item")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("v-select", {
+                                                  staticClass:
+                                                    "mb-2 item-selector-title",
+                                                  attrs: {
+                                                    dir: _vm.$store.state
+                                                      .appConfig.isRTL
+                                                      ? "rtl"
+                                                      : "ltr",
+                                                    options: _vm.itemsOptions,
+                                                    label: "itemTitle",
+                                                    clearable: false,
+                                                    placeholder: "Select Item"
+                                                  },
+                                                  on: {
+                                                    input: function(val) {
+                                                      return _vm.updateItemForm(
+                                                        index,
+                                                        val
+                                                      )
+                                                    }
+                                                  },
+                                                  model: {
+                                                    value: item.itemTitle,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        item,
+                                                        "itemTitle",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "item.itemTitle"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "3" }
+                                              },
+                                              [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "d-inline d-lg-none"
+                                                  },
+                                                  [_vm._v("Cost")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("b-form-input", {
+                                                  staticClass: "mb-2",
+                                                  attrs: { type: "number" },
+                                                  model: {
+                                                    value: item.cost,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        item,
+                                                        "cost",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "item.cost"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "2" }
+                                              },
+                                              [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "d-inline d-lg-none"
+                                                  },
+                                                  [_vm._v("Qty")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("b-form-input", {
+                                                  staticClass: "mb-2",
+                                                  attrs: { type: "number" },
+                                                  model: {
+                                                    value: item.qty,
+                                                    callback: function($$v) {
+                                                      _vm.$set(item, "qty", $$v)
+                                                    },
+                                                    expression: "item.qty"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "2" }
+                                              },
+                                              [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "d-inline d-lg-none"
+                                                  },
+                                                  [_vm._v("Price")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  { staticClass: "mb-1" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                          $" +
+                                                        _vm._s(
+                                                          item.cost * item.qty
+                                                        ) +
+                                                        "\n                        "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-col",
+                                              {
+                                                attrs: { cols: "12", lg: "5" }
+                                              },
+                                              [
+                                                _c(
+                                                  "label",
+                                                  {
+                                                    staticClass:
+                                                      "d-inline d-lg-none"
+                                                  },
+                                                  [_vm._v("Description")]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("b-form-textarea", {
+                                                  staticClass: "mb-2 mb-lg-0",
+                                                  model: {
+                                                    value: item.description,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        item,
+                                                        "description",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "item.description"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("b-col", [
+                                              _c("p", { staticClass: "mb-0" }, [
+                                                _vm._v(
+                                                  "\n                          Discount: 0% 0% 0%\n                        "
+                                                )
+                                              ])
+                                            ])
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "d-flex flex-column justify-content-between border-left py-50 px-25"
+                                          },
+                                          [
+                                            _c("feather-icon", {
+                                              staticClass: "cursor-pointer",
+                                              attrs: {
+                                                size: "16",
+                                                icon: "XIcon"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.removeItem(index)
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("feather-icon", {
+                                              staticClass: "cursor-pointer",
+                                              attrs: {
+                                                id:
+                                                  "form-item-settings-icon-" +
+                                                  index,
+                                                size: "16",
+                                                icon: "SettingsIcon"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "b-popover",
+                                              {
+                                                ref:
+                                                  "form-item-settings-popover-" +
+                                                  index,
+                                                refInFor: true,
+                                                attrs: {
+                                                  target:
+                                                    "form-item-settings-icon-" +
+                                                    index,
+                                                  triggers: "click",
+                                                  placement: "lefttop"
+                                                }
+                                              },
+                                              [
+                                                _c(
+                                                  "b-form",
+                                                  {
+                                                    on: {
+                                                      submit: function($event) {
+                                                        $event.preventDefault()
+                                                      }
+                                                    }
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "b-row",
+                                                      [
+                                                        _c(
+                                                          "b-col",
+                                                          {
+                                                            attrs: {
+                                                              cols: "12"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "b-form-group",
+                                                              {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Discount(%)",
+                                                                  "label-for":
+                                                                    "setting-item-" +
+                                                                    index +
+                                                                    "-discount"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "b-form-input",
+                                                                  {
+                                                                    attrs: {
+                                                                      id:
+                                                                        "setting-item-" +
+                                                                        index +
+                                                                        "-discount",
+                                                                      value: null,
+                                                                      type:
+                                                                        "number"
+                                                                    }
+                                                                  }
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "b-col",
+                                                          {
+                                                            attrs: { cols: "6" }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "b-form-group",
+                                                              {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Tax 1",
+                                                                  "label-for":
+                                                                    "setting-item-" +
+                                                                    index +
+                                                                    "-tax-1"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c("v-select", {
+                                                                  attrs: {
+                                                                    dir: _vm
+                                                                      .$store
+                                                                      .state
+                                                                      .appConfig
+                                                                      .isRTL
+                                                                      ? "rtl"
+                                                                      : "ltr",
+                                                                    value:
+                                                                      "10%",
+                                                                    options: [
+                                                                      "0%",
+                                                                      "1%",
+                                                                      "10%",
+                                                                      "14%",
+                                                                      "18%"
+                                                                    ],
+                                                                    "input-id":
+                                                                      "setting-item-" +
+                                                                      index +
+                                                                      "-tax-1",
+                                                                    clearable: false
+                                                                  }
+                                                                })
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "b-col",
+                                                          {
+                                                            attrs: { cols: "6" }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "b-form-group",
+                                                              {
+                                                                attrs: {
+                                                                  label:
+                                                                    "Tax 2",
+                                                                  "label-for":
+                                                                    "setting-item-" +
+                                                                    index +
+                                                                    "-tax-2"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c("v-select", {
+                                                                  attrs: {
+                                                                    dir: _vm
+                                                                      .$store
+                                                                      .state
+                                                                      .appConfig
+                                                                      .isRTL
+                                                                      ? "rtl"
+                                                                      : "ltr",
+                                                                    value:
+                                                                      "10%",
+                                                                    options: [
+                                                                      "0%",
+                                                                      "1%",
+                                                                      "10%",
+                                                                      "14%",
+                                                                      "18%"
+                                                                    ],
+                                                                    "input-id":
+                                                                      "setting-item-" +
+                                                                      index +
+                                                                      "-tax-2",
+                                                                    clearable: false
+                                                                  }
+                                                                })
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "b-col",
+                                                          {
+                                                            staticClass:
+                                                              "d-flex justify-content-between mt-1",
+                                                            attrs: {
+                                                              cols: "12"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "b-button",
+                                                              {
+                                                                attrs: {
+                                                                  variant:
+                                                                    "outline-primary"
+                                                                },
+                                                                on: {
+                                                                  click: function() {
+                                                                    _vm.$refs[
+                                                                      "form-item-settings-popover-" +
+                                                                        index
+                                                                    ][0].$emit(
+                                                                      "close"
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                Apply\n                              "
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "b-button",
+                                                              {
+                                                                attrs: {
+                                                                  variant:
+                                                                    "outline-secondary"
+                                                                },
+                                                                on: {
+                                                                  click: function() {
+                                                                    _vm.$refs[
+                                                                      "form-item-settings-popover-" +
+                                                                        index
+                                                                    ][0].$emit(
+                                                                      "close"
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                                Cancel\n                              "
+                                                                )
+                                                              ]
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            }),
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-button",
+                            {
+                              directives: [
+                                {
+                                  name: "ripple",
+                                  rawName: "v-ripple.400",
+                                  value: "rgba(255, 255, 255, 0.15)",
+                                  expression: "'rgba(255, 255, 255, 0.15)'",
+                                  modifiers: { "400": true }
+                                }
+                              ],
+                              attrs: { size: "sm", variant: "primary" },
+                              on: { click: _vm.addNewItemInItemForm }
+                            },
+                            [_vm._v("\n              Add Item\n            ")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-card-body",
+                        { staticClass: "invoice-padding pb-0" },
+                        [
+                          _c(
+                            "b-row",
+                            [
+                              _c("b-col", {
+                                staticClass:
+                                  "mt-md-0 mt-3 d-flex align-items-center",
+                                attrs: {
+                                  cols: "12",
+                                  md: "6",
+                                  order: "2",
+                                  "order-md": "1"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "b-col",
+                                {
+                                  staticClass:
+                                    "mt-md-6 d-flex justify-content-end",
+                                  attrs: {
+                                    cols: "12",
+                                    md: "6",
+                                    order: "1",
+                                    "order-md": "2"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "invoice-total-wrapper" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "invoice-total-item" },
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass: "invoice-total-title"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      Subtotal:\n                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "invoice-total-amount"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      $1800\n                    "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "invoice-total-item" },
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass: "invoice-total-title"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      Discount:\n                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "invoice-total-amount"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      $28\n                    "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "invoice-total-item" },
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass: "invoice-total-title"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      Tax:\n                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "invoice-total-amount"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      21%\n                    "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("hr", { staticClass: "my-50" }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "invoice-total-item" },
+                                        [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass: "invoice-total-title"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      Total:\n                    "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "invoice-total-amount"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                      $1690\n                    "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("hr", { staticClass: "invoice-spacing" }),
+                      _vm._v(" "),
+                      _c(
+                        "b-card-body",
+                        { staticClass: "invoice-padding pt-0" },
+                        [
+                          _c("span", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Note: ")
+                          ]),
+                          _vm._v(" "),
+                          _c("b-form-textarea", {
+                            model: {
+                              value: _vm.invoiceData.notes,
+                              callback: function($$v) {
+                                _vm.$set(_vm.invoiceData, "notes", $$v)
+                              },
+                              expression: "invoiceData.notes"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticClass: "invoice-actions mt-md-0 mt-2",
+              attrs: { cols: "12", md: "4", xl: "3" }
+            },
+            [
+              _c(
+                "b-card",
+                [
+                  _c(
+                    "b-button",
+                    {
+                      directives: [
+                        {
+                          name: "ripple",
+                          rawName: "v-ripple.400",
+                          value: "rgba(255, 255, 255, 0.15)",
+                          expression: "'rgba(255, 255, 255, 0.15)'",
+                          modifiers: { "400": true }
+                        }
+                      ],
+                      attrs: { variant: "primary", block: "" }
+                    },
+                    [_vm._v("\n          Save\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    {
+                      directives: [
+                        {
+                          name: "ripple",
+                          rawName: "v-ripple.400",
+                          value: "rgba(255, 255, 255, 0.15)",
+                          expression: "'rgba(255, 255, 255, 0.15)'",
+                          modifiers: { "400": true }
+                        }
+                      ],
+                      attrs: { variant: "danger", block: "" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.$router.push({ name: "shop.sale" })
+                        }
+                      }
+                    },
+                    [_vm._v("\n          Cancel\n        ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "mt-2" },
+                [
+                  _c(
+                    "b-form-group",
+                    {
+                      attrs: {
+                        label: "Accept Payment Via",
+                        "label-for": "payment-method"
+                      }
+                    },
+                    [
+                      _c("v-select", {
+                        staticClass: "payment-selector",
+                        attrs: {
+                          dir: "ltr",
+                          options: _vm.paymentMethods,
+                          "input-id": "payment-method",
+                          clearable: false
+                        },
+                        model: {
+                          value: _vm.invoiceData.paymentMethod,
+                          callback: function($$v) {
+                            _vm.$set(_vm.invoiceData, "paymentMethod", $$v)
+                          },
+                          expression: "invoiceData.paymentMethod"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex justify-content-between align-items-center"
+                    },
+                    [
+                      _c("label", { attrs: { for: "patymentTerms" } }, [
+                        _vm._v("Payment Terms")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", {
+                        attrs: {
+                          id: "patymentTerms",
+                          checked: true,
+                          switch: ""
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex justify-content-between align-items-center my-1"
+                    },
+                    [
+                      _c("label", { attrs: { for: "clientNotes" } }, [
+                        _vm._v("Client Notes")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", {
+                        attrs: { id: "clientNotes", checked: true, switch: "" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex justify-content-between align-items-center"
+                    },
+                    [
+                      _c("label", { attrs: { for: "paymentStub" } }, [
+                        _vm._v("Payment Stub")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-form-checkbox", {
+                        attrs: { id: "paymentStub", switch: "" }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-sidebar", {
+        ref: "createClientSidebar",
+        attrs: {
+          id: "sidebar-invoice-add-new-customer",
+          "sidebar-class": "sidebar-lg",
+          "bg-variant": "white",
+          shadow: "",
+          backdrop: "",
+          "no-header": "",
+          right: ""
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(ref) {
+              var hide = ref.hide
+              return [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex justify-content-between align-items-center content-sidebar-header px-2 py-1"
+                  },
+                  [
+                    _c("h5", { staticClass: "mb-0" }, [
+                      _vm._v("\n          Add Client\n        ")
+                    ]),
+                    _vm._v(" "),
+                    _c("feather-icon", {
+                      staticClass: "ml-1 cursor-pointer",
+                      attrs: { icon: "XIcon", size: "16" },
+                      on: { click: hide }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "validation-observer",
+                  { ref: "createCustomer" },
+                  [
+                    _c(
+                      "b-form",
+                      { staticClass: "p-2" },
+                      [
+                        _c(
+                          "b-form-group",
+                          { attrs: { label: "Name" } },
+                          [
+                            _c("validation-provider", {
+                              attrs: { name: "name", rules: "required" },
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "default",
+                                    fn: function(ref) {
+                                      var errors = ref.errors
+                                      return [
+                                        _c("b-form-input", {
+                                          attrs: {
+                                            state:
+                                              errors.length > 0 ? false : null,
+                                            placeholder: "Name"
+                                          },
+                                          model: {
+                                            value: _vm.form.name,
+                                            callback: function($$v) {
+                                              _vm.$set(_vm.form, "name", $$v)
+                                            },
+                                            expression: "form.name"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "small",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v(_vm._s(errors[0]))]
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ],
+                                null,
+                                true
+                              )
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-form-group",
+                          { attrs: { label: "Company" } },
+                          [
+                            _c("validation-provider", {
+                              attrs: { name: "company", rules: "required" },
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "default",
+                                    fn: function(ref) {
+                                      var errors = ref.errors
+                                      return [
+                                        _c("b-form-input", {
+                                          attrs: {
+                                            state:
+                                              errors.length > 0 ? false : null,
+                                            placeholder: "Company"
+                                          },
+                                          model: {
+                                            value: _vm.form.company,
+                                            callback: function($$v) {
+                                              _vm.$set(_vm.form, "company", $$v)
+                                            },
+                                            expression: "form.company"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "small",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v(_vm._s(errors[0]))]
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ],
+                                null,
+                                true
+                              )
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-form-group",
+                          { attrs: { label: "Email" } },
+                          [
+                            _c("validation-provider", {
+                              attrs: { name: "email", rules: "required" },
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "default",
+                                    fn: function(ref) {
+                                      var errors = ref.errors
+                                      return [
+                                        _c("b-form-input", {
+                                          attrs: {
+                                            state:
+                                              errors.length > 0 ? false : null,
+                                            type: "text",
+                                            placeholder: "Email"
+                                          },
+                                          model: {
+                                            value: _vm.form.email,
+                                            callback: function($$v) {
+                                              _vm.$set(_vm.form, "email", $$v)
+                                            },
+                                            expression: "form.email"
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "small",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v(_vm._s(errors[0]))]
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ],
+                                null,
+                                true
+                              )
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "d-flex mt-2" },
+                          [
+                            _c(
+                              "b-button",
+                              {
+                                directives: [
+                                  {
+                                    name: "ripple",
+                                    rawName: "v-ripple.400",
+                                    value: "rgba(255, 255, 255, 0.15)",
+                                    expression: "'rgba(255, 255, 255, 0.15)'",
+                                    modifiers: { "400": true }
+                                  }
+                                ],
+                                staticClass: "mr-2",
+                                attrs: { variant: "primary", type: "submit" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.clientCreate($event)
+                                  }
+                                }
+                              },
+                              [_vm._v("\n              Add\n            ")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              {
+                                directives: [
+                                  {
+                                    name: "ripple",
+                                    rawName: "v-ripple.400",
+                                    value: "rgba(186, 191, 199, 0.15)",
+                                    expression: "'rgba(186, 191, 199, 0.15)'",
+                                    modifiers: { "400": true }
+                                  }
+                                ],
+                                attrs: { variant: "outline-secondary" },
+                                on: { click: hide }
+                              },
+                              [_vm._v("\n              Cancel\n            ")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
 
 
 /***/ })

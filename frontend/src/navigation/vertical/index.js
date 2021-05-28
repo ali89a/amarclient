@@ -15,7 +15,7 @@ export default [
     icon: 'FileIcon',
   },
   {
-    title: 'Sale',
+    title: 'Sale/Invoice',
     route: 'shop.sale',
     icon: 'FileIcon',
   },

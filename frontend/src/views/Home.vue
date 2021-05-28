@@ -59,7 +59,12 @@ export default {
   },
   data() {
     return {
-      statistic: '',
+      statistic: {
+        total_client: 0,
+        total_payee: 0,
+        total_sale: 0,
+        total_expenses: 0,
+      },
       transactions: [],
     }
   },
