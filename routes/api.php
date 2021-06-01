@@ -9,16 +9,11 @@ use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\LeaveController;
 use App\Http\Controllers\Api\NoticeBoardController;
 use App\Http\Controllers\Api\MeetingController;
-use App\Http\Controllers\Api\CustomerController;
-use App\Http\Controllers\Api\EmiController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\PayeeController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\PurchaseController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\SaleController;
-use App\Http\Controllers\Api\SupplierController;
-use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\InvoiceLogController;
 use App\Http\Controllers\Api\User\AuthController as UserAuthController;
@@ -55,7 +50,7 @@ Route::group(['prefix' => 'v1/shop','as'=>'shop.'],function (){
 
     Route::group(['middleware' => ['auth:user-api','scope:user']],function (){
         Route::post('logout',[UserAuthController::class,'logout'])->name('logout');
-
+        Route::get('shop-info',[UserAuthController::class,'getShopInfo'])->name('get.shopInfo');
         Route::apiResource('client',ClientController::class);
         Route::apiResource('payee',PayeeController::class);
         Route::apiResource('sale',SaleController::class);

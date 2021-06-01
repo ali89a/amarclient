@@ -35,7 +35,15 @@ export default [
       pageTitle: 'Home',
     },
   },
-
+  {
+    path: '/profile',
+    name: 'user.profile',
+    component: () => import('@/views/Home.vue'),
+    meta: {
+      authUserOnly: true,
+      pageTitle: 'Profile',
+    },
+  },
   {
     path: '/client',
     name: 'shop.client',

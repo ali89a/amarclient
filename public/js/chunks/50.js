@@ -226,29 +226,28 @@ var axiosIns = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
   // You can add your headers here
   // ================================
   baseURL: 'http://127.0.0.1:8000',
-  // baseURL: 'http://cashbaksho.com/',
-  timeout: 5000,
+  // baseURL: 'https://amarclient.com/',
+  timeout: 90000,
   headers: {
     Accept: 'application/json'
-  } //Authorization: `Bearer ${localStorage.getItem('userAccessToken')}`
-
+  }
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axiosIns;
 /* harmony default export */ __webpack_exports__["default"] = (axiosIns);
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/supplier/Create.vue":
-/*!*****************************************************!*\
-  !*** ./frontend/src/views/shop/supplier/Create.vue ***!
-  \*****************************************************/
+/***/ "./frontend/src/views/shop/client/Create.vue":
+/*!***************************************************!*\
+  !*** ./frontend/src/views/shop/client/Create.vue ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Create_vue_vue_type_template_id_735f229e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=735f229e& */ "./frontend/src/views/shop/supplier/Create.vue?vue&type=template&id=735f229e&");
-/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/supplier/Create.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Create_vue_vue_type_template_id_335cfdd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=335cfdd2& */ "./frontend/src/views/shop/client/Create.vue?vue&type=template&id=335cfdd2&");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/client/Create.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -259,8 +258,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Create_vue_vue_type_template_id_735f229e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Create_vue_vue_type_template_id_735f229e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Create_vue_vue_type_template_id_335cfdd2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Create_vue_vue_type_template_id_335cfdd2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -270,47 +269,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "frontend/src/views/shop/supplier/Create.vue"
+component.options.__file = "frontend/src/views/shop/client/Create.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/supplier/Create.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./frontend/src/views/shop/supplier/Create.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
+/***/ "./frontend/src/views/shop/client/Create.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./frontend/src/views/shop/client/Create.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/supplier/Create.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/client/Create.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/supplier/Create.vue?vue&type=template&id=735f229e&":
-/*!************************************************************************************!*\
-  !*** ./frontend/src/views/shop/supplier/Create.vue?vue&type=template&id=735f229e& ***!
-  \************************************************************************************/
+/***/ "./frontend/src/views/shop/client/Create.vue?vue&type=template&id=335cfdd2&":
+/*!**********************************************************************************!*\
+  !*** ./frontend/src/views/shop/client/Create.vue?vue&type=template&id=335cfdd2& ***!
+  \**********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_735f229e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=735f229e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/supplier/Create.vue?vue&type=template&id=735f229e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_735f229e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_335cfdd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=335cfdd2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/client/Create.vue?vue&type=template&id=335cfdd2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_335cfdd2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_735f229e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_335cfdd2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/supplier/Create.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/supplier/Create.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/client/Create.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/client/Create.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -320,6 +319,164 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
 /* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -433,41 +590,94 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         name: '',
-        phone_number: '',
-        previous_due: '',
-        description: ''
+        company: '',
+        phone_number_1: '',
+        phone_number_2: '',
+        email: '',
+        notes: '',
+        address: '',
+        website: '',
+        country_id: '',
+        division_id: '',
+        district_id: '',
+        upazila_id: ''
       },
+      countries: [],
+      divisions: [],
+      districts: [],
+      upazilas: [],
       required: _validations__WEBPACK_IMPORTED_MODULE_2__["required"]
     };
+  },
+  created: function created() {
+    this.getAllCountries();
+    this.getAllDivisions();
   },
   methods: {
     validationForm: function validationForm() {
       var _this = this;
 
-      this.$refs.createsupplier.validate().then(function (success) {
+      this.$refs.createCustomer.validate().then(function (success) {
         if (success) {
-          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('api/v1/shop/supplier', _this.form).then(function (response) {
-            // console.log(response)
-            // first reset your form values
-            // eslint-disable-next-line guard-for-in
+          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('api/v1/shop/client', _this.form).then(function (response) {
+            console.log(response); // first reset your form values
+            // eslint-disable-next-line guard-for-in,no-restricted-syntax
+
             for (var key in _this.form) {
               _this.form[key] = '';
             } // then do this to reset your ValidationObserver
 
 
             _this.$nextTick(function () {
-              return _this.$refs.createsupplier.reset();
+              return _this.$refs.createCustomer.reset();
             });
 
-            _this.$bvToast.toast('supplier created successfully.', {
+            _this.$bvToast.toast(response.data.message, {
               title: 'Success',
               variant: 'success',
               solid: true
             });
           })["catch"](function (error) {
-            _this.$refs.createsupplier.setErrors(error.response.data.errors);
+            _this.$refs.createCustomer.setErrors(error.response.data.errors);
           });
         }
+      });
+    },
+    getAllCountries: function getAllCountries() {
+      var _this2 = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/v1/get-countries').then(function (response) {
+        _this2.countries = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getAllDivisions: function getAllDivisions() {
+      var _this3 = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('api/v1/get-divisions').then(function (response) {
+        _this3.divisions = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getDistricts: function getDistricts(divisionId) {
+      var _this4 = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/get-districts/".concat(divisionId)).then(function (response) {
+        _this4.districts = response.data; // console.log(response)
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getUpazilas: function getUpazilas(districtId) {
+      var _this5 = this;
+
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/get-upazilas/".concat(districtId)).then(function (response) {
+        console.log(response.data);
+        _this5.upazilas = response.data;
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }
@@ -475,10 +685,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/supplier/Create.vue?vue&type=template&id=735f229e&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/supplier/Create.vue?vue&type=template&id=735f229e& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/client/Create.vue?vue&type=template&id=335cfdd2&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/client/Create.vue?vue&type=template&id=335cfdd2& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -497,7 +707,7 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
             _c("span", { staticClass: "card-title" }, [
-              _vm._v("Supplier Information")
+              _vm._v("Client Information")
             ])
           ]),
           _vm._v(" "),
@@ -507,7 +717,7 @@ var render = function() {
             [
               _c(
                 "validation-observer",
-                { ref: "createsupplier" },
+                { ref: "createCustomer" },
                 [
                   _c(
                     "b-form",
@@ -521,7 +731,7 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Full name" } },
+                                { attrs: { label: "Name" } },
                                 [
                                   _c("validation-provider", {
                                     attrs: { name: "name", rules: "required" },
@@ -537,7 +747,7 @@ var render = function() {
                                                   errors.length > 0
                                                     ? false
                                                     : null,
-                                                placeholder: "Full Name"
+                                                placeholder: "Name"
                                               },
                                               model: {
                                                 value: _vm.form.name,
@@ -575,10 +785,13 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Phone number" } },
+                                { attrs: { label: "Company" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "phone_number" },
+                                    attrs: {
+                                      name: "company",
+                                      rules: "required"
+                                    },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -591,19 +804,18 @@ var render = function() {
                                                   errors.length > 0
                                                     ? false
                                                     : null,
-                                                type: "text",
-                                                placeholder: "Phone number"
+                                                placeholder: "Company"
                                               },
                                               model: {
-                                                value: _vm.form.phone_number,
+                                                value: _vm.form.company,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "phone_number",
+                                                    "company",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.phone_number"
+                                                expression: "form.company"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -630,10 +842,10 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Previous Due" } },
+                                { attrs: { label: "Mobile 1" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "previous_due" },
+                                    attrs: { name: "phone_number_1" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -647,18 +859,19 @@ var render = function() {
                                                     ? false
                                                     : null,
                                                 type: "text",
-                                                placeholder: "Previous due"
+                                                placeholder: "Mobile 1"
                                               },
                                               model: {
-                                                value: _vm.form.previous_due,
+                                                value: _vm.form.phone_number_1,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "previous_due",
+                                                    "phone_number_1",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.previous_due"
+                                                expression:
+                                                  "form.phone_number_1"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -685,35 +898,36 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Description" } },
+                                { attrs: { label: "Mobile 2" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "Description" },
+                                    attrs: { name: "phone_number_2" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
                                         fn: function(ref) {
                                           var errors = ref.errors
                                           return [
-                                            _c("b-form-textarea", {
+                                            _c("b-form-input", {
                                               attrs: {
                                                 state:
                                                   errors.length > 0
                                                     ? false
                                                     : null,
-                                                placeholder: "Description",
-                                                rows: "3"
+                                                type: "text",
+                                                placeholder: "Mobile 2"
                                               },
                                               model: {
-                                                value: _vm.form.description,
+                                                value: _vm.form.phone_number_2,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "description",
+                                                    "phone_number_2",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.description"
+                                                expression:
+                                                  "form.phone_number_2"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -729,6 +943,572 @@ var render = function() {
                                   })
                                 ],
                                 1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Email" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: { name: "email" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "Email"
+                                              },
+                                              model: {
+                                                value: _vm.form.email,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "email",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.email"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Notes" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: { name: "notes" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "Notes"
+                                              },
+                                              model: {
+                                                value: _vm.form.notes,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "notes",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.notes"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Address" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: { name: "address" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "Address"
+                                              },
+                                              model: {
+                                                value: _vm.form.address,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "address",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.address"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Website" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: { name: "website" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "Website"
+                                              },
+                                              model: {
+                                                value: _vm.form.website,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "website",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.website"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Country" } },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.country_id,
+                                          expression: "form.country_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "country_id",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "", selected: "" } },
+                                        [
+                                          _vm._v(
+                                            "\n                      Choose one\n                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.countries, function(country) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: country.id,
+                                            domProps: { value: country.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(country.name) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Division" } },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.division_id,
+                                          expression: "form.division_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "" },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "division_id",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                          function($event) {
+                                            return _vm.getDistricts(
+                                              _vm.form.division_id
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "", selected: "" } },
+                                        [
+                                          _vm._v(
+                                            "\n                      Choose one\n                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.divisions, function(division) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: division.id,
+                                            domProps: { value: division.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(division.name) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "District" } },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.district_id,
+                                          expression: "form.district_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "" },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "district_id",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                          function($event) {
+                                            return _vm.getUpazilas(
+                                              _vm.form.district_id
+                                            )
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "", selected: "" } },
+                                        [
+                                          _vm._v(
+                                            "\n                      Choose one\n                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.districts, function(district) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: district.id,
+                                            domProps: { value: district.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(district.name) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-col",
+                            { attrs: { md: "6" } },
+                            [
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Upazila" } },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.upazila_id,
+                                          expression: "form.upazila_id"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "upazila_id",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "", selected: "" } },
+                                        [
+                                          _vm._v(
+                                            "\n                      Choose one\n                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.upazilas, function(upazila) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: upazila.id,
+                                            domProps: { value: upazila.id }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                      " +
+                                                _vm._s(upazila.name) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
                               )
                             ],
                             1

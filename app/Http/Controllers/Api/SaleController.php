@@ -31,8 +31,6 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-
-
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|numeric',
             'client_id' => 'required|numeric',
@@ -60,8 +58,8 @@ class SaleController extends Controller
         DB::beginTransaction();
 
         try {
-
             $sale = Sale::create([
+                'code' => Sale::generateUniqueCode(),
                 'shop_id' => $request->user()->shop->id,
                 'product_id' => $request->product_id,
                 'client_id' => $request->client_id,
@@ -77,6 +75,14 @@ class SaleController extends Controller
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
             ]);
+            foreach ($request->products as $product){
+                $sale->products()->attach($product['id'], [
+                    'cost' => $product['cost'],
+                    'quantity' => $product['quantity'],
+                    'total_cost' => $product['cost'] * $product['quantity'],
+                    'notes' => $product['notes'],
+                ]);
+            }
 
             DB::commit();
             // all good

@@ -8,17 +8,14 @@ use Spatie\Permission\Models\Permission;
 
 class AccessControlsTableSeeder extends Seeder
 {
-
     public function run()
     {
-
         // Reset cached roles and permissions
         app()['cache']->forget('spatie.permission.cache');
 
         $dev = User::where('email', 'super@admin.com')->first();
 
         if (empty($dev)) {
-
             $data = [
                 [
                     'name' => 'Admin',
@@ -26,11 +23,8 @@ class AccessControlsTableSeeder extends Seeder
                     'email_verified_at' => now(),
                     'password' => bcrypt('12345678'),
                 ],
-
             ];
-
             DB::table('admins')->insert($data);
-
         }
 
         $dev = \App\Models\Admin\Admin::where('email', 'admin@gmail.com')->first();
@@ -46,10 +40,6 @@ class AccessControlsTableSeeder extends Seeder
 
         //data for permissions table
         $data = [
-
-
-
-
             ['name' => 'role-list', 'guard_name' => 'user'],
             ['name' => 'role-create', 'guard_name' => 'user'],
             ['name' => 'role-show', 'guard_name' => 'user'],
@@ -61,9 +51,6 @@ class AccessControlsTableSeeder extends Seeder
             ['name' => 'user-show', 'guard_name' => 'user'],
             ['name' => 'user-edit', 'guard_name' => 'user'],
             ['name' => 'user-delete', 'guard_name' => 'user'],
-
-
-
         ];
 
         DB::table('permissions')->insert($data);
@@ -78,10 +65,7 @@ class AccessControlsTableSeeder extends Seeder
             $data = [
                 ['permission_id' => $value->id, 'role_id' => 1],
             ];
-
             DB::table('role_has_permissions')->insert($data);
-
         }
-
     }
 }

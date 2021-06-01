@@ -23,7 +23,7 @@
                   <div class="logo-wrapper">
                     <logo />
                     <h3 class="text-primary invoice-logo">
-                      Vuexy
+                      {{ shop_info.user.name }}
                     </h3>
                   </div>
                   <b-card-text class="mb-25">
@@ -97,12 +97,13 @@
 
                   <!-- Select Client -->
                   <v-select
-                    v-model="invoiceData.client_id"
+                    v-model="invoiceData.client"
                     dir="ltr"
                     :options="clients"
                     label="company"
                     input-id="invoice-data-client"
                     :clearable="false"
+                    placeholder="Select client"
                   >
                     <template #list-header>
                       <li
@@ -113,7 +114,7 @@
                           icon="PlusIcon"
                           size="16"
                         />
-                        <span class="align-middle ml-25">Add New Customer</span>
+                        <span class="align-middle ml-25">Add New Client</span>
                       </li>
                     </template>
                   </v-select>
@@ -130,13 +131,10 @@
                       {{ invoiceData.client.company }}
                     </b-card-text>
                     <b-card-text class="mb-25">
-                      {{ invoiceData.client.address }}, {{ invoiceData.client.country }}
-                    </b-card-text>
-                    <b-card-text class="mb-25">
-                      {{ invoiceData.client.contact }}
+                      {{ invoiceData.client.address }}
                     </b-card-text>
                     <b-card-text class="mb-0">
-                      {{ invoiceData.client.companyEmail }}
+                      {{ invoiceData.client.email }}
                     </b-card-text>
                   </div>
                 </b-col>
@@ -198,7 +196,7 @@
                 :style="{height: trHeight}"
               >
                 <b-row
-                  v-for="(item, index) in products"
+                  v-for="(item, index) in invoiceData.items"
                   :key="index"
                   ref="row"
                   class="pb-2"
@@ -216,25 +214,7 @@
                           cols="12"
                           lg="5"
                         >
-                          Item
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="3"
-                        >
-                          Cost
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="2"
-                        >
-                          Qty
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="2"
-                        >
-                          Price
+                          Items
                         </b-col>
                       </b-row>
                       <div class="form-item-action-col" />
@@ -249,23 +229,36 @@
                           cols="12"
                           lg="5"
                         >
-                          <label class="d-inline d-lg-none">Item</label>
+                          <label class="d-inline">Item</label>
                           <v-select
-                            v-model="item.itemTitle"
-                            :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                            :options="itemsOptions"
-                            label="itemTitle"
+                            v-model="item.id"
+                            dir="ltr"
+                            :options="products"
+                            label="name"
                             :clearable="false"
                             class="mb-2 item-selector-title"
                             placeholder="Select Item"
-                            @input="val => updateItemForm(index, val)"
-                          />
+                            input-id="invoice-data-client"
+                          >
+                            <template #list-header>
+                              <li
+                                v-b-toggle.sidebar-add-product
+                                class="add-new-client-header d-flex align-items-center my-50"
+                              >
+                                <feather-icon
+                                  icon="PlusIcon"
+                                  size="16"
+                                />
+                                <span class="align-middle ml-25">Add New Product</span>
+                              </li>
+                            </template>
+                          </v-select>
                         </b-col>
                         <b-col
                           cols="12"
                           lg="3"
                         >
-                          <label class="d-inline d-lg-none">Cost</label>
+                          <label class="d-inline">Cost</label>
                           <b-form-input
                             v-model="item.cost"
                             type="number"
@@ -276,7 +269,7 @@
                           cols="12"
                           lg="2"
                         >
-                          <label class="d-inline d-lg-none">Qty</label>
+                          <label class="d-inline">Qty</label>
                           <b-form-input
                             v-model="item.qty"
                             type="number"
@@ -287,25 +280,20 @@
                           cols="12"
                           lg="2"
                         >
-                          <label class="d-inline d-lg-none">Price</label>
+                          <label class="d-inline">Price</label>
                           <p class="mb-1">
-                            ${{ item.cost * item.qty }}
+                            ৳{{ item.cost * item.qty }}
                           </p>
                         </b-col>
                         <b-col
                           cols="12"
                           lg="5"
                         >
-                          <label class="d-inline d-lg-none">Description</label>
+                          <label class="d-inline">Description</label>
                           <b-form-textarea
                             v-model="item.description"
                             class="mb-2 mb-lg-0"
                           />
-                        </b-col>
-                        <b-col>
-                          <p class="mb-0">
-                            Discount: 0% 0% 0%
-                          </p>
                         </b-col>
                       </b-row>
                       <div class="d-flex flex-column justify-content-between border-left py-50 px-25">
@@ -323,81 +311,7 @@
                         />
 
                         <!-- Setting Item Form -->
-                        <b-popover
-                          :ref="`form-item-settings-popover-${index}`"
-                          :target="`form-item-settings-icon-${index}`"
-                          triggers="click"
-                          placement="lefttop"
-                        >
-                          <b-form @submit.prevent>
-                            <b-row>
 
-                              <!-- Field: Discount -->
-                              <b-col cols="12">
-                                <b-form-group
-                                  label="Discount(%)"
-                                  :label-for="`setting-item-${index}-discount`"
-                                >
-                                  <b-form-input
-                                    :id="`setting-item-${index}-discount`"
-                                    :value="null"
-                                    type="number"
-                                  />
-                                </b-form-group>
-                              </b-col>
-
-                              <!-- Field: Tax 1 -->
-                              <b-col cols="6">
-                                <b-form-group
-                                  label="Tax 1"
-                                  :label-for="`setting-item-${index}-tax-1`"
-                                >
-                                  <v-select
-                                    :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                                    :value="'10%'"
-                                    :options="['0%', '1%', '10%', '14%', '18%']"
-                                    :input-id="`setting-item-${index}-tax-1`"
-                                    :clearable="false"
-                                  />
-                                </b-form-group>
-                              </b-col>
-
-                              <!-- Field: Tax 2 -->
-                              <b-col cols="6">
-                                <b-form-group
-                                  label="Tax 2"
-                                  :label-for="`setting-item-${index}-tax-2`"
-                                >
-                                  <v-select
-                                    :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                                    :value="'10%'"
-                                    :options="['0%', '1%', '10%', '14%', '18%']"
-                                    :input-id="`setting-item-${index}-tax-2`"
-                                    :clearable="false"
-                                  />
-                                </b-form-group>
-                              </b-col>
-
-                              <b-col
-                                cols="12"
-                                class="d-flex justify-content-between mt-1"
-                              >
-                                <b-button
-                                  variant="outline-primary"
-                                  @click="() => {$refs[`form-item-settings-popover-${index}`][0].$emit('close')}"
-                                >
-                                  Apply
-                                </b-button>
-                                <b-button
-                                  variant="outline-secondary"
-                                  @click="() => {$refs[`form-item-settings-popover-${index}`][0].$emit('close')}"
-                                >
-                                  Cancel
-                                </b-button>
-                              </b-col>
-                            </b-row>
-                          </b-form>
-                        </b-popover>
                       </div>
                     </div>
                   </b-col>
@@ -440,7 +354,7 @@
                         Subtotal:
                       </p>
                       <p class="invoice-total-amount">
-                        $1800
+                        ৳1800
                       </p>
                     </div>
                     <div class="invoice-total-item">
@@ -448,7 +362,7 @@
                         Discount:
                       </p>
                       <p class="invoice-total-amount">
-                        $28
+                        ৳ 0
                       </p>
                     </div>
                     <div class="invoice-total-item">
@@ -456,7 +370,7 @@
                         Tax:
                       </p>
                       <p class="invoice-total-amount">
-                        21%
+                        0%
                       </p>
                     </div>
                     <hr class="my-50">
@@ -465,7 +379,7 @@
                         Total:
                       </p>
                       <p class="invoice-total-amount">
-                        $1690
+                        ৳ 1690
                       </p>
                     </div>
                   </div>
@@ -492,13 +406,22 @@
         xl="3"
         class="invoice-actions mt-md-0 mt-2"
       >
-
         <!-- Action Buttons -->
         <b-card>
+          <!-- Button: Add Payment -->
+          <b-button
+            v-b-toggle.sidebar-invoice-add-payment
+            v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+            variant="success"
+            class="mb-75"
+            block
+          >Add Payment</b-button>
+          <!-- Button: Save -->
           <b-button
             v-ripple.400="'rgba(255, 255, 255, 0.15)'"
             variant="primary"
             block
+            @click.prevent="submitInvoice"
           >
             Save
           </b-button>
@@ -511,57 +434,10 @@
             Cancel
           </b-button>
         </b-card>
-
-        <!-- Payment Method -->
-        <div class="mt-2">
-          <b-form-group
-            label="Accept Payment Via"
-            label-for="payment-method"
-          >
-            <v-select
-              v-model="invoiceData.paymentMethod"
-              dir="ltr"
-              :options="paymentMethods"
-              input-id="payment-method"
-              class="payment-selector"
-              :clearable="false"
-            />
-          </b-form-group>
-
-          <!-- ? Below values are not adding invoiceData to keep invoiceData more generic and less confusing  -->
-
-          <!-- Payment Terms -->
-          <div class="d-flex justify-content-between align-items-center">
-            <label for="patymentTerms">Payment Terms</label>
-            <b-form-checkbox
-              id="patymentTerms"
-              :checked="true"
-              switch
-            />
-          </div>
-
-          <!-- Client Notes -->
-          <div class="d-flex justify-content-between align-items-center my-1">
-            <label for="clientNotes">Client Notes</label>
-            <b-form-checkbox
-              id="clientNotes"
-              :checked="true"
-              switch
-            />
-          </div>
-
-          <!-- Payment Stub -->
-          <div class="d-flex justify-content-between align-items-center">
-            <label for="paymentStub">Payment Stub</label>
-            <b-form-checkbox
-              id="paymentStub"
-              switch
-            />
-          </div>
-        </div>
       </b-col>
     </b-row>
-    <!--    <invoice-sidebar-add-new-customer />-->
+    <invoice-sidebar-add-payment />
+    <sidebar-add-product />
     <b-sidebar
       id="sidebar-invoice-add-new-customer"
       ref="createClientSidebar"
@@ -667,13 +543,14 @@ import Logo from '@core/layouts/components/Logo.vue'
 import { heightTransition } from '@core/mixins/ui/transition'
 import Ripple from 'vue-ripple-directive'
 import {
-  BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormGroup, BFormInput, BInputGroup, BInputGroupPrepend, BFormTextarea, BFormCheckbox, BPopover, VBToggle,
+  BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormGroup, BFormInput, BInputGroup, BInputGroupPrepend, BFormTextarea, BFormCheckbox, VBToggle,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import flatPickr from 'vue-flatpickr-component'
 import axiosIns from '@/libs/axios'
 // import invoiceStoreModule from '../invoiceStoreModule'
-// import InvoiceSidebarAddNewCustomer from '../InvoiceSidebarAddNewCustomer.vue'
+import InvoiceSidebarAddPayment from '../invoice/InvoiceSidebarAddPayment.vue'
+import SidebarAddProduct from '../product/sidebar-add-product.vue'
 
 export default {
   components: {
@@ -689,14 +566,13 @@ export default {
     BInputGroup,
     BInputGroupPrepend,
     BFormTextarea,
-    BFormCheckbox,
-    BPopover,
     flatPickr,
     vSelect,
     Logo,
     ValidationProvider,
     ValidationObserver,
-    // InvoiceSidebarAddNewCustomer,
+    InvoiceSidebarAddPayment,
+    SidebarAddProduct,
   },
   directives: {
     Ripple,
@@ -706,24 +582,37 @@ export default {
   mixins: [heightTransition],
   data() {
     return {
+      shop_info: {},
       invoiceData: {
         invoice_no: '',
         date: new Date(),
         next_payment: '',
-        client_id: '',
+        client: {},
+        items: [{
+          id: '',
+          cost: '',
+          qty: '',
+          description: '',
+        }],
+        notes: '',
       },
-      clients: [],
-      customer: {},
       form: {
         name: '',
         company: '',
         email: '',
       },
+      clients: [],
       products: [],
+      itemPrice: '',
     }
   },
+  watch: {
+    'invoiceData.items.cost': 'itemChange',
+  },
   mounted() {
+    this.getShopInfo()
     this.getAllClients()
+    this.getproductData()
     this.initTrHeight()
   },
   created() {
@@ -733,10 +622,22 @@ export default {
     window.removeEventListener('resize', this.initTrHeight)
   },
   methods: {
+    getShopInfo() {
+      axiosIns.get('api/v1/shop/shop-info').then(response => {
+        console.log(response.data)
+        this.shop_info = response.data
+      })
+    },
     getAllClients() {
       axiosIns.get('api/v1/shop/client').then(response => {
-        // console.log(response.data)
+        console.log(response.data)
         this.clients = response.data
+      })
+    },
+    getproductData() {
+      axiosIns.get('api/v1/shop/product').then(response => {
+        // console.log(response.data)
+        this.products = response.data
       })
     },
     clientCreate() {
@@ -766,8 +667,12 @@ export default {
     },
     addNewItemInItemForm() {
       this.$refs.form.style.overflow = 'hidden'
-      this.invoiceData.items.push(JSON.parse(JSON.stringify(this.itemFormBlankItem)))
-
+      this.invoiceData.items.push({
+        id: '',
+        cost: '',
+        qty: '',
+        description: '',
+      })
       this.$nextTick(() => {
         this.trAddHeight(this.$refs.row[0].offsetHeight)
         setTimeout(() => {
@@ -775,8 +680,12 @@ export default {
         }, 350)
       })
     },
+    submitInvoice() {
+      console.log(this.invoiceData)
+    },
     removeItem(index) {
       this.invoiceData.items.splice(index, 1)
+      // this.invoiceData.items.splice(index, 1)
       this.trTrimHeight(this.$refs.row[0].offsetHeight)
     },
     initTrHeight() {
@@ -787,6 +696,33 @@ export default {
     },
   },
   setup() {
+    const itemsOptions = [
+      {
+        itemTitle: 'App Design',
+        cost: 24,
+        qty: 1,
+        description: 'Designed UI kit & app pages.',
+      },
+      {
+        itemTitle: 'App Customization',
+        cost: 26,
+        qty: 1,
+        description: 'Customization & Bug Fixes.',
+      },
+      {
+        itemTitle: 'ABC Template',
+        cost: 28,
+        qty: 1,
+        description: 'Bootstrap 4 admin template.',
+      },
+      {
+        itemTitle: 'App Development',
+        cost: 32,
+        qty: 1,
+        description: 'Native App Development.',
+      },
+    ]
+
     const paymentMethods = [
       'Bank Account',
       'PayPal',
@@ -795,6 +731,7 @@ export default {
 
     return {
       paymentMethods,
+      itemsOptions,
     }
   },
 }

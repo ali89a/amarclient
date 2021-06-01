@@ -175,4 +175,13 @@ class AuthController extends Controller
         }
         return \response()->json(['success'=>true,'user'=>$user]);
     }
+
+    public function getShopInfo()
+    {
+        $user = auth('user-api')->user()->with('shop')->first();
+        if (!$user){
+            return \response()->json(['success'=>false,'message'=>'No user found!']);
+        }
+        return \response()->json(['success'=>true,'user'=>$user->shop]);
+    }
 }

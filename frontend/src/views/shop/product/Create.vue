@@ -101,7 +101,6 @@ export default {
       form: {
         name: '',
         sku: '',
-        price: '',
       },
       required,
     }

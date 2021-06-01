@@ -226,29 +226,28 @@ var axiosIns = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
   // You can add your headers here
   // ================================
   baseURL: 'http://127.0.0.1:8000',
-  // baseURL: 'http://cashbaksho.com/',
-  timeout: 5000,
+  // baseURL: 'https://amarclient.com/',
+  timeout: 90000,
   headers: {
     Accept: 'application/json'
-  } //Authorization: `Bearer ${localStorage.getItem('userAccessToken')}`
-
+  }
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axiosIns;
 /* harmony default export */ __webpack_exports__["default"] = (axiosIns);
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/transaction/Edit.vue":
-/*!******************************************************!*\
-  !*** ./frontend/src/views/shop/transaction/Edit.vue ***!
-  \******************************************************/
+/***/ "./frontend/src/views/shop/expense/Edit.vue":
+/*!**************************************************!*\
+  !*** ./frontend/src/views/shop/expense/Edit.vue ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Edit_vue_vue_type_template_id_6f6dd639___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=6f6dd639& */ "./frontend/src/views/shop/transaction/Edit.vue?vue&type=template&id=6f6dd639&");
-/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/transaction/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=d14ee602& */ "./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -259,8 +258,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Edit_vue_vue_type_template_id_6f6dd639___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Edit_vue_vue_type_template_id_6f6dd639___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -270,47 +269,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "frontend/src/views/shop/transaction/Edit.vue"
+component.options.__file = "frontend/src/views/shop/expense/Edit.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/transaction/Edit.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./frontend/src/views/shop/transaction/Edit.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/transaction/Edit.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./frontend/src/views/shop/transaction/Edit.vue?vue&type=template&id=6f6dd639&":
-/*!*************************************************************************************!*\
-  !*** ./frontend/src/views/shop/transaction/Edit.vue?vue&type=template&id=6f6dd639& ***!
-  \*************************************************************************************/
+/***/ "./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&":
+/*!*********************************************************************************!*\
+  !*** ./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602& ***!
+  \*********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6f6dd639___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=6f6dd639& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/transaction/Edit.vue?vue&type=template&id=6f6dd639&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6f6dd639___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=d14ee602& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6f6dd639___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d14ee602___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/transaction/Edit.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/transaction/Edit.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/expense/Edit.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -320,6 +319,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./frontend/node_modules/bootstrap-vue/esm/index.js");
 /* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @validations */ "./frontend/src/@core/utils/validations/validations.js");
 /* harmony import */ var _libs_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/libs/axios */ "./frontend/src/libs/axios.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -407,26 +415,26 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        given: '',
-        taken: '',
-        date: ''
+        name: '',
+        sku: '',
+        price: ''
       },
       required: _validations__WEBPACK_IMPORTED_MODULE_2__["required"]
     };
   },
   created: function created() {
-    this.gettransactionInfo();
+    this.getproductInfo();
   },
   methods: {
     validationForm: function validationForm() {
       var _this = this;
 
-      this.$refs.createtransaction.validate().then(function (success) {
+      this.$refs.createproduct.validate().then(function (success) {
         if (success) {
-          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].put("api/v1/shop/transaction/".concat(_this.$route.params.id), _this.form).then(function (response) {
+          _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].put("api/v1/shop/product/".concat(_this.$route.params.id), _this.form).then(function (response) {
             // console.log(response)
             _this.$nextTick(function () {
-              return _this.$refs.createtransaction.reset();
+              return _this.$refs.createproduct.reset();
             });
 
             _this.$bvToast.toast(response.data.message, {
@@ -438,13 +446,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    gettransactionInfo: function gettransactionInfo() {
+    getproductInfo: function getproductInfo() {
       var _this2 = this;
 
-      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/transaction/".concat(this.$route.params.id)).then(function (response) {
-        _this2.form.given = response.data.transaction_info.given;
-        _this2.form.taken = response.data.transaction_info.taken;
-        _this2.form.date = response.data.transaction_info.date;
+      _libs_axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/v1/shop/product/".concat(this.$route.params.id)).then(function (response) {
+        _this2.form.name = response.data.product_info.name;
+        _this2.form.sku = response.data.product_info.sku;
+        _this2.form.price = response.data.product_info.price;
       });
     }
   }
@@ -452,10 +460,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/transaction/Edit.vue?vue&type=template&id=6f6dd639&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/transaction/Edit.vue?vue&type=template&id=6f6dd639& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./frontend/src/views/shop/expense/Edit.vue?vue&type=template&id=d14ee602& ***!
+  \***************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -474,7 +482,7 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
             _c("span", { staticClass: "card-title" }, [
-              _vm._v("transaction Information")
+              _vm._v("product Information")
             ])
           ]),
           _vm._v(" "),
@@ -484,7 +492,7 @@ var render = function() {
             [
               _c(
                 "validation-observer",
-                { ref: "createtransaction" },
+                { ref: "createproduct" },
                 [
                   _c(
                     "b-form",
@@ -498,10 +506,10 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Given" } },
+                                { attrs: { label: "name" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "Given" },
+                                    attrs: { name: "Name", rules: "required" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -514,18 +522,18 @@ var render = function() {
                                                   errors.length > 0
                                                     ? false
                                                     : null,
-                                                placeholder: "Given amount"
+                                                placeholder: "Full Name"
                                               },
                                               model: {
-                                                value: _vm.form.given,
+                                                value: _vm.form.name,
                                                 callback: function($$v) {
                                                   _vm.$set(
                                                     _vm.form,
-                                                    "given",
+                                                    "name",
                                                     $$v
                                                   )
                                                 },
-                                                expression: "form.given"
+                                                expression: "form.name"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -552,10 +560,10 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Taken" } },
+                                { attrs: { label: "SKU" } },
                                 [
                                   _c("validation-provider", {
-                                    attrs: { name: "Taken" },
+                                    attrs: { name: "SKU" },
                                     scopedSlots: _vm._u([
                                       {
                                         key: "default",
@@ -569,18 +577,14 @@ var render = function() {
                                                     ? false
                                                     : null,
                                                 type: "text",
-                                                placeholder: "Taken amount"
+                                                placeholder: "sku"
                                               },
                                               model: {
-                                                value: _vm.form.taken,
+                                                value: _vm.form.sku,
                                                 callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.form,
-                                                    "taken",
-                                                    $$v
-                                                  )
+                                                  _vm.$set(_vm.form, "sku", $$v)
                                                 },
-                                                expression: "form.taken"
+                                                expression: "form.sku"
                                               }
                                             }),
                                             _vm._v(" "),
@@ -606,22 +610,52 @@ var render = function() {
                             { attrs: { md: "6" } },
                             [
                               _c(
-                                "label",
-                                { attrs: { for: "example-datepicker" } },
-                                [_vm._v("Choose a date")]
-                              ),
-                              _vm._v(" "),
-                              _c("b-form-datepicker", {
-                                staticClass: "mb-1",
-                                attrs: { id: "example-datepicker" },
-                                model: {
-                                  value: _vm.form.date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "date", $$v)
-                                  },
-                                  expression: "form.date"
-                                }
-                              })
+                                "b-form-group",
+                                { attrs: { label: "Price" } },
+                                [
+                                  _c("validation-provider", {
+                                    attrs: { name: "Price" },
+                                    scopedSlots: _vm._u([
+                                      {
+                                        key: "default",
+                                        fn: function(ref) {
+                                          var errors = ref.errors
+                                          return [
+                                            _c("b-form-input", {
+                                              attrs: {
+                                                state:
+                                                  errors.length > 0
+                                                    ? false
+                                                    : null,
+                                                type: "text",
+                                                placeholder: "Price"
+                                              },
+                                              model: {
+                                                value: _vm.form.price,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "price",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.price"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v(_vm._s(errors[0]))]
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ])
+                                  })
+                                ],
+                                1
+                              )
                             ],
                             1
                           ),

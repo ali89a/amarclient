@@ -21,7 +21,6 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'sku' => 'string|unique:products,sku',
-            'price' => 'required|numeric|nullable',
         ]);
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors()],422);
@@ -33,7 +32,6 @@ class ProductController extends Controller
                 'shop_id' => $request->user()->shop->id,
                 'name' => $request->name,
                 'sku' => $request->sku,
-                'price' => $request->price,
             ]);
 
             DB::commit();
@@ -73,7 +71,6 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'sku' => 'string|nullable',
-            'price' => 'integer|max:500',
         ]);
         if ($validator->fails()) {
             return response()->json(['success' => false, 'errors' => $validator->errors(),], 422);
@@ -83,7 +80,6 @@ class ProductController extends Controller
             $customer->update([
                 'name' => $request->name,
                 'sku' => $request->sku,
-                'price' => $request->price,
             ]);
             return response()->json(['success' => true, 'message' => "Product Updated successfully.",]);
         }
